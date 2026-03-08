@@ -3,172 +3,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oráculo Premium | O Dossiê Executivo</title>
+    <title>Dossiê Oráculo Premium | Inteligência Executiva</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
     <style>
-        /* Estrutura de Elite - Paleta de Poder */
+        /* A Paleta de Poder do Milhão */
         :root {
             --azul-royal: #002366;
             --dourado: #F7E7CE;
             --verde-roi: #50C878;
             --branco-neve: #FFFAFA;
             --cinza-grafite: #36454F;
-            --vermelho-alerta: #e74c3c;
+            --vermelho-alerta: #D32F2F;
+            --cinza-fundo: #F4F5F7;
         }
         
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: var(--branco-neve);
+            font-family: 'Inter', sans-serif; /* Fluência Cognitiva */
+            background-color: var(--cinza-fundo);
             color: var(--cinza-grafite);
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
+            padding-top: 5vh;
+            padding-bottom: 5vh;
         }
 
-        .container {
-            max-width: 600px;
-            background: #fff;
-            padding: 40px;
-            border-top: 5px solid var(--dourado);
-            box-shadow: 0 10px 30px rgba(0,35,102,0.1);
-            text-align: center;
-            border-radius: 8px;
+        /* O Efeito "Black Box" (Isolamento Visual) */
+        .executive-container {
+            width: 100%;
+            max-width: 680px;
+            background: var(--branco-neve);
+            padding: 50px 60px;
+            border-top: 6px solid var(--dourado); /* Selo de Riqueza */
+            box-shadow: 0 20px 40px rgba(0, 35, 102, 0.08);
+            border-radius: 4px;
+            box-sizing: border-box;
         }
 
-        h1 {
-            color: var(--azul-royal);
-            font-size: 2.2em;
-            margin-bottom: 5px;
-            letter-spacing: -1px;
-        }
-
-        .subtitle {
-            font-size: 1.1em;
-            color: var(--cinza-grafite);
-            margin-bottom: 30px;
-            line-height: 1.5;
-        }
-
-        .dossie-box {
-            background-color: #f9f9fc;
-            border: 1px solid #eaeaea;
-            padding: 20px;
-            border-radius: 6px;
+        /* Micro-Commitment e Gatilho de Escassez/Urgência */
+        .status-tag {
+            display: inline-block;
+            background-color: rgba(211, 47, 47, 0.1);
+            color: var(--vermelho-alerta);
+            font-size: 0.75em;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            padding: 6px 12px;
+            border-radius: 2px;
+            text-transform: uppercase;
             margin-bottom: 25px;
-            text-align: left;
         }
 
-        .dossie-box h3 {
+        /* Gatilho de Autoridade (Cialdini) */
+        h1 {
+            font-family: 'Playfair Display', serif; 
             color: var(--azul-royal);
+            font-size: 2.6em;
+            line-height: 1.1;
             margin-top: 0;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .lead-copy {
+            font-size: 1.15em;
+            color: var(--cinza-grafite);
+            line-height: 1.6;
+            margin-bottom: 35px;
+            font-weight: 400;
+        }
+
+        .lead-copy strong {
+            color: var(--azul-royal);
+        }
+
+        /* O Valor Entregue (Dopamina) */
+        .intelligence-briefing {
+            border-left: 3px solid var(--dourado);
+            padding-left: 25px;
+            margin-bottom: 40px;
+        }
+
+        .intelligence-briefing p {
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            line-height: 1.6;
         }
 
         ul {
-            list-style-type: none;
+            list-style: none;
             padding: 0;
+            margin: 0 0 30px 0;
         }
 
         ul li {
-            margin-bottom: 12px;
-            padding-left: 24px;
             position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            font-weight: 600;
+            color: var(--azul-royal);
         }
 
+        /* Checkmark Dourado Minimalista */
         ul li::before {
-            content: '✓';
+            content: '■';
             color: var(--dourado);
             position: absolute;
             left: 0;
-            font-weight: bold;
+            top: 2px;
+            font-size: 0.8em;
         }
 
-        /* --- SESSÃO DE PREÇO (NOVO) --- */
-        .price-box {
-            margin-bottom: 25px;
-            padding: 15px;
-            background-color: rgba(247, 231, 206, 0.2); /* Fundo dourado suave */
-            border-radius: 6px;
-            border: 1px dashed var(--dourado);
+        /* Engenharia de Ancoragem e Aversão à Perda */
+        .financial-engineering {
+            background-color: #F8F9FA;
+            border: 1px solid #E5E7EB;
+            padding: 30px;
+            text-align: center;
+            border-radius: 4px;
+            margin-bottom: 30px;
         }
 
         .price-anchor {
             text-decoration: line-through;
-            color: var(--vermelho-alerta);
+            color: #9CA3AF;
             font-size: 1.1em;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .price-real {
             color: var(--azul-royal);
-            font-size: 2.5em;
-            font-weight: bold;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.2em;
+            font-weight: 900;
             display: block;
             line-height: 1;
+            letter-spacing: -1px;
         }
 
         .price-parcelas {
-            font-size: 1.2em;
+            font-size: 1.1em;
             color: var(--verde-roi);
-            font-weight: bold;
+            font-weight: 600;
             display: block;
-            margin-top: 5px;
+            margin-top: 10px;
         }
-        /* ------------------------------ */
 
-        .btn-comprar {
+        /* O Call to Action Hipnótico */
+        .btn-executive {
             display: block;
             width: 100%;
-            padding: 18px;
+            padding: 22px;
             background-color: var(--verde-roi);
-            color: #fff;
+            color: var(--branco-neve);
             text-decoration: none;
-            font-size: 1.2em;
-            font-weight: bold;
-            border-radius: 4px;
-            transition: transform 0.2s, background-color 0.2s;
-            box-sizing: border-box;
+            text-align: center;
+            font-size: 1.1em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(80, 200, 120, 0.3);
         }
 
-        .btn-comprar:hover {
-            transform: translateY(-2px);
+        .btn-executive:hover {
             background-color: #45b368;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(80, 200, 120, 0.4);
         }
 
-        .seguranca {
-            font-size: 0.8em;
-            color: #888;
-            margin-top: 15px;
-            display: block;
+        .security-seal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 0.85em;
+            color: #6B7280;
+        }
+
+        .security-seal svg {
+            width: 16px;
+            height: 16px;
+            fill: #9CA3AF;
+            margin-right: 8px;
+        }
+
+        /* Placeholder para o seu Logo */
+        .logo-area {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .logo-area img {
+            max-height: 40px; /* Ajuste conforme seu logo */
+            opacity: 0.9;
+        }
+
+        /* Responsividade Extrema */
+        @media (max-width: 600px) {
+            .executive-container { padding: 40px 25px; }
+            h1 { font-size: 2.1em; }
+            .price-real { font-size: 2.6em; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>O Dossiê Oráculo</h1>
-        <p class="subtitle">A inteligência de mercado exata e as métricas ocultas que os líderes usam para escalar negócios blindados.</p>
+    <div class="executive-container">
         
-        <div class="dossie-box">
-            <h3>O que você destrava hoje:</h3>
-            <ul>
-                <li>Mapeamento de tendências de Growth Hacking.</li>
-                <li>Análise preditiva de conversão de público.</li>
-                <li>O script exato para automação de vendas.</li>
-                <li>Estratégia validada de tráfego de alto impacto.</li>
-            </ul>
+        <div class="logo-area">
+            <h2 style="color: var(--azul-royal); font-family: 'Playfair Display', serif; margin: 0; font-size: 1.5em; letter-spacing: 2px; text-transform: uppercase;">Gabriel Prado</h2>
         </div>
 
-        <div class="price-box">
-            <span class="price-anchor">Valor Original: R$ 1.497,00</span>
-            <span class="price-real">R$ 497,00</span>
-            <span class="price-parcelas">ou 12x de R$ 49,90</span>
+        <span class="status-tag">Documento Restrito • Circulação Fechada</span>
+        
+        <h1>O Dossiê Oráculo: A Engenharia Reversa do Scaling de 70k.</h1>
+        
+        <p class="lead-copy">O mercado está saturado de "dicas" e estratégias genéricas que apenas drenam o seu caixa. Este documento é o oposto. É o <strong>mapeamento estratégico, tático e técnico</strong> utilizado pela elite do mercado para tracionar vendas com previsibilidade matemática.</p>
+
+        <div class="intelligence-briefing">
+            <p><strong>Aviso de Confidencialidade:</strong> O conteúdo abaixo detalha a arquitetura exata de automações de IA (CrewAI), scripts de copy de alta resposta e segmentações ocultas de tráfego pago. Não distribua este material.</p>
         </div>
 
-        <a href="SEU_LINK_DE_CHECKOUT_AQUI" class="btn-comprar">Desbloquear o Dossiê Agora</a>
-        <span class="seguranca">🔒 Acesso imediato via plataforma segura</span>
+        <ul>
+            <li>O Framework de Aquisição: Reduzindo o CAC em 40%.</li>
+            <li>A "Crew" de Inteligência Artificial: Automação total de Copy e Tráfego.</li>
+            <li>A Planta Baixa do Funil: Onde a maioria perde dinheiro no checkout.</li>
+            <li>Scripts de Persuasão Direta: O que fazer o lead ler nos primeiros 3 segundos.</li>
+        </ul>
+
+        <div class="financial-engineering">
+            <span class="price-anchor">Taxa de Consultoria: R$ 1.497,00</span>
+            <span class="price-real">R$ 497</span>
+            <span class="price-parcelas">ou 12 parcelas de R$ 49,90</span>
+        </div>
+
+        <a href="#SEU_LINK_KIWIFY_OU_HOTMART" class="btn-executive">Acessar o Dossiê Confidencial</a>
+        
+        <div class="security-seal">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+            Transação criptografada de ponta a ponta (SSL 256-bit)
+        </div>
+
     </div>
 
 </body>
