@@ -12,6 +12,7 @@
             --verde-roi: #50C878;
             --branco-neve: #FFFAFA;
             --cinza-grafite: #36454F;
+            --vermelho-alerta: #e74c3c;
         }
         
         body {
@@ -39,7 +40,7 @@
         h1 {
             color: var(--azul-royal);
             font-size: 2.2em;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             letter-spacing: -1px;
         }
 
@@ -55,7 +56,7 @@
             border: 1px solid #eaeaea;
             padding: 20px;
             border-radius: 6px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             text-align: left;
         }
 
@@ -83,6 +84,40 @@
             font-weight: bold;
         }
 
+        /* --- SESSÃO DE PREÇO (NOVO) --- */
+        .price-box {
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: rgba(247, 231, 206, 0.2); /* Fundo dourado suave */
+            border-radius: 6px;
+            border: 1px dashed var(--dourado);
+        }
+
+        .price-anchor {
+            text-decoration: line-through;
+            color: var(--vermelho-alerta);
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .price-real {
+            color: var(--azul-royal);
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+            line-height: 1;
+        }
+
+        .price-parcelas {
+            font-size: 1.2em;
+            color: var(--verde-roi);
+            font-weight: bold;
+            display: block;
+            margin-top: 5px;
+        }
+        /* ------------------------------ */
+
         .btn-comprar {
             display: block;
             width: 100%;
@@ -94,6 +129,7 @@
             font-weight: bold;
             border-radius: 4px;
             transition: transform 0.2s, background-color 0.2s;
+            box-sizing: border-box;
         }
 
         .btn-comprar:hover {
@@ -116,7 +152,7 @@
         <p class="subtitle">A inteligência de mercado exata e as métricas ocultas que os líderes usam para escalar negócios blindados.</p>
         
         <div class="dossie-box">
-            <h3>O que você recebe no Dossiê:</h3>
+            <h3>O que você destrava hoje:</h3>
             <ul>
                 <li>Mapeamento de tendências de Growth Hacking.</li>
                 <li>Análise preditiva de conversão de público.</li>
@@ -125,8 +161,14 @@
             </ul>
         </div>
 
-        <a href="#" class="btn-comprar">Desbloquear o Dossiê Agora</a>
-        <span class="seguranca">🔒 Ambiente seguro e criptografado</span>
+        <div class="price-box">
+            <span class="price-anchor">Valor Original: R$ 1.497,00</span>
+            <span class="price-real">R$ 497,00</span>
+            <span class="price-parcelas">ou 12x de R$ 49,90</span>
+        </div>
+
+        <a href="SEU_LINK_DE_CHECKOUT_AQUI" class="btn-comprar">Desbloquear o Dossiê Agora</a>
+        <span class="seguranca">🔒 Acesso imediato via plataforma segura</span>
     </div>
 
 </body>
