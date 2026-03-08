@@ -1,38 +1,564 @@
-<section class="relative min-h-screen flex items-center justify-center bg-[#070b14] overflow-hidden">
-  
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#1a233a] via-[#070b14] to-[#070b14] opacity-80"></div>
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-  <div class="relative z-10 container mx-auto px-4 flex flex-col items-center text-center">
-    
-    <div class="mb-8 w-24 h-24 rounded-full border border-[#D4AF37] flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.2)]">
-      <span class="text-[#D4AF37] font-bold text-2xl">OP</span>
-    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Prado | Oráculo Premium & Inteligência Astral B2B</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* Paleta Elite High-Ticket */
+            --black-pure: #000000;
+            --black-soft: #050505;
+            --navy-base: #0A1128;
+            --navy-light: #152243;
+            --gold-dark: #B8860B;
+            --gold-light: #D4AF37;
+            --gray-light: #E0E0E0;
+            --gray-medium: #888888;
+            --white-pure: #FFFFFF;
 
-    <p class="text-[0.65rem] md:text-xs tracking-[0.3em] text-gray-400 font-semibold uppercase mb-6">
-      Estrategista Sênior (FGV) & Oráculo Premium | Inteligência Astral B2B
-    </p>
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-gold: rgba(212, 175, 55, 0.3);
 
-    <h1 class="text-6xl md:text-8xl font-black uppercase leading-[0.9] tracking-tighter mb-10 text-transparent bg-clip-text bg-gradient-to-b from-gray-100 via-gray-300 to-gray-600 drop-shadow-2xl">
-      Engenharia de<br />
-      Destino<br />
-      Exponencial.
-    </h1>
+            --font-main: 'Inter', sans-serif;
+            --spacing-section: 120px;
+        }
 
-    <div class="flex flex-wrap justify-center gap-4 mb-10">
-      <div class="px-6 py-2 border border-[#D4AF37]/40 rounded text-[0.65rem] md:text-xs font-bold tracking-widest text-[#D4AF37] bg-black/30 backdrop-blur-sm">
-        TIMING ESTRATÉGICO
-      </div>
-      <div class="px-6 py-2 border border-[#D4AF37]/40 rounded text-[0.65rem] md:text-xs font-bold tracking-widest text-[#D4AF37] bg-black/30 backdrop-blur-sm">
-        NUMEROLOGIA VÉDICA
-      </div>
-      <div class="px-6 py-2 border border-[#D4AF37]/40 rounded text-[0.65rem] md:text-xs font-bold tracking-widest text-[#D4AF37] bg-black/30 backdrop-blur-sm">
-        MENTORIA C-LEVEL
-      </div>
-    </div>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
 
-    <p class="max-w-2xl text-sm md:text-base text-gray-300 font-light leading-relaxed">
-      Decodificamos as métricas do seu mapa e os ciclos numéricos para escalar operações, mitigar riscos e materializar riqueza, combinando sabedoria milenar e estratégia corporativa.
-    </p>
+        body {
+            font-family: var(--font-main);
+            background-color: var(--black-pure);
+            color: var(--white-pure);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-  </div>
-</section>
+        /* Tipografia Base */
+        h1, h2, h3, h4 {
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+        }
+
+        p {
+            color: var(--gray-light);
+            font-size: 1.125rem;
+            font-weight: 300;
+        }
+
+        /* --- Utilitários --- */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .gold-text {
+            color: var(--gold-light);
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--gold-dark);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--gold-dark);
+            padding-bottom: 5px;
+        }
+
+        /* --- Herói (Above the Fold) --- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: radial-gradient(circle at 50% 10%, var(--navy-light) 0%, var(--navy-base) 40%, var(--black-pure) 80%);
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.03"/%3E%3C/svg%3E');
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            animation: fadeUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-pretitle {
+            font-size: 0.85rem;
+            color: var(--gray-medium);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            text-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-title span {
+            display: block;
+            background: linear-gradient(to right, var(--white-pure), var(--gray-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .badges-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .premium-badge {
+            background: rgba(10, 17, 40, 0.5);
+            border: 1px solid var(--border-gold);
+            backdrop-filter: blur(10px);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            color: var(--gold-light);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .premium-badge:hover {
+            border-color: var(--gold-light);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: var(--white-pure);
+            color: var(--black-pure);
+            text-decoration: none;
+            padding: 1.25rem 3.5rem;
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--white-pure);
+        }
+
+        .cta-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gold-light);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            z-index: 1;
+        }
+
+        .cta-primary:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .cta-primary span {
+            position: relative;
+            z-index: 2;
+            transition: color 0.4s ease;
+        }
+
+        .cta-primary:hover span {
+            color: var(--black-pure);
+        }
+
+        /* --- Problema / Agitação --- */
+        .section-problem {
+            padding: var(--spacing-section) 0;
+            background-color: var(--black-soft);
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
+        .problem-statement {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            max-width: 900px;
+            margin: 0 auto;
+            color: var(--gray-medium);
+        }
+
+        .problem-statement .highlight {
+            color: var(--white-pure);
+        }
+
+        /* --- O Mecanismo / Metodologia --- */
+        .section-mechanism {
+            padding: var(--spacing-section) 0;
+            background-color: var(--black-pure);
+        }
+
+        .mechanism-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .mechanism-card {
+            background: var(--navy-base);
+            border: 1px solid var(--border-subtle);
+            padding: 3rem 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .mechanism-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--gold-light);
+            transition: width 0.4s ease;
+        }
+
+        .mechanism-card:hover {
+            border-color: rgba(212, 175, 55, 0.2);
+            transform: translateY(-5px);
+            background: var(--navy-light);
+        }
+
+        .mechanism-card:hover::before {
+            width: 100%;
+        }
+
+        .card-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.05);
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            line-height: 1;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--white-pure);
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: var(--gray-medium);
+        }
+
+        /* --- Qualificação (Para quem é/não é) --- */
+        .section-qualification {
+            padding: var(--spacing-section) 0;
+            background: var(--navy-base);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .qualify-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .qualify-box h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 1rem;
+        }
+
+        .qualify-list {
+            list-style: none;
+        }
+
+        .qualify-list li {
+            margin-bottom: 1.25rem;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.125rem;
+            color: var(--gray-light);
+        }
+
+        .qualify-box.is-for li::before {
+            content: '✓';
+            color: var(--gold-light);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .qualify-box.not-for li::before {
+            content: '✕';
+            color: #ff3333;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* --- Redes Sociais no Footer --- */
+        .section-footer {
+            padding: 60px 0;
+            background-color: var(--black-pure);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .social-icon {
+            color: var(--gray-medium);
+            transition: color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: var(--white-pure);
+        }
+
+        .social-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+
+        .protocol-label {
+            font-size: 0.75rem;
+            color: var(--gray-medium);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.5;
+        }
+
+        .pgp-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 15px;
+            padding: 8px 14px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.65rem;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .pgp-link:hover {
+            color: var(--gold-light);
+            border-color: var(--border-gold);
+            background: rgba(212, 175, 55, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .main-logo {
+            width: 140px;
+            height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.5));
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        .main-logo:hover {
+            transform: translateY(-5px) scale(1.02);
+            filter: drop-shadow(0 20px 40px rgba(212, 175, 55, 0.3));
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .qualify-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .mechanism-grid { grid-template-columns: 1fr; }
+            :root { --spacing-section: 80px; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="hero">
+        <div class="container hero-content">
+            <img src="logo.png" alt="Oráculo Premium" class="main-logo">
+
+            <span class="hero-pretitle">Estrategista Sênior (FGV) & Oráculo Premium | Inteligência Astral B2B</span>
+
+            <h1 class="hero-title">
+                <span>Engenharia de</span>
+                <span>Destino Exponencial.</span>
+            </h1>
+
+            <div class="badges-wrapper">
+                <div class="premium-badge">TIMING ESTRATÉGICO</div>
+                <div class="premium-badge">NUMEROLOGIA VÉDICA</div>
+                <div class="premium-badge">MENTORIA C-LEVEL</div>
+            </div>
+
+            <p style="margin-bottom: 3rem; max-width: 650px; margin-left: auto; margin-right: auto; text-transform: none; letter-spacing: normal;">
+                Decodificamos as métricas do seu mapa e os ciclos numéricos para escalar operações, mitigar riscos e materializar riqueza, combinando sabedoria milenar e estratégia corporativa.
+            </p>
+
+            <a href="https://wa.me/5551989320843?text=Ol%C3%A1%20Gabriel%2C%20tenho%20interesse%20no%20Mapeamento%20de%20Oportunidades."
+                class="cta-primary" target="_blank" rel="noopener noreferrer">
+                <span>Mapear Minhas Janelas de Lucro</span>
+            </a>
+        </div>
+    </header>
+
+    <section class="section-problem">
+        <div class="container">
+            <h2 class="problem-statement">
+                Você toma decisões de alto risco baseadas em dados rasos, <br>
+                ignorando as <span class="gold-text">janelas invisíveis de Júpiter e Saturno.</span>
+            </h2>
+        </div>
+    </section>
+
+    <section class="section-mechanism">
+        <div class="container">
+            <span class="section-tag">O Método</span>
+            <h2 style="font-size: 2.5rem; max-width: 600px;">Arquitetura do Destino</h2>
+
+            <div class="mechanism-grid">
+                <div class="mechanism-card">
+                    <span class="card-number">01</span>
+                    <h3 class="card-title">Timing Astrológico</h3>
+                    <p class="card-text">Análise cirúrgica de luas novas, eclipses e trânsitos de sorte para definir a data exata de lançamentos de campanhas e assinaturas de contratos de alto valor.</p>
+                </div>
+                <div class="mechanism-card">
+                    <span class="card-number">02</span>
+                    <h3 class="card-title">Ciclos Numerológicos</h3>
+                    <p class="card-text">Alinhamento do tráfego pago e fluxo de caixa com a vibração do seu Ano e Mês Pessoal. Estratégias exatas para momentos de plantio (1) e colheita (8).</p>
+                </div>
+                <div class="mechanism-card">
+                    <span class="card-number">03</span>
+                    <h3 class="card-title">Ajuste de Frequência</h3>
+                    <p class="card-text">Otimização védica para negócios. Ajustamos nomes de produtos e precificação (ancoragem em frequências como o 24) para destravar a conversão no subconsciente do seu cliente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-qualification" id="apply">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span class="section-tag">Filtro de Elite</span>
+                <h2 style="font-size: 2.5rem;">Critérios de Alinhamento</h2>
+                <p style="margin-top: 1rem; max-width: 650px; margin-left: auto; margin-right: auto;">O mapa astral é a planta baixa da sua vida material. Atendo um número estritamente limitado de parceiros por ciclo lunar para garantir foco total na materialização de resultados.</p>
+            </div>
+
+            <div class="qualify-grid">
+                <div class="qualify-box is-for">
+                    <h3>Para quem é o Oráculo</h3>
+                    <ul class="qualify-list">
+                        <li>Executivos e tomadores de decisão que buscam uma vantagem desleal através da leitura do momento oculto.</li>
+                        <li>Empresários e construtores de riqueza focados em escalar operações no timing astrológico perfeito.</li>
+                        <li>Profissionais que entendem que o acaso não existe e buscam alinhar negócios ao seu Caminho de Vida.</li>
+                        <li>Líderes prontos para estruturar estratégias de marketing blindadas contra trânsitos desfavoráveis.</li>
+                    </ul>
+                </div>
+
+                <div class="qualify-box not-for">
+                    <h3 style="color: var(--gray-medium);">Para quem NÃO é</h3>
+                    <ul class="qualify-list" style="opacity: 0.7;">
+                        <li>Curiosos em busca de previsões genéricas ou "horóscopo de revista".</li>
+                        <li>Pessoas que esperam que a leitura faça o trabalho duro da execução estratégica por elas.</li>
+                        <li>Céticos inflexíveis que operam exclusivamente baseados em lógicas visíveis e limitadas.</li>
+                        <li>Negócios que não possuem caixa para investir em conhecimento premium e execução direcionada.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 5rem;">
+                <p style="margin-bottom: 2rem; color: var(--gold-light); font-weight: 500;">Janela atual de oportunidade: <span style="color: var(--white-pure);">ABERTA (Restam 3 Vagas para Consultoria VIP)</span></p>
+                <a href="https://wa.me/5551989320843?text=Ol%C3%A1%20Gabriel%2C%20gostaria%20de%20reservar%20minha%20janela%20para%20a%20Consultoria%20Premium."
+                    class="cta-primary" target="_blank" rel="noopener noreferrer">
+                    <span>Reservar Minha Janela de Lucro</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="section-footer">
+        <div class="social-links">
+            <a href="https://br.linkedin.com/in/sougabrielprado" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://wa.me/5551989320843" class="social-icon" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24"><path d="M11.954 0H11.95C5.353 0 .004 5.348.004 11.944c0 2.112.553 4.184 1.597 6l-1.554 4.545 4.672-1.528c1.78.966 3.791 1.479 5.836 1.479h.007c6.596 0 11.943-5.347 11.943-11.944C23.896 5.348 18.55 0 11.954 0zm0 20.444h-.005c-1.8 0-3.565-.483-5.118-1.403l-.367-.218-3.468 1.134.93-3.385-.24-.381c-1.018-1.614-1.554-3.488-1.554-5.412 0-5.58 4.544-10.124 10.126-10.124h.006c5.581 0 10.124 4.544 10.124 10.124 0 5.58-4.543 10.124-10.124 10.124v.001zm5.558-7.59c-.305-.153-1.805-.891-2.085-.993-.28-.102-.485-.153-.688.153-.204.305-.79 1-.968 1.203-.178.204-.356.23-.66.076-.305-.152-1.288-.475-2.454-1.517-.907-.812-1.519-1.815-1.697-2.12-.178-.306-.02-.472.133-.624.137-.138.305-.357.458-.535.152-.178.203-.306.305-.51.102-.204.051-.381-.026-.534-.076-.153-.688-1.658-.943-2.27-.247-.594-.497-.514-.688-.523-.178-.01-.381-.01-.585-.01-.204 0-.534.076-.813.381-.28.306-1.069 1.045-1.069 2.548 0 1.503 1.094 2.956 1.247 3.16.153.204 2.155 3.288 5.223 4.609.73.315 1.301.503 1.745.644.733.232 1.4.199 1.928.12.589-.088 1.805-.738 2.06-1.45.254-.713.254-1.324.178-1.45-.077-.128-.28-.204-.585-.357z"/></svg>
+            </a>
+            <a href="https://instagram.com/sougabrielprado" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://t.me/sougabrielprado" class="social-icon" aria-label="Telegram" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24"><path d="M23.91 3.79L20.3 20.84c-.25 1.21-.98 1.5-2 .09l-5.52-4.06-2.66 2.57c-.3.3-.55.56-1.1.56-.36 0-.6-.08-.86-.33l-1.17-7.46-6.42-2c-1.35-.42-1.37-1.36.28-2l21.6-8.3c1-.37 1.83.25 1.46 1.86zm-17.2 6.8l12.42-7.8c.58-.35 1.1-.16.66.23l-10.05 9.07-.34 4.8 3.36-2.58 6.09 4.5c1.12.62 1.94.3 2.22-1.04l4-18.84-22.37 8.6z"/></svg>
+            </a>
+        </div>
+        <div class="protocol-label">
+            Inteligência Astral B2B © 2026<br>
+            Restrito. Não distribua.
+        </div>
+    </footer>
+
+</body>
+</html>
