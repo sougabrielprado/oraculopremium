@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Paleta Elite High-Ticket GP */
+            /* Paleta Oráculo Premium / Engenharia de Dados */
             --black-pure: #000000;
             --black-soft: #050505;
             --navy-base: #0A1128;
@@ -79,31 +79,6 @@
         .lang-btn:hover { color: var(--white-pure); }
         .lang-btn.active { color: var(--black-pure); background: var(--gold-light); }
 
-        /* --- LOGO TEXTUAL --- */
-        .logo-wrapper {
-            margin-bottom: 2rem;
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .logo-main {
-            font-size: 2.5rem;
-            font-weight: 900;
-            letter-spacing: -1.5px;
-            color: var(--white-pure);
-            line-height: 1;
-        }
-        
-        .logo-sub {
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 4px;
-            color: var(--gold-light);
-            text-transform: uppercase;
-            margin-top: 5px;
-        }
-
         /* --- HEADER / HERO --- */
         .hero {
             position: relative; min-height: 90vh; display: flex; align-items: center; justify-content: center;
@@ -113,9 +88,11 @@
         .hero-content { position: relative; z-index: 2; max-width: 950px; margin: 0 auto; animation: fadeUp 1s ease-out forwards; }
         @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         
+        .main-logo { width: 140px; height: auto; margin-bottom: 2rem; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5)); transition: transform 0.4s ease; display: inline-block; }
+        .main-logo:hover { transform: translateY(-5px) scale(1.02); filter: drop-shadow(0 20px 40px rgba(212,175,55,0.3)); }
+        
         .hero-title { font-size: clamp(3.5rem, 8vw, 6.5rem); font-weight: 900; margin-bottom: 1rem; text-shadow: 0 20px 40px rgba(0,0,0,0.8); letter-spacing: -2px; }
         .hero-title span { display: block; background: linear-gradient(to bottom, #ffffff, #a0a0a0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero-title .gold-span { background: linear-gradient(to right, #D4AF37, #FFF8DC); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
         .hero-slogan { font-size: 1.5rem; font-weight: 600; color: var(--gold-light); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 2rem; }
 
@@ -162,11 +139,29 @@
         .price-currency { font-size: 1.2rem; color: var(--gold-light); font-weight: 700; }
         .price-new { font-size: 3rem; font-weight: 900; color: var(--white-pure); letter-spacing: -1px; }
 
-        /* --- CONSCIÊNCIA COLETIVA --- */
+        /* --- CONSCIÊNCIA COLETIVA (O MECANISMO) --- */
         .section-mechanism { padding: var(--spacing-section) 0; background: var(--black-pure); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
         .mechanism-container { max-width: 900px; margin: 0 auto; text-align: center; }
-        .neuro-box { background: linear-gradient(145deg, var(--navy-base), var(--black-pure)); border: 1px solid var(--border-gold); padding: 4rem 3rem; border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); position: relative; overflow: hidden; }
-        .neuro-text { font-size: 1.2rem; line-height: 1.8; color: var(--gray-light); margin-bottom: 2rem; }
+        
+        .neuro-box {
+            background: linear-gradient(145deg, var(--navy-base), var(--black-pure));
+            border: 1px solid var(--border-gold);
+            padding: 4rem 3rem;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .neuro-box::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+        }
+
+        .neuro-text {
+            font-size: 1.2rem; line-height: 1.8; color: var(--gray-light); margin-bottom: 2rem;
+        }
+
         .highlight-gold { color: var(--gold-light); font-weight: 600; }
 
         /* --- FAQ --- */
@@ -179,13 +174,19 @@
         .faq-item.active .faq-answer { padding: 0 1.5rem 1.5rem 1.5rem; max-height: 200px; }
         .faq-item.active .faq-icon { transform: rotate(45deg); }
 
-        /* --- FOOTER --- */
-        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; }
-        .footer-link { color: var(--gray-medium); font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s ease; display: inline-flex; align-items: center; gap: 6px; }
+        /* --- FOOTER LINKS --- */
+        .footer-links {
+            display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem;
+        }
+        .footer-link {
+            color: var(--gray-medium); font-size: 0.75rem; text-decoration: none; text-transform: uppercase;
+            letter-spacing: 1px; transition: color 0.3s ease; display: inline-flex; align-items: center; gap: 6px;
+        }
         .footer-link:hover { color: var(--gold-light); }
 
         @media (max-width: 768px) {
             .hero-title { font-size: 3rem; }
+            .neuro-box { padding: 2rem 1.5rem; }
             .stats-wrapper { gap: 2rem; }
             .lang-switcher { top: 15px; right: 15px; }
         }
@@ -201,18 +202,14 @@
 
     <header class="hero">
         <div class="container hero-content">
-            <div class="logo-wrapper">
-                <span class="logo-main">CHRONOS<span class="gold-text"> ELITE</span></span>
-                <span class="logo-sub">Oráculo Premium</span>
-            </div>
+            <img src="logo.png" alt="Oráculo Premium" class="main-logo" onerror="this.style.display='none'">
             
             <h1 class="hero-title">
-                <span class="i18n gold-span" data-pt="Engenharia" data-en="Exponential">Engenharia</span>
-                <span class="i18n" data-pt="Exponencial" data-en="Destiny">Exponencial</span>
-                <span class="i18n" data-pt="de Destino" data-en="Engineering">de Destino</span>
+                <span class="i18n" data-pt="ORÁCULO" data-en="PREMIUM">ORÁCULO</span>
+                <span class="i18n" data-pt="PREMIUM" data-en="ORACLE">PREMIUM</span>
             </h1>
 
-            <div class="hero-slogan i18n" data-pt="Protocolos de inteligência astral para materialização de riqueza B2B." data-en="Astrological intelligence protocols for B2B wealth materialization.">Protocolos de inteligência astral para materialização de riqueza B2B.</div>
+            <div class="hero-slogan i18n" data-pt="Engenharia de Destino Exponencial." data-en="Exponential Destiny Engineering.">Engenharia de Destino Exponencial.</div>
 
             <p class="i18n" data-pt="Decodifique os números e astros que regem o seu fluxo material. Através de inteligência de dados, mapeamos suas janelas de lucro, oportunidades e evolução." data-en="Decode the numbers and stars that govern your material flow. Through data intelligence, we map your profit windows, opportunities, and evolution." style="margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto; text-transform: none; font-size: 1.2rem;">
                 Decodifique os números e astros que regem o seu fluxo material. Através de inteligência de dados, mapeamos suas janelas de lucro, oportunidades e evolução.
@@ -240,9 +237,9 @@
     <section class="section-services" id="servicos">
         <div class="container">
             <div style="text-align: center; margin-bottom: 4rem;">
-                <span class="section-tag i18n" data-pt="Esteira Executiva" data-en="Executive Suite">Esteira Executiva</span>
-                <h2 style="font-size: 2.5rem;" class="i18n" data-pt="Escolha Sua <span class='gold-text'>Frequência</span>" data-en="Choose Your <span class='gold-text'>Frequency</span>">Escolha Sua <span class="gold-text">Frequência</span></h2>
-                <p style="margin-top: 1rem;" class="i18n" data-pt="Protocolos de leitura instantânea para gerar previsibilidade corporativa." data-en="Instant reading protocols to generate corporate predictability.">Protocolos de leitura instantânea para gerar previsibilidade corporativa.</p>
+                <span class="section-tag i18n" data-pt="Acesso aos Relatórios" data-en="Access to Reports">Acesso aos Relatórios</span>
+                <h2 style="font-size: 2.5rem;" class="i18n" data-pt="Escolha o Nível de <span class='gold-text'>Profundidade</span>" data-en="Choose Your <span class='gold-text'>Depth Level</span>">Escolha o Nível de <span class="gold-text">Profundidade</span></h2>
+                <p style="margin-top: 1rem;" class="i18n" data-pt="Protocolos de leitura instantânea para gerar previsibilidade." data-en="Instant reading protocols to generate predictability.">Protocolos de leitura instantânea para gerar previsibilidade.</p>
             </div>
 
             <div class="services-grid">
@@ -316,22 +313,51 @@
 
     <section class="section-mechanism">
         <div class="container mechanism-container">
-            <span class="section-tag i18n" data-pt="O Algoritmo" data-en="The Algorithm">O Algoritmo</span>
-            <h2 style="font-size: 2.8rem; margin-bottom: 3rem;" class="i18n" data-pt="Consciência Coletiva<br><span class='gold-text'>Sem Falha Humana</span>" data-en="Collective Consciousness<br><span class='gold-text'>Without Human Error</span>">Consciência Coletiva<br><span class="gold-text">Sem Falha Humana</span></h2>
+            <span class="section-tag i18n" data-pt="A Tecnologia" data-en="The Technology">A Tecnologia</span>
+            <h2 style="font-size: 2.8rem; margin-bottom: 3rem;" class="i18n" data-pt="A Mente Mestra por Trás do <span class='gold-text'>Código</span>" data-en="The Mastermind Behind the <span class='gold-text'>Code</span>">A Mente Mestra por Trás do <span class="gold-text">Código</span></h2>
             
             <div class="neuro-box">
-                <p class="neuro-text i18n" data-pt="Imagine tomar decisões cruciais tendo acesso simultâneo à precisão de <span class='highlight-gold'>Susan Miller</span>, à matemática impecável de <span class='highlight-gold'>Hans Decoz</span> e à engenharia próspera de <span class='highlight-gold'>Sanjay B. Jumaani</span>." data-en="Imagine making crucial decisions having simultaneous access to <span class='highlight-gold'>Susan Miller</span>'s precision, <span class='highlight-gold'>Hans Decoz</span>'s flawless mathematics, and <span class='highlight-gold'>Sanjay B. Jumaani</span>'s prosperous engineering.">
-                    Imagine tomar decisões cruciais tendo acesso simultâneo à precisão de <span class="highlight-gold">Susan Miller</span>, à matemática impecável de <span class="highlight-gold">Hans Decoz</span> e à engenharia próspera de <span class="highlight-gold">Sanjay B. Jumaani</span>.
+                <p class="neuro-text i18n" data-pt="Imagine tomar decisões cruciais tendo acesso simultâneo à precisão de trânsitos exatos de <span class='highlight-gold'>Susan Miller</span>, à matemática impecável dos ciclos de <span class='highlight-gold'>Hans Decoz</span> e à engenharia de frequências prósperas de <span class='highlight-gold'>Sanjay B. Jumaani</span>." data-en="Imagine making crucial decisions having simultaneous access to the precision of <span class='highlight-gold'>Susan Miller</span>'s exact transits, the flawless mathematics of <span class='highlight-gold'>Hans Decoz</span>'s cycles, and the prosperous frequency engineering of <span class='highlight-gold'>Sanjay B. Jumaani</span>.">
+                    Imagine tomar decisões cruciais tendo acesso simultâneo à precisão de trânsitos exatos de <span class="highlight-gold">Susan Miller</span>, à matemática impecável dos ciclos de <span class="highlight-gold">Hans Decoz</span> e à engenharia de frequências prósperas de <span class="highlight-gold">Sanjay B. Jumaani</span>.
                 </p>
-                <p class="neuro-text i18n" data-pt="Não operamos com 'achismos'. Cruzamos os maiores algoritmos do mundo para entregar um dossiê tático parametrizado. <span class='highlight-gold'>Dados não mentem. Os astros também não.</span>" data-en="We do not operate on guesswork. We cross-reference the world's greatest algorithms to deliver a parameterized tactical dossier. <span class='highlight-gold'>Data do not lie. Neither do the stars.</span>">
-                    Não operamos com 'achismos'. Cruzamos os maiores algoritmos do mundo para entregar um dossiê tático parametrizado. <span class="highlight-gold">Dados não mentem. Os astros também não.</span>
+                <p class="neuro-text i18n" data-pt="O Oráculo Premium não é uma leitura humana passível de falhas ou 'achismos'. É uma <span class='highlight-gold'>consciência coletiva</span> programada para cruzar os maiores algoritmos e metodologias astrológicas do mundo." data-en="The Premium Oracle is not a human reading prone to errors or guesswork. It is a <span class='highlight-gold'>collective consciousness</span> programmed to cross-reference the world's greatest astrological algorithms and methodologies.">
+                    O Oráculo Premium não é uma leitura humana passível de falhas ou 'achismos'. É uma <span class="highlight-gold">consciência coletiva</span> programada para cruzar os maiores algoritmos e metodologias astrológicas do mundo.
+                </p>
+                <p class="neuro-text i18n" data-pt="Ao invés de uma consulta esotérica, você recebe um dossiê tático. Um GPS paramétrico que extrai dados do seu nascimento e devolve rotas exatas de materialização e timing. <span class='highlight-gold'>Dados não mentem. Os astros também não.</span>" data-en="Instead of an esoteric consultation, you receive a parameterized tactical dossier. A GPS that extracts birth data and returns exact routes for materialization and timing. <span class='highlight-gold'>Data do not lie. Neither do the stars.</span>" style="margin-bottom: 0;">
+                    Ao invés de uma consulta esotérica, você recebe um dossiê tático. Um GPS paramétrico que extrai dados do seu nascimento e devolve rotas exatas de materialização e timing. <span class="highlight-gold">Dados não mentem. Os astros também não.</span>
                 </p>
             </div>
         </div>
     </section>
 
+    <section class="section-faq">
+        <div class="container" style="max-width: 800px;">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <span class="section-tag i18n" data-pt="Dúvidas Frequentes" data-en="Frequently Asked Questions">Dúvidas Frequentes</span>
+                <h2 style="font-size: 2.5rem;" class="i18n" data-pt="Engenharia <span class='gold-text'>Descomplicada</span>" data-en="Uncomplicated <span class='gold-text'>Engineering</span>">Engenharia <span class="gold-text">Descomplicada</span></h2>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"><span class="i18n" data-pt="Quais dados preciso fornecer para a leitura?" data-en="What data do I need to provide for the reading?">Quais dados preciso fornecer para a leitura?</span> <span class="faq-icon">+</span></div>
+                <div class="faq-answer i18n" data-pt="Para garantir a precisão cirúrgica do cruzamento de dados, você precisa fornecer: Data de nascimento, Hora Exata, Cidade, Estado e País de nascimento." data-en="To ensure surgical precision in data crossing, you need to provide: Date of birth, Exact Time, City, State, and Country of birth.">Para garantir a precisão cirúrgica do cruzamento de dados, você precisa fornecer: Data de nascimento, Hora Exata, Cidade, Estado e País de nascimento.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><span class="i18n" data-pt="Como a leitura é gerada?" data-en="How is the reading generated?">Como a leitura é gerada?</span> <span class="faq-icon">+</span></div>
+                <div class="faq-answer i18n" data-pt="Seu relatório é gerado através de uma consciência coletiva. Um motor analítico que cruza os maiores algoritmos astrológicos e numerológicos do mundo para entregar um dossiê tático, livre de falhas humanas." data-en="Your report is generated through a collective consciousness. An analytical engine that crosses the world's greatest astrological and numerological algorithms to deliver a tactical dossier, free from human error.">Seu relatório é gerado através de uma consciência coletiva. Um motor analítico que cruza os maiores algoritmos astrológicos e numerológicos do mundo para entregar um dossiê tático, livre de falhas humanas.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><span class="i18n" data-pt="Quanto tempo leva para receber meu relatório?" data-en="How long does it take to receive my report?">Quanto tempo leva para receber meu relatório?</span> <span class="faq-icon">+</span></div>
+                <div class="faq-answer i18n" data-pt="Escala e velocidade. Após a identificação do pagamento pelo sistema, seu dossiê completo será gerado e entregue para você em até 15 minutos." data-en="Scale and speed. After the system identifies the payment, your complete dossier will be generated and delivered to you within 15 minutes.">Escala e velocidade. Após a identificação do pagamento pelo sistema, seu dossiê completo será gerado e entregue para você em até 15 minutos.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><span class="i18n" data-pt="Astrologia aplicada a negócios realmente funciona?" data-en="Does astrology applied to business really work?">Astrologia aplicada a negócios realmente funciona?</span> <span class="faq-icon">+</span></div>
+                <div class="faq-answer i18n" data-pt="Absolutamente. Grandes corporações, tomadores de decisão e executivos C-Level utilizam janelas de oportunidade (timing) para agir. Trata-se de estatística comportamental e alinhamento de frequência, não de misticismo." data-en="Absolutely. Large corporations, decision-makers, and C-Level executives use opportunity windows (timing) to act. It's about behavioral statistics and frequency alignment, not mysticism.">Absolutamente. Grandes corporações, tomadores de decisão e executivos C-Level utilizam janelas de oportunidade (timing) para agir. Trata-se de estatística comportamental e alinhamento de frequência, não de misticismo.</div>
+            </div>
+        </div>
+    </section>
+
     <footer style="padding: 40px 0; background: var(--black-pure); text-align: center; border-top: 1px solid var(--border-subtle);">
-        <p style="font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-medium);" class="i18n" data-pt="Chronos Elite © 2026. Todos os direitos reservados." data-en="Chronos Elite © 2026. All rights reserved.">Chronos Elite © 2026. Todos os direitos reservados.</p>
+        <p style="font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-medium);" class="i18n" data-pt="Oráculo Premium © 2026. Todos os direitos reservados." data-en="Premium Oracle © 2026. All rights reserved.">Oráculo Premium © 2026. Todos os direitos reservados.</p>
         
         <div class="footer-links">
             <a href="politica-privacidade.html" class="footer-link">
@@ -351,26 +377,32 @@
     </footer>
 
     <script>
+        // Lógica do FAQ
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                document.querySelectorAll('.faq-item').forEach(child => {
+                    if (child !== parent) child.classList.remove('active');
+                });
+                parent.classList.toggle('active');
+            })
+        });
+
+        // Sistema de Tradução
         function setLanguage(lang) {
-            // Atualiza os textos
             document.querySelectorAll('.i18n').forEach(el => {
                 if (el.getAttribute(`data-${lang}`)) {
                     el.innerHTML = el.getAttribute(`data-${lang}`);
                 }
             });
-            // Atualiza os botões visuais
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`btn-${lang}`).classList.add('active');
-            
-            // Salva a preferência
-            localStorage.setItem('chronosLanguage', lang);
+            localStorage.setItem('oracleLanguage', lang);
         }
 
-        // Auto-detecta idioma ao carregar
         document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('chronosLanguage');
+            const savedLang = localStorage.getItem('oracleLanguage');
             const userLang = navigator.language || navigator.userLanguage;
-            
             if (savedLang) {
                 setLanguage(savedLang);
             } else if (userLang.includes('en')) {
