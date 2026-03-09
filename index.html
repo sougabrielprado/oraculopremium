@@ -420,20 +420,9 @@
         }
     </style>
     
+    <style>body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}</style>
     <script>
-        // Bloqueia Botão Direito
-        document.addEventListener('contextmenu', event => event.preventDefault());
-        
-        // Bloqueia Atalhos de Teclado (F12, Ctrl+Shift+I, Ctrl+C, Ctrl+U)
-        document.onkeydown = function(e) {
-            if(event.keyCode == 123) return false; // F12
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; // Ctrl+Shift+I
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; // Ctrl+Shift+C
-            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
-            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
-            if(e.ctrlKey && e.keyCode == 'C'.charCodeAt(0)) return false; // Ctrl+C
-            if(e.ctrlKey && e.keyCode == 'P'.charCodeAt(0)) return false; // Ctrl+P (Print)
-        }
+    !function(){document.addEventListener("contextmenu",function(e){e.preventDefault()}),document.onkeydown=function(e){return 123!=e.keyCode&&(!e.ctrlKey||!e.shiftKey||73!=e.keyCode&&67!=e.keyCode&&74!=e.keyCode)&&(!e.ctrlKey||85!=e.keyCode&&67!=e.keyCode&&80!=e.keyCode&&83!=e.keyCode)&&void 0},document.addEventListener("dragstart",function(e){e.preventDefault()})}();
     </script>
     
 </body>
