@@ -4,11 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Privacidade | Gabriel Prado</title>
+    <title>Política de Privacidade | Chronos Elite</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --black-pure: #000000;
@@ -17,7 +16,7 @@
             --navy-light: #152243;
             --gold-dark: #B8860B;
             --gold-light: #D4AF37;
-            --gray-light: #E0E0E0;
+            --gray-light: #C0C0C0;
             --gray-medium: #888888;
             --white-pure: #FFFFFF;
             --border-subtle: rgba(255, 255, 255, 0.08);
@@ -25,602 +24,141 @@
             --font-main: 'Inter', sans-serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: var(--font-main);
             background-color: var(--black-pure);
             color: var(--gray-light);
-            line-height: 1.6;
+            line-height: 1.8;
             -webkit-font-smoothing: antialiased;
-            padding: 40px 20px;
+            font-size: 14px;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: var(--navy-base);
-            padding: 50px;
-            border-radius: 8px;
-            border: 1px solid var(--border-subtle);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        /* --- SELETOR DE IDIOMA FLUTUANTE --- */
+        .lang-switcher {
+            position: fixed; top: 20px; right: 20px; z-index: 999; display: flex; gap: 5px;
+            background: rgba(10, 17, 40, 0.85); padding: 5px 10px; border-radius: 30px;
+            border: 1px solid var(--border-gold); backdrop-filter: blur(8px);
         }
-
-        h1,
-        h2,
-        h3 {
-            color: var(--white-pure);
-            line-height: 1.2;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
+        .lang-btn {
+            background: none; border: none; color: var(--gray-medium); font-family: var(--font-main);
+            font-size: 0.7rem; font-weight: 700; cursor: pointer; transition: all 0.3s; padding: 3px 6px; border-radius: 20px;
         }
+        .lang-btn.active { color: var(--black-pure); background: var(--gold-light); }
 
-        h1 {
-            font-size: 2rem;
-            color: var(--gold-light);
-            border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 1rem;
-            margin-top: 0;
-        }
+        .container { width: 100%; max-width: 800px; margin: 0 auto; padding: 80px 20px; }
+        
+        h1, h2 { color: var(--white-pure); font-weight: 900; letter-spacing: -1px; text-transform: uppercase; line-height: 1.1; }
+        h1 { font-size: 3rem; margin-bottom: 50px; text-align: center; }
+        h2 { font-size: 1.5rem; margin-top: 50px; margin-bottom: 20px; border-bottom: 1px solid var(--border-gold); padding-bottom: 10px; }
+        
+        p, ul { margin-bottom: 20px; }
+        ul { list-style: disc; margin-left: 20px; }
+        
+        .back-link { display: inline-block; margin-bottom: 40px; color: var(--gold-light); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
+        .back-link:hover { text-decoration: underline; }
 
-        h2 {
-            font-size: 1.4rem;
-            border-bottom: 1px solid var(--border-subtle);
-            padding-bottom: 0.5rem;
-            color: var(--white-pure);
-        }
-
-        h3 {
-            font-size: 1.1rem;
-            color: var(--gold-light);
-        }
-
-        p,
-        ul,
-        ol,
-        table {
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        ul,
-        ol {
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-        }
-
-        a {
-            color: var(--gold-light);
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        a:hover {
-            opacity: 0.8;
-            text-decoration: underline;
-        }
-
-        strong {
-            color: var(--white-pure);
-            font-weight: 600;
-        }
-
-        blockquote {
-            border-left: 3px solid var(--gold-dark);
-            padding-left: 1.5rem;
-            margin-left: 0;
-            color: var(--gray-medium);
-            font-style: italic;
-            background: rgba(255, 255, 255, 0.02);
-            padding: 1.5rem;
-            border-radius: 0 4px 4px 0;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-        }
-
-        th,
-        td {
-            border: 1px solid var(--border-subtle);
-            padding: 12px 15px;
-            text-align: left;
-        }
-
-        th {
-            background-color: rgba(255, 255, 255, 0.05);
-            color: var(--white-pure);
-            font-weight: 600;
-        }
-
-        tr:nth-child(even) {
-            background-color: rgba(255, 255, 255, 0.02);
-        }
-
-        hr {
-            border: 0;
-            border-top: 1px solid var(--border-subtle);
-            margin: 3rem 0;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 30px;
-            color: var(--gray-medium);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-
-        .back-link:hover {
-            color: var(--white-pure);
-            text-decoration: none;
-        }
-
-        .back-link svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 30px 20px;
-            }
-
-            table {
-                display: block;
-                overflow-x: auto;
-            }
-        }
+        /* --- Esconder línguas não ativas --- */
+        body.lang-pt .en-content { display: none; }
+        body.lang-en .pt-content { display: none; }
     </style>
 </head>
 
-<body>
-    <div class="container">
-        <a href="index.html" class="back-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <line x1="19" y1="12" x2="5" y2="12"></line>
-                <polyline points="12 19 5 12 12 5"></polyline>
-            </svg>
-            Voltar para o Início
-        </a>
-
-        <h1>POLÍTICA DE PRIVACIDADE COMPLETA E FORTIFICADA</h1>
-
-        <p>
-            <strong>Website:</strong> <a href="https://sougabrielprado.github.io/"
-                target="_blank">https://sougabrielprado.github.io/</a><br>
-            <strong>Titular dos Dados:</strong> Gabriel Prado<br>
-            <strong>Última Atualização:</strong> 25 de Junho de 2025<br>
-            <strong>Versão:</strong> 2.1 (LGPD + GDPR + Marco Civil da Internet)
-        </p>
-
-        <hr>
-
-        <h2>🔒 DECLARAÇÃO DE COMPROMISSO COM A PRIVACIDADE</h2>
-        <p>Comprometemo-nos a proteger rigorosamente seus dados pessoais, adotando princípios de <strong>privacidade por
-                design</strong>, <strong>minimização de dados</strong> e <strong>transparência total</strong>. Esta
-            política foi elaborada com base na <strong>Lei nº 13.709/2018 (LGPD)</strong>, <strong>Regulamento Geral de
-                Proteção de Dados (GDPR)</strong>, <strong>Marco Civil da Internet (Lei nº 12.965/2014)</strong> e
-            demais normas aplicáveis.</p>
-
-        <hr>
-
-        <h2>📌 SUMÁRIO EXECUTIVO (PARA VISUALIZAÇÃO RÁPIDA)</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Seção</th>
-                    <th>Conteúdo-Chave</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Coleta de Dados</strong></td>
-                    <td>Zero coleta ativa pelo titular; apenas logs do GitHub + dados voluntários</td>
-                </tr>
-                <tr>
-                    <td><strong>Terceiros</strong></td>
-                    <td>GitHub (hospedagem), Google Fonts (CDN), redes sociais (links)</td>
-                </tr>
-                <tr>
-                    <td><strong>Seus Direitos</strong></td>
-                    <td>Acesso, retificação, anonimização, portabilidade, eliminação (Art. 18 LGPD)</td>
-                </tr>
-                <tr>
-                    <td><strong>Segurança</strong></td>
-                    <td>Criptografia TLS/SSL, políticas de acesso restrito, auditoria trimestral</td>
-                </tr>
-                <tr>
-                    <td><strong>Contato DPO</strong></td>
-                    <td>Canal exclusivo para solicitações de privacidade (resposta em ≤ 15 dias)</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <hr>
-
-        <h2>1. IDENTIFICAÇÃO DO CONTROLADOR E ENCARREGADO (ART. 41 LGPD)</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Campo</th>
-                    <th>Informação</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Controlador</strong></td>
-                    <td>Gabriel Prado</td>
-                </tr>
-                <tr>
-                    <td><strong>Encarregado (DPO)</strong></td>
-                    <td>Gabriel Prado (atuando como responsável único)</td>
-                </tr>
-                <tr>
-                    <td><strong>Canal DPO</strong></td>
-                    <td><a href="mailto:sougabrielprado@gmail.com">sougabrielprado@gmail.com</a></td>
-                </tr>
-                <tr>
-                    <td><strong>País de Residência</strong></td>
-                    <td>Brasil</td>
-                </tr>
-                <tr>
-                    <td><strong>Jurisdição Aplicável</strong></td>
-                    <td>Leis brasileiras, com observância aos princípios do GDPR para usuários internacionais</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <blockquote>
-            ℹ️ <em>Este site é pessoal, estático e sem fins lucrativos. Não há equipe ou processamento automatizado de
-                dados além do necessário para operação básica.</em>
-        </blockquote>
-
-        <hr>
-
-        <h2>2. DADOS COLETADOS: TRANSPARÊNCIA TOTAL</h2>
-
-        <h3>🔹 DADOS NÃO COLETADOS PELO TITULAR (GARANTIA EXPRESSA)</h3>
-        <p>❌ <strong>NÃO coletamos:</strong></p>
-        <ul>
-            <li>Senhas, dados financeiros, localização precisa, histórico de navegação fora do site</li>
-            <li>Dados biométricos, saúde, orientação sexual, convicções religiosas/políticas</li>
-            <li>Informações de crianças ou adolescentes (&lt; 18 anos)</li>
-            <li>Dados sensíveis conforme Art. 5º, II da LGPD</li>
-        </ul>
-
-        <h3>🔹 DADOS COLETADOS (APENAS O ESSENCIAL)</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Fonte</th>
-                    <th>Dados Específicos</th>
-                    <th>Finalidade</th>
-                    <th>Base Legal (LGPD)</th>
-                    <th>Prazo de Retenção</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>GitHub Pages</strong> (hospedagem)</td>
-                    <td>IP, user-agent, data/hora, página acessada</td>
-                    <td>Operação técnica do site</td>
-                    <td>Legítimo interesse (Art. 7º, IX)</td>
-                    <td>30 dias (logs do GitHub)</td>
-                </tr>
-                <tr>
-                    <td><strong>Formulário de Contato</strong> (se existir)</td>
-                    <td>Nome, e-mail, mensagem</td>
-                    <td>Responder solicitações</td>
-                    <td>Consentimento explícito (Art. 7º, I)</td>
-                    <td>90 dias após resposta</td>
-                </tr>
-                <tr>
-                    <td><strong>Google Fonts</strong> (CDN)</td>
-                    <td>IP, navegador, SO</td>
-                    <td>Carregar fontes tipográficas</td>
-                    <td>Legítimo interesse</td>
-                    <td>Não armazenado pelo titular</td>
-                </tr>
-                <tr>
-                    <td><strong>Links para Redes Sociais</strong></td>
-                    <td>Nenhum dado coletado pelo titular</td>
-                    <td>Navegação para perfis públicos</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <blockquote>
-            ⚠️ <strong>Importante:</strong><br><br>
-            - <strong>GitHub Pages não permite scripts server-side.</strong> Qualquer formulário de contato
-            <em>deve</em> usar serviço externo (ex: Formspree, Netlify Forms). Se utilizado, esta política será
-            atualizada com detalhes do provedor.<br>
-            - <strong>Nenhum cookie é definido pelo titular.</strong> Cookies de terceiros (ex: redes sociais) só são
-            ativados após clique explícito do usuário.
-        </blockquote>
-
-        <hr>
-
-        <h2>3. TERCEIROS: RESPONSABILIDADES CLARAS</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Serviço</th>
-                    <th>Função</th>
-                    <th>Política de Privacidade</th>
-                    <th>Transferência Internacional</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>GitHub (Microsoft)</strong></td>
-                    <td>Hospedagem estática</td>
-                    <td><a href="https://docs.github.com/pt/site-policy/privacy-policies/github-general-privacy-statement"
-                            target="_blank">GitHub Privacy Statement</a></td>
-                    <td>Dados armazenados em servidores nos EUA (com salvaguardas SCCs)</td>
-                </tr>
-                <tr>
-                    <td><strong>Google Fonts</strong></td>
-                    <td>CDN para fontes</td>
-                    <td><a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a></td>
-                    <td>Dados processados nos EUA</td>
-                </tr>
-                <tr>
-                    <td><strong>Redes Sociais</strong> (LinkedIn, GitHub, etc.)</td>
-                    <td>Links externos</td>
-                    <td>Políticas próprias das plataformas</td>
-                    <td>Sujeito às políticas de cada rede</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <p>✅ <strong>Compromisso do Titular:</strong></p>
-        <ul>
-            <li>Não compartilhamos dados com terceiros além do estritamente necessário para operação técnica</li>
-            <li>Exigimos cláusulas de proteção de dados em eventuais contratos com provedores</li>
-            <li>Monitoramos atualizações nas políticas de terceiros trimestralmente</li>
-        </ul>
-
-        <hr>
-
-        <h2>4. DIREITOS DO TITULAR (ART. 18 LGPD) - PROCEDIMENTO CLARO</h2>
-        <p>Você pode exercer <strong>gratuitamente</strong> os seguintes direitos:</p>
-        <p>
-            🔹 Solicitar confirmação de existência de tratamento<br>
-            🔹 Acessar, corrigir ou atualizar seus dados<br>
-            🔹 Anonimizar, bloquear ou eliminar dados desnecessários<br>
-            🔹 Portabilidade para outro fornecedor<br>
-            🔹 Revogar consentimento (para formulários futuros)<br>
-            🔹 Obter informações sobre compartilhamento
-        </p>
-
-        <h3>📬 COMO EXERCER SEUS DIREITOS:</h3>
-        <ol>
-            <li>Envie e-mail para <strong><a
-                        href="mailto:sougabrielprado@gmail.com">sougabrielprado@gmail.com</a></strong></li>
-            <li>Assunto: <em>"Solicitação LGPD - [Seu Nome]"</em></li>
-            <li>Anexe documento com foto (RG/CNH) para confirmação de identidade</li>
-            <li>Resposta em <strong>até 15 dias úteis</strong> (conforme Art. 19 LGPD)</li>
-        </ol>
-
-        <blockquote>
-            🌍 <strong>Para residentes na UE/EEE:</strong> Aplicam-se os direitos do GDPR (Art. 15-22). Solicitações
-            podem ser encaminhadas à autoridade nacional de proteção de dados de seu país.
-        </blockquote>
-
-        <hr>
-
-        <h2>5. SEGURANÇA DE DADOS: MEDIDAS TÉCNICAS E ORGANIZACIONAIS</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Camada</th>
-                    <th>Medidas Implementadas</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Infraestrutura</strong></td>
-                    <td>TLS 1.3 (HTTPS obrigatório), headers de segurança (CSP, HSTS), WAF via Cloudflare (se
-                        configurado)</td>
-                </tr>
-                <tr>
-                    <td><strong>Acesso</strong></td>
-                    <td>Chaves SSH para repositório GitHub, autenticação em duas etapas habilitada</td>
-                </tr>
-                <tr>
-                    <td><strong>Monitoramento</strong></td>
-                    <td>Alertas de acesso não autorizado ao repositório, auditoria mensal de permissões</td>
-                </tr>
-                <tr>
-                    <td><strong>Resposta a Incidentes</strong></td>
-                    <td>Plano de contingência: notificação à ANPD em até 2 dias úteis em caso de violação confirmada
-                    </td>
-                </tr>
-                <tr>
-                    <td><strong>Treinamento</strong></td>
-                    <td>Titular atualizado trimestralmente sobre melhores práticas de privacidade</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <hr>
-
-        <h2>6. POLÍTICA DE COOKIES E RASTREAMENTO</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Tipo</th>
-                    <th>Status</th>
-                    <th>Controle do Usuário</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Cookies essenciais (necessários para funcionamento)</td>
-                    <td><strong>NÃO UTILIZADOS</strong></td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>Cookies analíticos (Google Analytics)</td>
-                    <td><strong>NÃO UTILIZADOS</strong></td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>Cookies de terceiros (redes sociais)</td>
-                    <td><strong>APENAS após clique explícito</strong></td>
-                    <td>Bloqueio via extensões do navegador (uBlock, Privacy Badger)</td>
-                </tr>
-                <tr>
-                    <td>Pixel trackers, fingerprinting</td>
-                    <td><strong>PROIBIDOS</strong></td>
-                    <td>-</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <p>✅ <strong>Compromisso:</strong></p>
-        <blockquote>
-            <em>"Este site NÃO utiliza Google Analytics, Meta Pixel, Hotjar ou qualquer ferramenta de rastreamento
-                comportamental. A análise de tráfego é feita exclusivamente através de estatísticas agregadas do GitHub
-                (não identificáveis)."</em>
-        </blockquote>
-
-        <hr>
-
-        <h2>7. PROTEÇÃO DE DADOS DE CRIANÇAS</h2>
-        <p>Este site <strong>não é direcionado a menores de 18 anos</strong>.</p>
-        <ul>
-            <li>Não coletamos intencionalmente dados de crianças</li>
-            <li>Caso identifiquemos dados de menores, excluiremos imediatamente</li>
-            <li>Solicitamos que pais/responsáveis relatem qualquer incidente para <strong><a
-                        href="mailto:sougabrielprado@gmail.com">sougabrielprado@gmail.com</a></strong></li>
-        </ul>
-
-        <hr>
-
-        <h2>8. TRANSFERÊNCIA INTERNACIONAL DE DADOS</h2>
-        <p>Dados processados pelo <strong>GitHub (Microsoft)</strong> são transferidos para os <strong>Estados
-                Unidos</strong>.</p>
-        <p>✅ <strong>Salvaguardas aplicadas:</strong></p>
-        <ul>
-            <li>GitHub adere aos <em>Standard Contractual Clauses (SCCs)</em> da UE</li>
-            <li>Política de privacidade do GitHub reconhece direitos equivalentes à LGPD</li>
-            <li>Não há processamento adicional de dados após transferência</li>
-        </ul>
-
-        <hr>
-
-        <h2>9. ATUALIZAÇÕES E VIGÊNCIA</h2>
-        <ul>
-            <li>Esta política entra em vigor imediatamente após publicação</li>
-            <li>Alterações significativas serão comunicadas via:
-                <ul>
-                    <li>🔸 Nota destacada no topo do site por 30 dias</li>
-                    <li>🔸 Atualização da data de "Última Atualização"</li>
-                    <li>🔸 Registro de versões no <a href="https://github.com/sougabrielprado/sougabrielprado.github.io"
-                            target="_blank">repositório público do site</a></li>
-                </ul>
-            </li>
-            <li>Versões anteriores permanecerão acessíveis para transparência</li>
-        </ul>
-
-        <hr>
-
-        <h2>10. CANAIS DE CONTATO OFICIAIS</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Finalidade</th>
-                    <th>Canal</th>
-                    <th>Prazo de Resposta</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Solicitações LGPD/GDPR</strong></td>
-                    <td><a href="mailto:sougabrielprado@gmail.com">sougabrielprado@gmail.com</a></td>
-                    <td>≤ 15 dias úteis</td>
-                </tr>
-                <tr>
-                    <td><strong>Denúncias de violação</strong></td>
-                    <td><a href="mailto:sougabrielprado@gmail.com">sougabrielprado@gmail.com</a> + cópia para ANPD</td>
-                    <td>Imediato</td>
-                </tr>
-                <tr>
-                    <td><strong>Dúvidas gerais</strong></td>
-                    <td><a href="mailto:sougabrielprado@gmail.com">sougabrielprado@gmail.com</a></td>
-                    <td>≤ 5 dias úteis</td>
-                </tr>
-                <tr>
-                    <td><strong>Canal Seguro (PGP)</strong></td>
-                    <td>Chave pública disponível no perfil GitHub / Site</td>
-                    <td>-</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <blockquote>
-            📬 <strong>Endereço para notificações formais:</strong><br>
-            Gabriel Prado<br>
-            [Endereço completo será disponibilizado mediante solicitação formal via e-mail]<br>
-            Canoas, RS - Brasil
-        </blockquote>
-
-        <hr>
-
-        <h2>11. DISPOSIÇÕES FINAIS</h2>
-        <ul>
-            <li><strong>Foro:</strong> Eleito o foro da Comarca de São Paulo/SP para dirimir controvérsias</li>
-            <li><strong>Invalidade:</strong> Se qualquer cláusula for considerada inválida, as demais permanecem
-                vigentes</li>
-            <li><strong>Revisão Independente:</strong> Esta política foi revisada com base em modelos da ANPD, IAPP e
-                GDPR</li>
-            <li><strong>Compromisso Ético:</strong> Priorizamos a ética sobre a legalidade mínima. Qualquer sugestão é
-                bem-vinda.</li>
-        </ul>
-
-        <hr>
-
-        <blockquote>
-            ℹ️ <strong>Nota Importante:</strong><br>
-            Esta política foi elaborada com rigor técnico-jurídico, mas <strong>não substitui consultoria jurídica
-                especializada</strong>. Recomenda-se revisão por advogado especializado em LGPD antes da publicação
-            final.<br><br>
-
-            <strong>Última verificação técnica:</strong> 25/06/2025<br>
-            <strong>Hash SHA-256 da versão atual:</strong>
-            <code>f4b5c7e0a463f98786b8ab1e4334cd546c584962730b22d9b1a54e7f820e4901</code> <em>(v2.1 - Autenticidade
-                verificada)</em>
-        </blockquote>
-
-        <p
-            style="text-align: center; margin-top: 50px; color: var(--gray-medium); font-style: italic; font-size: 0.9rem;">
-            🔒 Sua privacidade não é um recurso — é um direito fundamental que respeitamos integralmente.<br>
-            Gabriel Prado — Controlador de Dados<br>
-            <a href="https://sougabrielprado.github.io/">https://sougabrielprado.github.io/</a>
-        </p>
+<body class="lang-pt"> <div class="lang-switcher">
+        <button id="btn-pt" class="lang-btn active" onclick="setLanguage('pt')">PT</button>
+        <button id="btn-en" class="lang-btn" onclick="setLanguage('en')">EN</button>
     </div>
-</body>
 
+    <div class="container">
+        <a href="index.html" class="back-link i18n" data-pt="← Voltar para o Terminal" data-en="← Back to Terminal">← Voltar para o Terminal</a>
+        
+        <h1 class="i18n" data-pt="Política de Privacidade" data-en="Privacy Policy">Política de Privacidade</h1>
+
+        <div class="pt-content">
+            <h2>1. Coleta de Informações</h2>
+            <p>Coletamos informações pessoais que você nos fornece diretamente, como nome, endereço de e-mail e dados de nascimento necessários para a geração dos relatórios (data, hora e local exato).</p>
+            
+            <h2>2. Uso das Informações</h2>
+            <p>As informações coletadas são usadas exclusivamente para:</p>
+            <ul>
+                <li>Processar e gerar os relatórios oraculares solicitados.</li>
+                <li>Enviar notificações sobre o status do seu pedido via WhatsApp ou Telegram.</li>
+                <li>Melhorar nossos algoritmos e a experiência do usuário.</li>
+            </ul>
+
+            <h2>3. Proteção e Segurança</h2>
+            <p>Implementamos medidas de segurança técnicas e administrativas (criptografia SSL, controle de acesso restrito) para proteger seus dados contra acessos não autorizados e garantir a confidencialidade das informações astrais e pessoais fornecidas.</p>
+
+            <h2>4. Compartilhamento com Terceiros</h2>
+            <p>Não vendemos ou alugamos suas informações pessoais. Compartilhamos dados apenas com provedores de serviços essenciais para a operação do site (como gateways de pagamento Stripe e serviços de e-mail/notificação), estritamente conforme o necessário para cumprir suas solicitações.</p>
+
+            <h2>5. Diretos do Usuário (LGPD)</h2>
+            <p>Você tem o direito de acessar, corrigir ou solicitar a exclusão de suas informações pessoais. Para exercer esses direitos ou se tiver dúvidas sobre nossa política, entre em contato através de: sougabrielprado@gmail.com.</p>
+
+            <h2>6. Alterações nesta Política</h2>
+            <p>Podemos atualizar esta política periodicamente. Recomendamos que você revise esta página regularmente para estar ciente de quaisquer mudanças.</p>
+        </div>
+
+        <div class="en-content">
+            <h2>1. Information Collection</h2>
+            <p>We collect personal information that you provide to us directly, such as name, email address, and birth data necessary for generating reports (exact date, time, and location).</p>
+            
+            <h2>2. Use of Information</h2>
+            <p>The information collected is used exclusively to:</p>
+            <ul>
+                <li>Process and generate the requested oracular reports.</li>
+                <li>Send notifications regarding your order status via WhatsApp or Telegram.</li>
+                <li>Improve our algorithms and user experience.</li>
+            </ul>
+
+            <h2>3. Protection and Security</h2>
+            <p>We implement technical and administrative security measures (SSL encryption, restricted access control) to protect your data against unauthorized access and ensure the confidentiality of the astral and personal information provided.</p>
+
+            <h2>4. Third-Party Sharing</h2>
+            <p>We do not sell or rent your personal information. We share data only with essential service providers for the operation of the site (such as Stripe payment gateways and email/notification services), strictly as necessary to fulfill your requests.</p>
+
+            <h2>5. User Rights (GDPR/International)</h2>
+            <p>You have the right to access, correct, or request the deletion of your personal information. To exercise these rights or if you have questions about our policy, please contact us at: sougabrielprado@gmail.com.</p>
+
+            <h2>6. Changes to This Policy</h2>
+            <p>We may update this policy periodically. We recommend that you review this page regularly to be aware of any changes.</p>
+        </div>
+        
+    </div>
+
+    <script>
+        function setLanguage(lang) {
+            // Atualiza os textos da UI (links/titulos)
+            document.querySelectorAll('.i18n').forEach(el => {
+                if (el.getAttribute(`data-${lang}`)) {
+                    el.innerHTML = el.getAttribute(`data-${lang}`);
+                }
+            });
+            // Controla a visibilidade dos blocos de conteúdo via classe no body
+            document.body.className = `lang-${lang}`;
+            
+            // Atualiza os botões visuais
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
+            
+            // Salva a preferência
+            localStorage.setItem('chronosLanguage', lang);
+        }
+
+        // Auto-detecta idioma ao carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('chronosLanguage');
+            const userLang = navigator.language || navigator.userLanguage;
+            
+            if (savedLang) {
+                setLanguage(savedLang);
+            } else if (userLang.includes('en')) {
+                setLanguage('en');
+            } else {
+                setLanguage('pt');
+            }
+        });
+    </script>
+</body>
 </html>
