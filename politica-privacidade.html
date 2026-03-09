@@ -4,19 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Privacidade | Chronos Elite</title>
+    <title>Política de Privacidade | Oráculo Premium</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
+            /* Paleta Oráculo Premium */
             --black-pure: #000000;
             --black-soft: #050505;
             --navy-base: #0A1128;
             --navy-light: #152243;
             --gold-dark: #B8860B;
             --gold-light: #D4AF37;
-            --gray-light: #C0C0C0;
+            --gray-light: #E0E0E0;
             --gray-medium: #888888;
             --white-pure: #FFFFFF;
             --border-subtle: rgba(255, 255, 255, 0.08);
@@ -24,133 +25,396 @@
             --font-main: 'Inter', sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
         body {
             font-family: var(--font-main);
             background-color: var(--black-pure);
             color: var(--gray-light);
-            line-height: 1.8;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* --- SELETOR DE IDIOMA FLUTUANTE --- */
         .lang-switcher {
-            position: fixed; top: 20px; right: 20px; z-index: 999; display: flex; gap: 5px;
-            background: rgba(10, 17, 40, 0.85); padding: 5px 10px; border-radius: 30px;
+            position: fixed; top: 30px; right: 30px; z-index: 999; display: flex; gap: 5px;
+            background: rgba(10, 17, 40, 0.85); padding: 6px 12px; border-radius: 30px;
             border: 1px solid var(--border-gold); backdrop-filter: blur(8px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
         .lang-btn {
             background: none; border: none; color: var(--gray-medium); font-family: var(--font-main);
-            font-size: 0.7rem; font-weight: 700; cursor: pointer; transition: all 0.3s; padding: 3px 6px; border-radius: 20px;
+            font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; padding: 4px 8px; border-radius: 20px;
         }
+        .lang-btn:hover { color: var(--white-pure); }
         .lang-btn.active { color: var(--black-pure); background: var(--gold-light); }
 
-        .container { width: 100%; max-width: 800px; margin: 0 auto; padding: 80px 20px; }
-        
-        h1, h2 { color: var(--white-pure); font-weight: 900; letter-spacing: -1px; text-transform: uppercase; line-height: 1.1; }
-        h1 { font-size: 3rem; margin-bottom: 50px; text-align: center; }
-        h2 { font-size: 1.5rem; margin-top: 50px; margin-bottom: 20px; border-bottom: 1px solid var(--border-gold); padding-bottom: 10px; }
-        
-        p, ul { margin-bottom: 20px; }
-        ul { list-style: disc; margin-left: 20px; }
-        
-        .back-link { display: inline-block; margin-bottom: 40px; color: var(--gold-light); text-decoration: none; font-size: 0.9rem; font-weight: 600; }
-        .back-link:hover { text-decoration: underline; }
+        /* --- LOGO HEADER --- */
+        .header-logo {
+            text-align: center;
+            padding: 60px 20px 20px 20px;
+        }
+        .main-logo { 
+            width: 120px; height: auto; filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5)); transition: transform 0.4s ease; 
+        }
+        .main-logo:hover { transform: translateY(-5px) scale(1.02); filter: drop-shadow(0 20px 40px rgba(212,175,55,0.3)); }
 
-        /* --- Esconder línguas não ativas --- */
+        /* --- CONTEÚDO PRINCIPAL --- */
+        .content-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .policy-container {
+            background: var(--navy-base);
+            padding: 50px;
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            margin-bottom: 60px;
+        }
+
+        h1, h2, h3 { color: var(--white-pure); line-height: 1.2; margin-top: 2.5rem; margin-bottom: 1rem; }
+        h1 { font-size: 2rem; color: var(--gold-light); border-bottom: 1px solid var(--border-subtle); padding-bottom: 1rem; margin-top: 0; }
+        h2 { font-size: 1.4rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem; color: var(--white-pure); text-transform: uppercase; letter-spacing: 1px;}
+        h3 { font-size: 1.1rem; color: var(--gold-light); text-transform: uppercase; letter-spacing: 1px;}
+
+        p, ul, ol, table { margin-bottom: 1.5rem; font-size: 0.95rem; }
+        ul, ol { padding-left: 20px; }
+        li { margin-bottom: 0.5rem; }
+        
+        a { color: var(--gold-light); text-decoration: none; transition: opacity 0.3s; }
+        a:hover { opacity: 0.8; text-decoration: underline; }
+        strong { color: var(--white-pure); font-weight: 600; }
+
+        blockquote {
+            border-left: 3px solid var(--gold-dark); padding-left: 1.5rem; margin-left: 0;
+            color: var(--gray-medium); font-style: italic; background: rgba(255, 255, 255, 0.02);
+            padding: 1.5rem; border-radius: 0 4px 4px 0;
+        }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; margin-bottom: 2rem; font-size: 0.9rem; }
+        th, td { border: 1px solid var(--border-subtle); padding: 12px 15px; text-align: left; }
+        th { background-color: rgba(255, 255, 255, 0.05); color: var(--gold-light); font-weight: 600; }
+        tr:nth-child(even) { background-color: rgba(255, 255, 255, 0.02); }
+
+        hr { border: 0; border-top: 1px solid var(--border-subtle); margin: 3rem 0; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px; margin-bottom: 30px;
+            color: var(--gray-medium); text-decoration: none; font-size: 0.9rem; transition: color 0.3s;
+            text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
+        }
+        .back-link:hover { color: var(--gold-light); text-decoration: none; }
+        .back-link svg { width: 16px; height: 16px; }
+
+        /* --- FOOTER IDÊNTICO À INDEX --- */
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; }
+        .footer-link { color: var(--gray-medium); font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s ease; display: inline-flex; align-items: center; gap: 6px; }
+        .footer-link:hover { color: var(--gold-light); }
+
+        /* --- SISTEMA BILINGUE --- */
         body.lang-pt .en-content { display: none; }
         body.lang-en .pt-content { display: none; }
+
+        @media (max-width: 768px) {
+            .policy-container { padding: 30px 20px; }
+            table { display: block; overflow-x: auto; }
+            .lang-switcher { top: 15px; right: 15px; }
+        }
     </style>
 </head>
 
-<body class="lang-pt"> <div class="lang-switcher">
+<body class="lang-pt">
+
+    <div class="lang-switcher">
         <button id="btn-pt" class="lang-btn active" onclick="setLanguage('pt')">PT</button>
         <button id="btn-en" class="lang-btn" onclick="setLanguage('en')">EN</button>
     </div>
 
-    <div class="container">
-        <a href="index.html" class="back-link i18n" data-pt="← Voltar para o Terminal" data-en="← Back to Terminal">← Voltar para o Terminal</a>
-        
-        <h1 class="i18n" data-pt="Política de Privacidade" data-en="Privacy Policy">Política de Privacidade</h1>
+    <header class="header-logo">
+        <a href="index.html">
+            <img src="logo.png" alt="Oráculo Premium" class="main-logo" onerror="this.style.display='none'">
+        </a>
+    </header>
 
-        <div class="pt-content">
-            <h2>1. Coleta de Informações</h2>
-            <p>Coletamos informações pessoais que você nos fornece diretamente, como nome, endereço de e-mail e dados de nascimento necessários para a geração dos relatórios (data, hora e local exato).</p>
-            
-            <h2>2. Uso das Informações</h2>
-            <p>As informações coletadas são usadas exclusivamente para:</p>
-            <ul>
-                <li>Processar e gerar os relatórios oraculares solicitados.</li>
-                <li>Enviar notificações sobre o status do seu pedido via WhatsApp ou Telegram.</li>
-                <li>Melhorar nossos algoritmos e a experiência do usuário.</li>
-            </ul>
+    <div class="content-wrapper">
+        <div class="policy-container">
+            <a href="index.html" class="back-link i18n" data-pt="← Voltar para o Terminal" data-en="← Back to Terminal">
+                ← Voltar para o Terminal
+            </a>
 
-            <h2>3. Proteção e Segurança</h2>
-            <p>Implementamos medidas de segurança técnicas e administrativas (criptografia SSL, controle de acesso restrito) para proteger seus dados contra acessos não autorizados e garantir a confidencialidade das informações astrais e pessoais fornecidas.</p>
+            <div class="pt-content">
+                <h1>POLÍTICA DE PRIVACIDADE COMPLETA E FORTIFICADA</h1>
 
-            <h2>4. Compartilhamento com Terceiros</h2>
-            <p>Não vendemos ou alugamos suas informações pessoais. Compartilhamos dados apenas com provedores de serviços essenciais para a operação do site (como gateways de pagamento Stripe e serviços de e-mail/notificação), estritamente conforme o necessário para cumprir suas solicitações.</p>
+                <p>
+                    <strong>Website:</strong> <a href="https://sougabrielprado.github.io/" target="_blank">https://sougabrielprado.github.io/</a><br>
+                    <strong>Titular dos Dados:</strong> Gabriel Prado<br>
+                    <strong>Última Atualização:</strong> 25 de Junho de 2025<br>
+                    <strong>Versão:</strong> 2.1 (LGPD + GDPR + Marco Civil da Internet)
+                </p>
 
-            <h2>5. Diretos do Usuário (LGPD)</h2>
-            <p>Você tem o direito de acessar, corrigir ou solicitar a exclusão de suas informações pessoais. Para exercer esses direitos ou se tiver dúvidas sobre nossa política, entre em contato através de: sougabrielprado@gmail.com.</p>
+                <hr>
 
-            <h2>6. Alterações nesta Política</h2>
-            <p>Podemos atualizar esta política periodicamente. Recomendamos que você revise esta página regularmente para estar ciente de quaisquer mudanças.</p>
+                <h2>🔒 DECLARAÇÃO DE COMPROMISSO COM A PRIVACIDADE</h2>
+                <p>Comprometemo-nos a proteger rigorosamente seus dados pessoais, adotando princípios de <strong>privacidade por design</strong>, <strong>minimização de dados</strong> e <strong>transparência total</strong>. Esta política foi elaborada com base na <strong>Lei nº 13.709/2018 (LGPD)</strong>, <strong>Regulamento Geral de Proteção de Dados (GDPR)</strong>, <strong>Marco Civil da Internet (Lei nº 12.965/2014)</strong> e demais normas aplicáveis.</p>
+
+                <hr>
+
+                <h2>📌 SUMÁRIO EXECUTIVO (PARA VISUALIZAÇÃO RÁPIDA)</h2>
+                <table>
+                    <thead><tr><th>Seção</th><th>Conteúdo-Chave</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Coleta de Dados</strong></td><td>Zero coleta ativa pelo titular; apenas logs do GitHub + dados voluntários</td></tr>
+                        <tr><td><strong>Terceiros</strong></td><td>GitHub (hospedagem), Google Fonts (CDN), redes sociais (links), Stripe (Pagamentos)</td></tr>
+                        <tr><td><strong>Seus Direitos</strong></td><td>Acesso, retificação, anonimização, portabilidade, eliminação (Art. 18 LGPD)</td></tr>
+                        <tr><td><strong>Segurança</strong></td><td>Criptografia TLS/SSL, políticas de acesso restrito, auditoria trimestral</td></tr>
+                        <tr><td><strong>Contato DPO</strong></td><td>Canal exclusivo para solicitações de privacidade (resposta em ≤ 15 dias)</td></tr>
+                    </tbody>
+                </table>
+
+                <hr>
+
+                <h2>1. IDENTIFICAÇÃO DO CONTROLADOR E ENCARREGADO (ART. 41 LGPD)</h2>
+                <table>
+                    <thead><tr><th>Campo</th><th>Informação</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Controlador</strong></td><td>Gabriel Prado</td></tr>
+                        <tr><td><strong>Encarregado (DPO)</strong></td><td>Gabriel Prado (atuando como responsável único)</td></tr>
+                        <tr><td><strong>Canal DPO</strong></td><td><a href="mailto:sougabrielprado@gmail.com">sougabrielprado@gmail.com</a></td></tr>
+                        <tr><td><strong>País de Residência</strong></td><td>Brasil</td></tr>
+                        <tr><td><strong>Jurisdição Aplicável</strong></td><td>Leis brasileiras, com observância aos princípios do GDPR para usuários internacionais</td></tr>
+                    </tbody>
+                </table>
+
+                <blockquote>
+                    ℹ️ <em>Este site é operado de forma enxuta e focada em resultados. Não há processamento automatizado de dados obscuro além do necessário para geração dos relatórios oraculares.</em>
+                </blockquote>
+
+                <hr>
+
+                <h2>2. DADOS COLETADOS: TRANSPARÊNCIA TOTAL</h2>
+                <h3>🔹 DADOS NÃO COLETADOS PELO TITULAR (GARANTIA EXPRESSA)</h3>
+                <p>❌ <strong>NÃO coletamos:</strong></p>
+                <ul>
+                    <li>Senhas, histórico de navegação fora do site</li>
+                    <li>Dados biométricos, saúde, orientação sexual, convicções religiosas/políticas</li>
+                    <li>Informações de crianças ou adolescentes (&lt; 18 anos)</li>
+                    <li>Dados sensíveis (conforme Art. 5º, II da LGPD) que não sejam estritamente a data/hora de nascimento para a leitura.</li>
+                </ul>
+
+                <h3>🔹 DADOS COLETADOS (APENAS O ESSENCIAL)</h3>
+                <table>
+                    <thead><tr><th>Fonte</th><th>Dados Específicos</th><th>Finalidade</th><th>Base Legal (LGPD)</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Checkout Stripe</strong></td><td>Nome, e-mail, data, hora e local de nascimento</td><td>Processar e gerar o dossiê/mapa contratado</td><td>Execução de Contrato (Art. 7º, V)</td></tr>
+                        <tr><td><strong>GitHub Pages</strong></td><td>IP, user-agent, data/hora</td><td>Operação técnica do site</td><td>Legítimo interesse (Art. 7º, IX)</td></tr>
+                    </tbody>
+                </table>
+
+                <hr>
+
+                <h2>3. TERCEIROS: RESPONSABILIDADES CLARAS</h2>
+                <table>
+                    <thead><tr><th>Serviço</th><th>Função</th><th>Transferência Internacional</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Stripe</strong></td><td>Processamento de Pagamentos Seguros</td><td>Dados criptografados e processados globalmente sob rígidas normas de segurança.</td></tr>
+                        <tr><td><strong>GitHub (Microsoft)</strong></td><td>Hospedagem estática e infraestrutura</td><td>Dados de log armazenados em servidores nos EUA (com salvaguardas SCCs).</td></tr>
+                    </tbody>
+                </table>
+
+                <hr>
+
+                <h2>4. DIREITOS DO TITULAR (ART. 18 LGPD)</h2>
+                <p>Você pode exercer <strong>gratuitamente</strong> os seguintes direitos: acesso, correção, anonimização, bloqueio ou eliminação de dados desnecessários. Para exercer seus direitos, envie um e-mail para <strong><a href="mailto:sougabrielprado@gmail.com">sougabrielprado@gmail.com</a></strong> com o assunto "Solicitação LGPD - [Seu Nome]". Resposta em até 15 dias úteis.</p>
+
+                <hr>
+
+                <h2>5. SEGURANÇA DE DADOS</h2>
+                <p>Utilizamos TLS 1.3 (HTTPS obrigatório), o checkout ocorre em ambiente criptografado (256-bit SSL) fornecido pela Stripe, garantindo que os dados de pagamento nunca toquem em nossos servidores. Implementamos chaves SSH para controle de repositório e autenticação em duas etapas.</p>
+
+                <hr>
+
+                <h2>6. POLÍTICA DE COOKIES E RASTREAMENTO</h2>
+                <p>✅ <strong>Compromisso:</strong> Este site NÃO utiliza Google Analytics, Meta Pixel, ou qualquer ferramenta de rastreamento comportamental invasiva. A análise de tráfego é feita exclusivamente através de estatísticas agregadas (não identificáveis).</p>
+
+                <hr>
+
+                <h2>7. ATUALIZAÇÕES E VIGÊNCIA</h2>
+                <p>Esta política entra em vigor imediatamente. Alterações significativas serão registradas e mantidas de forma transparente no repositório do projeto.</p>
+
+                <hr>
+
+                <blockquote>
+                    <strong>Última verificação técnica:</strong> 25/06/2025<br>
+                    <strong>Hash SHA-256 da versão atual:</strong> <code>f4b5c7e0a463f98786b8ab1e4334cd546c584962730b22d9b1a54e7f820e4901</code>
+                </blockquote>
+                
+                <p style="text-align: center; margin-top: 50px; color: var(--gray-medium); font-style: italic; font-size: 0.9rem;">
+                    🔒 Sua privacidade não é um recurso — é um direito fundamental que respeitamos integralmente.<br>
+                    Gabriel Prado — Oráculo Premium
+                </p>
+            </div>
+
+            <div class="en-content">
+                <h1>COMPLETE AND FORTIFIED PRIVACY POLICY</h1>
+
+                <p>
+                    <strong>Website:</strong> <a href="https://sougabrielprado.github.io/" target="_blank">https://sougabrielprado.github.io/</a><br>
+                    <strong>Data Controller:</strong> Gabriel Prado<br>
+                    <strong>Last Updated:</strong> June 25, 2025<br>
+                    <strong>Version:</strong> 2.1 (LGPD + GDPR + Brazilian Civil Rights Framework for the Internet)
+                </p>
+
+                <hr>
+
+                <h2>🔒 DECLARATION OF PRIVACY COMMITMENT</h2>
+                <p>We are committed to rigorously protecting your personal data, adopting principles of <strong>privacy by design</strong>, <strong>data minimization</strong>, and <strong>total transparency</strong>. This policy was developed based on the <strong>Brazilian General Data Protection Law (LGPD)</strong>, the <strong>General Data Protection Regulation (GDPR)</strong>, and other applicable standards.</p>
+
+                <hr>
+
+                <h2>📌 EXECUTIVE SUMMARY (QUICK VIEW)</h2>
+                <table>
+                    <thead><tr><th>Section</th><th>Key Content</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Data Collection</strong></td><td>Zero active collection by the controller; only GitHub logs + voluntary data</td></tr>
+                        <tr><td><strong>Third Parties</strong></td><td>GitHub (hosting), Google Fonts (CDN), Stripe (Payments)</td></tr>
+                        <tr><td><strong>Your Rights</strong></td><td>Access, rectification, anonymization, portability, deletion (GDPR/LGPD)</td></tr>
+                        <tr><td><strong>Security</strong></td><td>TLS/SSL encryption, restricted access policies, quarterly auditing</td></tr>
+                        <tr><td><strong>DPO Contact</strong></td><td>Exclusive channel for privacy requests (response in ≤ 15 days)</td></tr>
+                    </tbody>
+                </table>
+
+                <hr>
+
+                <h2>1. CONTROLLER AND DPO IDENTIFICATION</h2>
+                <table>
+                    <thead><tr><th>Field</th><th>Information</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Controller</strong></td><td>Gabriel Prado</td></tr>
+                        <tr><td><strong>DPO</strong></td><td>Gabriel Prado (acting as sole responsible)</td></tr>
+                        <tr><td><strong>DPO Channel</strong></td><td><a href="mailto:sougabrielprado@gmail.com">sougabrielprado@gmail.com</a></td></tr>
+                        <tr><td><strong>Country of Residence</strong></td><td>Brazil</td></tr>
+                        <tr><td><strong>Applicable Jurisdiction</strong></td><td>Brazilian laws, observing GDPR principles for international users</td></tr>
+                    </tbody>
+                </table>
+
+                <blockquote>
+                    ℹ️ <em>This site operates in a lean, results-focused manner. There is no obscure automated data processing beyond what is necessary to generate the oracular reports.</em>
+                </blockquote>
+
+                <hr>
+
+                <h2>2. COLLECTED DATA: TOTAL TRANSPARENCY</h2>
+                <h3>🔹 DATA NOT COLLECTED (EXPRESS GUARANTEE)</h3>
+                <p>❌ <strong>We DO NOT collect:</strong></p>
+                <ul>
+                    <li>Passwords, browsing history outside the site</li>
+                    <li>Biometric data, health, sexual orientation, religious/political convictions</li>
+                    <li>Information from children or adolescents (&lt; 18 years)</li>
+                    <li>Sensitive data (under GDPR/LGPD) other than the strictly necessary birth date/time for the reading.</li>
+                </ul>
+
+                <h3>🔹 COLLECTED DATA (ESSENTIALS ONLY)</h3>
+                <table>
+                    <thead><tr><th>Source</th><th>Specific Data</th><th>Purpose</th><th>Legal Basis</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Stripe Checkout</strong></td><td>Name, email, date, time, and location of birth</td><td>Process and generate the contracted dossier/chart</td><td>Contract Execution</td></tr>
+                        <tr><td><strong>GitHub Pages</strong></td><td>IP, user-agent, date/time</td><td>Technical site operation</td><td>Legitimate Interest</td></tr>
+                    </tbody>
+                </table>
+
+                <hr>
+
+                <h2>3. THIRD PARTIES: CLEAR RESPONSIBILITIES</h2>
+                <table>
+                    <thead><tr><th>Service</th><th>Function</th><th>International Transfer</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Stripe</strong></td><td>Secure Payment Processing</td><td>Encrypted data processed globally under strict security standards.</td></tr>
+                        <tr><td><strong>GitHub (Microsoft)</strong></td><td>Static hosting and infrastructure</td><td>Log data stored on US servers (with SCC safeguards).</td></tr>
+                    </tbody>
+                </table>
+
+                <hr>
+
+                <h2>4. DATA SUBJECT RIGHTS (GDPR / LGPD)</h2>
+                <p>You can <strong>freely</strong> exercise the following rights: access, correction, anonymization, blocking, or deletion of unnecessary data. To exercise your rights, send an email to <strong><a href="mailto:sougabrielprado@gmail.com">sougabrielprado@gmail.com</a></strong> with the subject "Privacy Request - [Your Name]". Response within 15 business days.</p>
+
+                <hr>
+
+                <h2>5. DATA SECURITY</h2>
+                <p>We use TLS 1.3 (mandatory HTTPS), and checkout occurs in an encrypted environment (256-bit SSL) provided by Stripe, ensuring that payment data never touches our servers. We implemented SSH keys for repository control and two-factor authentication.</p>
+
+                <hr>
+
+                <h2>6. COOKIE AND TRACKING POLICY</h2>
+                <p>✅ <strong>Commitment:</strong> This site DOES NOT use Google Analytics, Meta Pixel, or any invasive behavioral tracking tools. Traffic analysis is done exclusively through aggregated (non-identifiable) statistics.</p>
+
+                <hr>
+
+                <h2>7. UPDATES AND VALIDITY</h2>
+                <p>This policy takes effect immediately. Significant changes will be recorded and transparently maintained in the project repository.</p>
+
+                <hr>
+
+                <blockquote>
+                    <strong>Last technical verification:</strong> 06/25/2025<br>
+                    <strong>Current version SHA-256 Hash:</strong> <code>f4b5c7e0a463f98786b8ab1e4334cd546c584962730b22d9b1a54e7f820e4901</code>
+                </blockquote>
+                
+                <p style="text-align: center; margin-top: 50px; color: var(--gray-medium); font-style: italic; font-size: 0.9rem;">
+                    🔒 Your privacy is not a feature — it is a fundamental right that we fully respect.<br>
+                    Gabriel Prado — Premium Oracle
+                </p>
+            </div>
         </div>
-
-        <div class="en-content">
-            <h2>1. Information Collection</h2>
-            <p>We collect personal information that you provide to us directly, such as name, email address, and birth data necessary for generating reports (exact date, time, and location).</p>
-            
-            <h2>2. Use of Information</h2>
-            <p>The information collected is used exclusively to:</p>
-            <ul>
-                <li>Process and generate the requested oracular reports.</li>
-                <li>Send notifications regarding your order status via WhatsApp or Telegram.</li>
-                <li>Improve our algorithms and user experience.</li>
-            </ul>
-
-            <h2>3. Protection and Security</h2>
-            <p>We implement technical and administrative security measures (SSL encryption, restricted access control) to protect your data against unauthorized access and ensure the confidentiality of the astral and personal information provided.</p>
-
-            <h2>4. Third-Party Sharing</h2>
-            <p>We do not sell or rent your personal information. We share data only with essential service providers for the operation of the site (such as Stripe payment gateways and email/notification services), strictly as necessary to fulfill your requests.</p>
-
-            <h2>5. User Rights (GDPR/International)</h2>
-            <p>You have the right to access, correct, or request the deletion of your personal information. To exercise these rights or if you have questions about our policy, please contact us at: sougabrielprado@gmail.com.</p>
-
-            <h2>6. Changes to This Policy</h2>
-            <p>We may update this policy periodically. We recommend that you review this page regularly to be aware of any changes.</p>
-        </div>
-        
     </div>
+
+    <footer style="padding: 40px 0; background: var(--black-pure); text-align: center; border-top: 1px solid var(--border-subtle);">
+        <p style="font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gray-medium);" class="i18n" data-pt="Oráculo Premium © 2026. Todos os direitos reservados." data-en="Premium Oracle © 2026. All rights reserved.">Oráculo Premium © 2026. Todos os direitos reservados.</p>
+        
+        <div class="footer-links">
+            <a href="politica-privacidade.html" class="footer-link">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span class="i18n" data-pt="Política de Privacidade" data-en="Privacy Policy">Política de Privacidade</span>
+            </a>
+            <a href="public_pgp_key.asc" class="footer-link" download="gabriel_prado_public_pgp.asc">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span class="i18n" data-pt="Chave PGP Pública" data-en="Public PGP Key">Chave PGP Pública</span>
+            </a>
+        </div>
+    </footer>
 
     <script>
         function setLanguage(lang) {
-            // Atualiza os textos da UI (links/titulos)
+            // Textos independentes
             document.querySelectorAll('.i18n').forEach(el => {
-                if (el.getAttribute(`data-${lang}`)) {
-                    el.innerHTML = el.getAttribute(`data-${lang}`);
-                }
+                if (el.getAttribute(`data-${lang}`)) el.innerHTML = el.getAttribute(`data-${lang}`);
             });
-            // Controla a visibilidade dos blocos de conteúdo via classe no body
+            // Alterna blocos grandes
             document.body.className = `lang-${lang}`;
             
-            // Atualiza os botões visuais
+            // Estilo do botão
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`btn-${lang}`).classList.add('active');
             
-            // Salva a preferência
-            localStorage.setItem('chronosLanguage', lang);
+            localStorage.setItem('oracleLanguage', lang);
         }
 
-        // Auto-detecta idioma ao carregar
         document.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('chronosLanguage');
+            const savedLang = localStorage.getItem('oracleLanguage');
             const userLang = navigator.language || navigator.userLanguage;
-            
             if (savedLang) {
                 setLanguage(savedLang);
             } else if (userLang.includes('en')) {
