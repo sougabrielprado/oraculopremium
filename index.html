@@ -412,5 +412,29 @@
             }
         });
     </script>
+
+    <style>
+        body {
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none; /* Standard syntax */
+        }
+    </style>
+    <script>
+        // Bloqueia Botão Direito
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        
+        // Bloqueia Atalhos de Teclado (F12, Ctrl+Shift+I, Ctrl+C, Ctrl+U)
+        document.onkeydown = function(e) {
+            if(event.keyCode == 123) return false; // F12
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; // Ctrl+Shift+I
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; // Ctrl+Shift+C
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
+            if(e.ctrlKey && e.keyCode == 'C'.charCodeAt(0)) return false; // Ctrl+C
+            if(e.ctrlKey && e.keyCode == 'P'.charCodeAt(0)) return false; // Ctrl+P (Print)
+        }
+    </script>
+    
 </body>
 </html>
