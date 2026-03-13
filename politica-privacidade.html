@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Política de Privacidade | 01GURU</title>
+    
+    <link rel="icon" type="image/png" href="01GURU_SF.PNG">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;700;800&family=Times+New+Roman&display=swap" rel="stylesheet">
 
-    <link rel="icon" type="image/png" href="01GURU_SF.PNG">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
     <style>
+        /* CSS NEURO-OTIMIZADO (01GURU Corporate Identity) */
         :root {
-            /* Paleta 01GURU / Engenharia Paramétrica */
-            --bg-deep: #00142D;
-            --navy-base: #002045;
+            --bg-deep: #000B18; /* Bordas ultra escuras */
+            --bg-glow: #002855; /* Brilho central marinho */
             --gold-anchor: #D4AF37;
             --mint-action: #76C7B0;
-            --white-pure: #F8F9FA;
-            --gray-medium: #A0AAB5;
-            --border-subtle: rgba(255, 255, 255, 0.08);
-            --border-gold: rgba(212, 175, 55, 0.3);
+            --mint-hover: #5DAA93;
+            --text-light: #F8F9FA;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --border-glass: rgba(212, 175, 55, 0.2);
             --font-main: 'Helvetica Neue', Arial, sans-serif;
             --font-serif: 'Times New Roman', serif;
         }
@@ -31,8 +30,9 @@
 
         body {
             font-family: var(--font-main);
-            background-color: var(--bg-deep);
-            color: var(--white-pure);
+            background: radial-gradient(circle at top center, var(--bg-glow) 0%, var(--bg-deep) 100%);
+            background-attachment: fixed;
+            color: var(--text-light);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             display: flex;
@@ -44,82 +44,60 @@
         .lang-switcher {
             position: fixed; top: 30px; right: 30px; z-index: 999; display: flex; gap: 5px;
             background: rgba(0, 20, 45, 0.85); padding: 6px 12px; border-radius: 30px;
-            border: 1px solid var(--border-gold); backdrop-filter: blur(8px);
+            border: 1px solid var(--border-glass); backdrop-filter: blur(8px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
         .lang-btn {
-            background: none; border: none; color: var(--gray-medium); font-family: var(--font-main);
+            background: none; border: none; color: #A0AAB5; font-family: var(--font-main);
             font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; padding: 4px 8px; border-radius: 20px;
         }
         .lang-btn:hover { color: var(--mint-action); }
         .lang-btn.active { color: var(--bg-deep); background: var(--mint-action); }
 
         /* --- LOGO HEADER --- */
-        .header-logo {
-            text-align: center;
-            padding: 60px 20px 20px 20px;
-        }
-        .main-logo { 
-            width: 140px; height: auto; filter: drop-shadow(0 15px 30px rgba(118, 199, 176, 0.2)); transition: transform 0.4s ease; 
-        }
-        .main-logo:hover { transform: translateY(-5px) scale(1.02); filter: drop-shadow(0 20px 40px rgba(118, 199, 176, 0.4)); }
+        .header-logo { text-align: center; padding: 60px 20px 20px 20px; }
+        .main-logo { width: 140px; height: auto; filter: drop-shadow(0 0 15px rgba(118, 199, 176, 0.2)); transition: transform 0.4s ease; }
+        .main-logo:hover { transform: translateY(-5px) scale(1.05); filter: drop-shadow(0 0 30px rgba(118, 199, 176, 0.6)); }
 
         /* --- CONTEÚDO PRINCIPAL --- */
-        .content-wrapper {
-            flex: 1;
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+        .content-wrapper { flex: 1; width: 100%; max-width: 900px; margin: 0 auto; padding: 20px; }
 
         .policy-container {
-            background: var(--navy-base);
+            background: var(--glass-bg);
             padding: 50px;
-            border-radius: 8px;
-            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             margin-bottom: 60px;
         }
 
-        h1, h2, h3 { color: var(--white-pure); line-height: 1.2; margin-top: 2.5rem; margin-bottom: 1rem; }
-        h1 { font-family: var(--font-serif); font-size: 2.2rem; color: var(--gold-anchor); border-bottom: 1px solid var(--border-subtle); padding-bottom: 1rem; margin-top: 0; }
-        h2 { font-size: 1.4rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.5rem; color: var(--mint-action); text-transform: uppercase; letter-spacing: 1px;}
+        h1, h2, h3 { color: var(--text-light); line-height: 1.2; margin-top: 2.5rem; margin-bottom: 1rem; }
+        h1 { font-family: var(--font-serif); font-size: 2.2rem; color: var(--gold-anchor); border-bottom: 1px solid var(--border-glass); padding-bottom: 1rem; margin-top: 0; }
+        h2 { font-size: 1.4rem; border-bottom: 1px solid var(--border-glass); padding-bottom: 0.5rem; color: var(--mint-action); text-transform: uppercase; letter-spacing: 1px;}
         h3 { font-size: 1.1rem; color: var(--gold-anchor); text-transform: uppercase; letter-spacing: 1px;}
 
-        p, ul, ol, table { margin-bottom: 1.5rem; font-size: 0.95rem; color: var(--gray-medium); }
+        p, ul, ol, table { margin-bottom: 1.5rem; font-size: 0.95rem; color: #A0AAB5; }
         ul, ol { padding-left: 20px; }
         li { margin-bottom: 0.5rem; }
         
         a { color: var(--mint-action); text-decoration: none; transition: opacity 0.3s; }
         a:hover { opacity: 0.8; text-decoration: underline; }
-        strong { color: var(--white-pure); font-weight: 600; }
-
-        blockquote {
-            border-left: 3px solid var(--mint-action); padding-left: 1.5rem; margin-left: 0;
-            color: var(--white-pure); font-style: italic; background: rgba(255, 255, 255, 0.02);
-            padding: 1.5rem; border-radius: 0 4px 4px 0;
-        }
+        strong { color: var(--text-light); font-weight: 600; }
 
         table { width: 100%; border-collapse: collapse; margin-top: 1rem; margin-bottom: 2rem; font-size: 0.9rem; }
-        th, td { border: 1px solid var(--border-subtle); padding: 12px 15px; text-align: left; }
-        th { background-color: rgba(255, 255, 255, 0.05); color: var(--gold-anchor); font-weight: 600; }
+        th, td { border: 1px solid var(--border-glass); padding: 12px 15px; text-align: left; }
+        th { background-color: rgba(212, 175, 55, 0.05); color: var(--gold-anchor); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
         tr:nth-child(even) { background-color: rgba(255, 255, 255, 0.02); }
 
-        hr { border: 0; border-top: 1px solid var(--border-subtle); margin: 3rem 0; }
+        hr { border: 0; border-top: 1px solid var(--border-glass); margin: 3rem 0; }
 
         .back-link {
             display: inline-flex; align-items: center; gap: 8px; margin-bottom: 30px;
-            color: var(--gray-medium); text-decoration: none; font-size: 0.9rem; transition: color 0.3s;
-            text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
+            color: #A0AAB5; text-decoration: none; font-size: 0.9rem; transition: color 0.3s;
+            text-transform: uppercase; letter-spacing: 1px; font-weight: 800;
         }
         .back-link:hover { color: var(--mint-action); text-decoration: none; }
-        .back-link svg { width: 16px; height: 16px; }
-
-        /* --- FOOTER --- */
-        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-top: 1.5rem; }
-        .footer-link { color: var(--gray-medium); font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s ease; display: inline-flex; align-items: center; gap: 6px; }
-        .footer-link:hover { color: var(--mint-action); }
 
         /* --- SISTEMA BILINGUE --- */
         body.lang-pt .en-content { display: none; }
@@ -156,7 +134,7 @@
                 <h1>POLÍTICA DE PRIVACIDADE E RASTREAMENTO</h1>
 
                 <p>
-                    <strong>Ambiente Operacional:</strong> <a href="https://sougabrielprado.github.io/" target="_blank">https://sougabrielprado.github.io/</a><br>
+                    <strong>Ambiente Operacional:</strong> <a href="https://www.01guru.com.br/" target="_blank">https://www.01guru.com.br/</a><br>
                     <strong>Engenheiro de Dados (DPO):</strong> Gabriel Prado Rodrigues<br>
                     <strong>Última Calibração:</strong> Março de 2026<br>
                     <strong>Protocolo:</strong> 3.0 (LGPD + GDPR + Inteligência de Rastreamento)
@@ -174,7 +152,7 @@
                     <thead><tr><th>Vetor</th><th>Parâmetro</th></tr></thead>
                     <tbody>
                         <tr><td><strong>Controlador (DPO)</strong></td><td>Gabriel Prado Rodrigues (CRA-RS TE-002457/O)</td></tr>
-                        <tr><td><strong>Canal Executivo</strong></td><td><a href="mailto:sougabrielprado@gmail.com">sougabrielprado@gmail.com</a></td></tr>
+                        <tr><td><strong>Canal Executivo</strong></td><td><a href="mailto:contato@01guru.com.br">contato@01guru.com.br</a></td></tr>
                         <tr><td><strong>Jurisdição Base</strong></td><td>Leis brasileiras, com compliance em protocolos globais GDPR.</td></tr>
                     </tbody>
                 </table>
@@ -199,7 +177,7 @@
 
                 <hr>
 
-                <h2>3. ECOSSISTEMA DE PROCESSADORES TERCERIZADOS</h2>
+                <h2>3. ECOSSISTEMA DE PROCESSADORES TERCEIRIZADOS</h2>
                 <p>A nossa infraestrutura está conectada apenas aos servidores de elite do mercado global:</p>
                 <table>
                     <thead><tr><th>Sistema</th><th>Função na Operação</th><th>Blindagem de Dados</th></tr></thead>
@@ -215,7 +193,7 @@
                 <hr>
 
                 <h2>4. DIREITOS DO TITULAR (ART. 18 LGPD)</h2>
-                <p>O utilizador detém o controle absoluto do seu "Legacy Code". Pode solicitar a qualquer momento: acesso, correção, anonimização, bloqueio ou eliminação do banco de dados. Envie um e-mail para <strong>sougabrielprado@gmail.com</strong> com o assunto "Solicitação de Privacidade - [Seu Nome]". SLA de resposta: 15 dias úteis.</p>
+                <p>O utilizador detém o controle absoluto do seu "Legacy Code". Pode solicitar a qualquer momento: acesso, correção, anonimização, bloqueio ou eliminação do banco de dados. Envie um e-mail para <strong>contato@01guru.com.br</strong> com o assunto "Solicitação de Privacidade - [Seu Nome]". SLA de resposta: 15 dias úteis.</p>
 
                 <hr>
 
@@ -231,11 +209,12 @@
                 </p>
             </div>
 
+
             <div class="en-content">
                 <h1>PRIVACY AND TRACKING POLICY</h1>
 
                 <p>
-                    <strong>Operational Environment:</strong> <a href="https://sougabrielprado.github.io/" target="_blank">https://sougabrielprado.github.io/</a><br>
+                    <strong>Operational Environment:</strong> <a href="https://www.01guru.com.br/" target="_blank">https://www.01guru.com.br/</a><br>
                     <strong>Data Engineer (DPO):</strong> Gabriel Prado Rodrigues<br>
                     <strong>Last Calibration:</strong> March 2026<br>
                     <strong>Protocol:</strong> 3.0 (LGPD + GDPR + Tracking Intelligence)
@@ -253,7 +232,7 @@
                     <thead><tr><th>Vector</th><th>Parameter</th></tr></thead>
                     <tbody>
                         <tr><td><strong>Controller (DPO)</strong></td><td>Gabriel Prado Rodrigues</td></tr>
-                        <tr><td><strong>Executive Channel</strong></td><td><a href="mailto:sougabrielprado@gmail.com">sougabrielprado@gmail.com</a></td></tr>
+                        <tr><td><strong>Executive Channel</strong></td><td><a href="mailto:contato@01guru.com.br">contato@01guru.com.br</a></td></tr>
                         <tr><td><strong>Base Jurisdiction</strong></td><td>Brazilian laws, with compliance in GDPR global protocols.</td></tr>
                     </tbody>
                 </table>
@@ -294,7 +273,7 @@
                 <hr>
 
                 <h2>4. DATA SUBJECT RIGHTS (GDPR/LGPD)</h2>
-                <p>The user holds absolute control over their "Legacy Code". You may request at any time: access, correction, anonymization, blocking, or database deletion. Send an email to <strong>sougabrielprado@gmail.com</strong> with the subject "Privacy Request - [Your Name]". Response SLA: 15 business days.</p>
+                <p>The user holds absolute control over their "Legacy Code". You may request at any time: access, correction, anonymization, blocking, or database deletion. Send an email to <strong>contato@01guru.com.br</strong> with the subject "Privacy Request - [Your Name]". Response SLA: 15 business days.</p>
 
                 <hr>
 
@@ -333,6 +312,16 @@
                 </svg>
                 <span class="i18n" data-pt="Gerenciar Assinatura" data-en="Manage Subscription">Gerenciar Assinatura</span>
             </a>
+            
+            <span style="color: var(--border-glass);">|</span>
+            
+            <a href="mailto:contato@01guru.com.br" style="color: #A0AAB5; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 6px; transition: color 0.3s ease;" onmouseover="this.style.color='#76C7B0'" onmouseout="this.style.color='#A0AAB5'">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span class="i18n" data-pt="Fale Conosco" data-en="Contact Us">Fale Conosco</span>
+            </a>
         </div>
     </footer>
 
@@ -368,5 +357,3 @@
     </script>
 </body>
 </html>
-
-
