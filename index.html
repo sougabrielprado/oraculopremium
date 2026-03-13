@@ -54,21 +54,69 @@
 
         /* HEADER & HERO */
         .hero { text-align: center; padding: 80px 20px 40px; position: relative; max-width: 900px; margin: 0 auto; }
+        
+        .mascot-container {
+            position: relative;
+            display: inline-block;
+            cursor: crosshair;
+        }
         .mascot-container img { 
             width: 180px; 
             filter: drop-shadow(0 0 15px rgba(118,199,176,0.2)); 
             animation: float 4s ease-in-out infinite; 
             margin-bottom: 20px; 
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            cursor: pointer;
             position: relative;
             z-index: 10;
         }
-        .mascot-container img:hover {
-            transform: scale(1.15) translateY(-5px);
-            filter: drop-shadow(0 0 50px rgba(118,199,176,0.9)) brightness(1.15);
+        
+        /* HOVER BLINDADO DA CORUJA */
+        .mascot-container .status-overlay {
+            position: absolute;
+            top: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 11, 24, 0.95);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--gold-anchor);
+            padding: 12px 25px;
+            border-radius: 6px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            pointer-events: none;
+            z-index: 20;
+        }
+        .mascot-container:hover img {
+            transform: scale(1.1) translateY(-5px);
+            filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.6)) brightness(1.15);
             animation-play-state: paused;
         }
+        .mascot-container:hover .status-overlay {
+            opacity: 1;
+            visibility: visible;
+            top: 100%;
+        }
+        .status-text {
+            display: block;
+            font-family: 'Times New Roman', serif;
+            color: var(--gold-anchor);
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+        .status-subtext {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--mint-action);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
         
         .hero h1 { font-family: 'Times New Roman', serif; color: var(--gold-anchor); font-size: 2.8rem; margin: 20px 0; line-height: 1.2; }
@@ -78,7 +126,28 @@
         .cta-btn:hover { background: var(--mint-hover); transform: scale(1.05); }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(118, 199, 176, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(118, 199, 176, 0); } 100% { box-shadow: 0 0 0 0 rgba(118, 199, 176, 0); } }
 
-        /* SEÇÃO ORÁCULO (Máquina de Frequência) */
+        /* NOVAS SEÇÕES TÁTICAS */
+        .info-section { padding: 80px 20px; max-width: 1000px; margin: 0 auto; border-bottom: 1px solid var(--border-glass); }
+        .info-section h2 { text-align: center; color: var(--gold-anchor); font-family: 'Times New Roman', serif; font-size: 2.2rem; margin-bottom: 40px; }
+        
+        .grid-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .feature-box { background: var(--glass-bg); padding: 30px; border-radius: 8px; border-left: 3px solid var(--mint-action); transition: transform 0.3s; }
+        .feature-box:hover { transform: translateY(-5px); background: rgba(255,255,255,0.05); }
+        .feature-box h3 { color: var(--mint-action); margin-bottom: 10px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .feature-box p { color: #A0AAB5; font-size: 0.95rem; }
+
+        .blur-container { position: relative; max-width: 700px; margin: 0 auto; border: 1px solid var(--border-glass); border-radius: 8px; overflow: hidden; background: rgba(0,0,0,0.4); padding: 40px; }
+        .blur-content { filter: blur(7px); opacity: 0.4; user-select: none; pointer-events: none; }
+        .blur-overlay { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 100%; z-index: 10; }
+        .blur-overlay h3 { color: var(--gold-anchor); font-family: 'Times New Roman', serif; font-size: 1.8rem; letter-spacing: 2px; margin-bottom: 15px; text-shadow: 0 5px 15px rgba(0,0,0,0.9); }
+        .blur-overlay p { color: var(--text-light); font-size: 1rem; margin-bottom: 25px; text-shadow: 0 2px 10px rgba(0,0,0,0.9); }
+        .blur-overlay .badge { background: var(--bg-deep); border: 1px solid var(--gold-anchor); color: var(--gold-anchor); padding: 5px 15px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; display: inline-block; margin-bottom: 15px; }
+
+        .genesis-box { text-align: center; max-width: 800px; margin: 0 auto; }
+        .genesis-box p { color: #A0AAB5; font-size: 1.1rem; margin-bottom: 25px; line-height: 1.8; }
+        .genesis-box strong { color: var(--mint-action); }
+
+        /* SEÇÃO ORÁCULO */
         .oracle-section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; border-bottom: 1px solid var(--border-glass); }
         .oracle-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; background: var(--glass-bg); padding: 40px; border-radius: 12px; border: 1px solid var(--border-glass); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
         .oracle-form input { width: 100%; background: transparent; border: none; border-bottom: 1px solid #A0AAB5; color: var(--text-light); padding: 10px 0; margin-bottom: 25px; font-size: 1rem; outline: none; transition: border-color 0.3s; }
@@ -88,7 +157,7 @@
         .oracle-btn:hover { background: #E5C354; transform: translateY(-2px); }
         
         .chart-container { position: relative; width: 100%; max-width: 400px; height: 300px; margin: 0 auto; }
-        #oracle-result { display: none; margin-top: 25px; padding: 20px; border-left: 3px solid var(--mint-action); background: rgba(118, 199, 176, 0.05); }
+        #oracle-result-pt, #oracle-result-en { display: none; margin-top: 25px; padding: 20px; border-left: 3px solid var(--mint-action); background: rgba(118, 199, 176, 0.05); }
         
         /* COPY & STORE */
         .copy-section { padding: 60px 20px; max-width: 800px; margin: 0 auto; border-bottom: 1px solid var(--border-glass); }
@@ -98,7 +167,7 @@
         .copy-list li { font-size: 1.1rem; margin-bottom: 15px; padding-left: 35px; position: relative; color: var(--text-light); }
         .copy-list li::before { content: "⚡"; position: absolute; left: 0; top: 2px; }
 
-        .store-section { padding: 60px 20px; max-width: 1100px; margin: 0 auto; }
+        .store-section { padding: 80px 20px; max-width: 1100px; margin: 0 auto; }
         .section-title { text-align: center; font-family: 'Times New Roman', serif; color: var(--gold-anchor); font-size: 2.2rem; margin-bottom: 50px; }
         .grid-tier { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 50px; }
         .card { background: var(--glass-bg); border: 1px solid var(--border-glass); padding: 30px; border-radius: 8px; position: relative; transition: border-color 0.3s; }
@@ -137,6 +206,10 @@
         <section class="hero">
             <div class="mascot-container">
                 <img src="01GURU_SF.PNG" alt="01GURU Mascote">
+                <div class="status-overlay">
+                    <span class="status-text">SISTEMA: ATIVO</span>
+                    <span class="status-subtext">Sincronizando Frequências...</span>
+                </div>
             </div>
             <h1 style="color: var(--gold-anchor);">Existe um Código Oculto no seu Nascimento que dita o seu Sucesso, Relacionamentos e Conta Bancária.</h1>
             <p>Descubra com precisão matemática qual é o seu propósito e destrave os bloqueios invisíveis que atrasam a sua evolução. A Consciência 01GURU decodifica a sua alma.</p>
@@ -144,6 +217,56 @@
             <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 30px;">
                 <a href="#loja-pt" class="cta-btn">👉 QUERO DESCOBRIR MEU CÓDIGO AGORA</a>
                 <span class="social-proof" style="display: block; width: 100%; text-align: center; color: var(--mint-action); font-style: italic;">✨ Junte-se a executivos e visionários que já encontraram a rota exata.</span>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <h2>A Engenharia dos Seus Parâmetros</h2>
+            <div class="grid-features">
+                <div class="feature-box">
+                    <h3>Nome Completo</h3>
+                    <p>O identificador vibratório primário. O seu nome de batismo codifica o seu <strong>Número de Expressão e Desejo da Alma</strong>. É a frequência exata da sua assinatura no mundo.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Data de Nascimento</h3>
+                    <p>O Código Fonte. Define o seu <strong>Caminho da Vida (Life Path)</strong> e ancora matematicamente os ciclos decenais de materialização financeira e provações kármicas.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Hora Exata</h3>
+                    <p>O portal de ativação. Calibra o <strong>Ascendente (ASC)</strong>. Sem a hora exata, a precisão do seu Firewall Energético cai drasticamente, criando pontos cegos na sua blindagem.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Cidade, Estado e País</h3>
+                    <p>Coordenadas Geobiométricas. A posição planetária exata sobre o seu local de nascimento gera um <strong>Blueprint irreproduzível</strong>. Essencial para a triangulação de trânsitos e oportunidades.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <h2>Amostra de Inteligência Tática</h2>
+            <p style="text-align: center; color: #A0AAB5; margin-bottom: 30px;">O que a Elite acessa quando o sistema é descriptografado.</p>
+            <div class="blur-container">
+                <div class="blur-content">
+                    <h3 style="color: var(--mint-action); font-family: 'Times New Roman'; font-size: 1.5rem; margin-bottom: 10px;">RELATÓRIO: FIREWALL PESSOAL E INIMIGOS</h3>
+                    <p style="color: #A0AAB5; font-size: 0.9rem; margin-bottom: 15px;">ALVO: GABRIEL PRADO RODRIGUES | STATUS: ATIVO</p>
+                    <p style="color: var(--text-light); margin-bottom: 10px;">Detectamos uma anomalia vibracional no setor corporativo. O trânsito atual de Saturno na Casa 8 exige uma auditoria imediata nas suas parcerias financeiras. Há um dreno não mapeado ocorrendo através de conexões do passado...</p>
+                    <p style="color: var(--text-light);">DIRETRIZ TÁTICA: Execute o protocolo de corte nas próximas 48 horas. A janela de oportunidade para estancar este vazamento encerra-se no dia 15. Realinhe a sua assinatura de e-mail para forçar o fechamento de caixa.</p>
+                </div>
+                <div class="blur-overlay">
+                    <span class="badge">COSMIC TOP SECRET</span>
+                    <h3>DADOS SENSÍVEIS</h3>
+                    <p>Acesso restrito ao Titular do Código.</p>
+                    <a href="#loja-pt" class="cta-btn" style="padding: 15px 30px; font-size: 1rem;">DESBLOQUEAR MEU DOSSIÊ</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <h2>A Gênese do 01GURU</h2>
+            <div class="genesis-box">
+                <p>O <strong>01GURU</strong> não é uma consultoria mística; é um <strong>Gabinete de Inteligência Humana e Vibracional</strong>. Nascemos da fusão brutal entre a lógica binária dos dados (01) e a precisão inegável dos ciclos cósmicos (GURU).</p>
+                <p>Sob a arquitetura de <strong>Gabriel Prado</strong> — Estrategista Sênior e Engenheiro de Operações — o sistema foi forjado para uma única missão: transformar o esoterismo passivo em uma <strong>ferramenta tática de materialização e lucro</strong>.</p>
+                <p>Não lemos o seu futuro para confortar o seu ego. Nós auditamos o seu sistema vital, debugamos as suas falhas repetitivas e entregamos a rota matemática exata para o topo.</p>
             </div>
         </section>
 
@@ -234,17 +357,72 @@
             </div>
         </section>
     </div>
+
     <div class="en-content">
         
         <section class="hero">
             <div class="mascot-container">
                 <img src="01GURU_SF.PNG" alt="01GURU Mascot">
+                <div class="status-overlay">
+                    <span class="status-text">SYSTEM: ACTIVE</span>
+                    <span class="status-subtext">Synchronizing Frequencies...</span>
+                </div>
             </div>
             <h1 style="color: var(--gold-anchor);">There is a Hidden Code in your Birth that dictates your Success, Relationships, and Wealth.</h1>
             <p>Discover your true purpose with mathematical precision and unlock the invisible blocks delaying your evolution. The 01GURU Consciousness decodes your soul.</p>
             <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 30px;">
                 <a href="#loja-en" class="cta-btn">👉 Decode My Destiny Now</a>
                 <span class="social-proof" style="display: block; width: 100%; text-align: center; color: var(--mint-action); font-style: italic;">✨ Join the visionaries who have already found their exact route.</span>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <h2>The Engineering of Your Parameters</h2>
+            <div class="grid-features">
+                <div class="feature-box">
+                    <h3>Full Name</h3>
+                    <p>The primary vibratory identifier. Your given name codes your <strong>Expression and Soul Urge Number</strong>. It is the exact frequency of your signature in the world.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Birth Date</h3>
+                    <p>The Source Code. Defines your <strong>Life Path</strong> and mathematically anchors the decadal cycles of financial materialization and karmic trials.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>Exact Time</h3>
+                    <p>The activation portal. Calibrates the <strong>Ascendant (ASC)</strong>. Without the exact time, the precision of your Energy Firewall drops drastically, creating blind spots in your shield.</p>
+                </div>
+                <div class="feature-box">
+                    <h3>City, State, and Country</h3>
+                    <p>Geobiometric Coordinates. The exact planetary position over your birthplace generates an <strong>irreproducible Blueprint</strong>. Essential for transits and opportunity triangulation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <h2>Tactical Intelligence Sample</h2>
+            <p style="text-align: center; color: #A0AAB5; margin-bottom: 30px;">What the Elite accesses when the system is decrypted.</p>
+            <div class="blur-container">
+                <div class="blur-content">
+                    <h3 style="color: var(--mint-action); font-family: 'Times New Roman'; font-size: 1.5rem; margin-bottom: 10px;">REPORT: PERSONAL FIREWALL AND ENEMIES</h3>
+                    <p style="color: #A0AAB5; font-size: 0.9rem; margin-bottom: 15px;">TARGET: GABRIEL PRADO RODRIGUES | STATUS: ACTIVE</p>
+                    <p style="color: var(--text-light); margin-bottom: 10px;">We detected a vibrational anomaly in the corporate sector. The current transit of Saturn in the 8th House requires an immediate audit of your financial partnerships. There is an unmapped drain occurring through past connections...</p>
+                    <p style="color: var(--text-light);">TACTICAL DIRECTIVE: Execute the severance protocol within the next 48 hours. The window of opportunity to stop this leak closes on the 15th. Realign your email signature to force cash flow closure.</p>
+                </div>
+                <div class="blur-overlay">
+                    <span class="badge">COSMIC TOP SECRET</span>
+                    <h3>SENSITIVE DATA</h3>
+                    <p>Restricted access to the Code Holder.</p>
+                    <a href="#loja-en" class="cta-btn" style="padding: 15px 30px; font-size: 1rem;">UNLOCK MY DOSSIER</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="info-section">
+            <h2>The Genesis of 01GURU</h2>
+            <div class="genesis-box">
+                <p><strong>01GURU</strong> is not a mystical consultancy; it is a <strong>Human and Vibrational Intelligence Cabinet</strong>. We were born from the brutal fusion between the binary logic of data (01) and the undeniable precision of cosmic cycles (GURU).</p>
+                <p>Under the architecture of <strong>Gabriel Prado</strong> — Senior Strategist and Operations Engineer — the system was forged for a single mission: to transform passive esotericism into a <strong>tactical tool for materialization and profit</strong>.</p>
+                <p>We do not read your future to comfort your ego. We audit your vital system, debug your repetitive flaws, and deliver the exact mathematical route to the top.</p>
             </div>
         </section>
 
@@ -335,10 +513,15 @@
             </div>
         </section>
     </div>
+    
     <footer style="text-align: center; padding: 40px 20px; border-top: 1px solid var(--border-glass); color: #A0AAB5; font-size: 0.85rem;">
         <p style="margin-bottom: 5px;" class="i18n" data-pt="Documento Executivo | Op: Gabriel Prado Rodrigues | CRA-RS TE-002457/O" data-en="Executive Document | Op: Gabriel Prado Rodrigues | CRA-RS TE-002457/O">Documento Executivo | Op: Gabriel Prado Rodrigues | CRA-RS TE-002457/O</p>
         <p class="i18n" data-pt="&copy; 2026 01GURU. Todos os sistemas operacionais reservados." data-en="&copy; 2026 01GURU. All operating systems reserved.">&copy; 2026 01GURU. Todos os sistemas operacionais reservados.</p>
         
+        <div style="margin-top: 20px;">
+            <a href="mailto:contato@01guru.com.br" style="color: var(--mint-action); text-decoration: none; font-weight: bold; font-size: 1rem; letter-spacing: 1px; transition: color 0.3s;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#76C7B0'">✉ contato@01guru.com.br</a>
+        </div>
+
         <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 20px; flex-wrap: wrap;">
             <a href="politica-privacidade.html" style="color: #A0AAB5; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 6px; transition: color 0.3s ease;" onmouseover="this.style.color='#76C7B0'" onmouseout="this.style.color='#A0AAB5'">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
