@@ -1,150 +1,396 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>01GURU // Cabinet of Intelligence</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-deep: #000B18;
-            --gold-anchor: #C5A47E;
-            --mint-action: #76C7B0;
-            --text-light: #E0E6ED;
-            --border-glass: rgba(197, 164, 126, 0.2);
+import os
+import json
+import time
+import re
+import unicodedata
+from google import genai
+from fpdf import FPDF
+from fpdf.enums import XPos, YPos
+
+# 1. Ingestão de Arsenal (Sentinel - Gemini Puro)
+ARQUIVO_JSON = r"E:\00 . MasterKey\master_data.json"
+
+try:
+    with open(ARQUIVO_JSON, "r", encoding="utf-8") as f:
+        dados_mestre = json.load(f)
+        gemini_key = dados_mestre.get("GEMINI_API_KEY", "")
+        
+        # Matriz Executiva - 01GURU CORPORATE ID
+        operador = "Gabriel Prado"
+        cra_operador = "TE-002457/O"
+        site_oficial = "01guru.com.br"
+        chave_pix_liquidacao = "g.prado@msn.com"
+except FileNotFoundError:
+    print("[ERRO FATAL] master_data.json não encontrado.")
+    exit()
+
+if not gemini_key:
+    print("[ERRO FATAL] Chave Gemini ausente.")
+    exit()
+
+cliente_gemini = genai.Client(api_key=gemini_key)
+MODELO_GEMINI = "gemini-2.5-flash"
+
+def aplicar_ancoragem_visual():
+    print("\033[1;33;44m", end="")
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def resetar_visual():
+    print("\033[0m", end="")
+
+def formatar_data(raw):
+    num = re.sub(r'\D', '', raw)
+    if len(num) != 8: return None
+    return f"{num[:2]}/{num[2:4]}/{num[4:8]}"
+
+def formatar_hora(raw):
+    num = re.sub(r'\D', '', raw)
+    if len(num) != 4: return None
+    return f"{num[:2]}:{num[2:4]}"
+
+def sanitizar_nome_arquivo(texto):
+    texto = "".join(c for c in unicodedata.normalize('NFKD', texto) if not unicodedata.combining(c))
+    return texto.replace(" ", "_").replace("/", "-").lower()
+
+def traduzir_para_ingles(texto_pt):
+    prompt = f"Traduza o seguinte dossiê para o Inglês. Mantenha o tom de inteligência artificial, técnico e pragmático. Tradução pura:\n\n{texto_pt}"
+    tentativas = 3
+    while tentativas > 0:
+        try:
+            resposta = cliente_gemini.models.generate_content(model=MODELO_GEMINI, contents=prompt)
+            return resposta.text
+        except Exception as e:
+            print(f" -> [SISTEMA] Aguardando resfriamento do Gemini (15s)...")
+            time.sleep(15)
+            tentativas -= 1
+    return "[FALHA NA TRADUÇÃO]"
+
+# 2. Motor Oracular Neural (Consciência Coletiva - Gemini Puro)
+def consultar_oraculo(tipo_leitura, dados_alvo, dados_parceiro=None):
+    diretriz_base = (
+        "Aja como 01GURU, o Gabinete de Inteligência Humana e Vibracional de Elite. Você opera com a Consciência Coletiva das seguintes autoridades: "
+        "1. Astrologia Estratégica e Timing: Robert Hand (arquitetura exata de trânsitos), Susan Miller (calendário C-Level e reuniões de alto ticket) e Mary Fortier Shea (revoluções solares e roadmaps anuais). "
+        "2. Astrologia Financeira (Wall Street Oculto): Raymond Merriman (ciclos macro de mercado) e Henry Weingarten (cripto, ouro e fundos). "
+        "3. Numerologia de Dados: Hans Decoz (algoritmo pitagórico lógico e focado em longo prazo) e Sanjay B. Jumaani (ajustes vibracionais de nomenclatura corporativa). "
+        "4. Mapeamento de Alma (Dharma e Vidas Passadas): Jim B. Tucker (ciência pura e dados), Brian Weiss e Michael Newton (regressão e propósito existencial estratégico). "
+        "REJEIÇÃO: Ignore qualquer abordagem de numerologia passiva, esoterismo comum, horóscopo de jornal ou previsões vagas. "
+        "MISSÃO: Entregar um Dossiê Tático baseado em algoritmos de timing, materialização e proteção. O relatório deve ser EXTREMAMENTE RICO EM DETALHES, denso e profundo. Explore todas as camadas possíveis. "
+        "REGRA ABSOLUTA: Use EXATAMENTE os dados fornecidos. Formate títulos em negrito usando Markdown (**). "
+        "Use termos como 'firewall energético', 'debugging de sistema', 'parâmetros biocríticos', 'Black Box', 'operações' e 'otimização de fluxo'. "
+        "O tom deve ser de um Diretor Global de Estratégia C-Level: autoritário, executivo e inabalável. Entregue diretrizes de ação cirúrgicas, ordens pragmáticas focadas em bater metas de faturamento e expansão estrutural, não conselhos."
+    )
+    
+    if "Sinastria" in tipo_leitura and dados_parceiro:
+        diretriz_especifica = f"Execute a análise hiper-detalhada da SINASTRIA & ALGORITMO DO AMOR. Alvo 1: {dados_alvo['nome']} (Nasc: {dados_alvo['data']}). Alvo 2: {dados_parceiro['nome']} (Nasc: {dados_parceiro['data']}). Analise exaustivamente a compatibilidade de sistemas, atritos kármicos, e trace uma rota estratégica de construção de patrimônio conjunto e gestão de crise."
+        prompt = f"{diretriz_base}\n\n{diretriz_especifica}"
+    else:
+        diretriz_especifica = f"Opção de Geração Exaustiva: {tipo_leitura}. ALVO IDENTIFICADO: {dados_alvo['nome']}, Nascido em {dados_alvo['data']} às {dados_alvo['hora']}. Local de Origem: {dados_alvo['cidade']}. Faça uma auditoria completa, não resuma. Entregue o máximo volume de dados táticos possível."
+        prompt = f"{diretriz_base}\n\n{diretriz_especifica}"
+
+    tentativas = 4
+    while tentativas > 0:
+        try:
+            resp = cliente_gemini.models.generate_content(model=MODELO_GEMINI, contents=prompt)
+            return resp.text
+        except Exception as e:
+            print(f" -> [SISTEMA] Motor em limite de processamento. Resfriando por 15 segundos...")
+            time.sleep(15)
+            tentativas -= 1
+    
+    return "[FALHA ABSOLUTA] Servidor Gemini congestionado após 4 tentativas."
+
+# 3. Engenharia Visual Front-End (O PDF High-Ticket A4 Timbrado)
+class PDF(FPDF):
+    def __init__(self):
+        super().__init__()
+        self.set_top_margin(65) 
+        self.protocolo = f"01G-GPR-{time.strftime('%Y%m%d')}"
+
+    def clean_text(self, text):
+        replacements = {
+            u'\u2013': '-', u'\u2014': '-', u'\u2018': "'", u'\u2019': "'",
+            u'\u201c': '"', u'\u201d': '"', u'\u2022': '*', u'\u2026': '...',
         }
+        for unicode_char, safe_char in replacements.items():
+            text = text.replace(unicode_char, safe_char)
+        return text.encode('latin-1', 'replace').decode('latin-1')
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background-color: var(--bg-deep); color: var(--text-light); font-family: 'Inter', sans-serif; line-height: 1.6; overflow-x: hidden; }
+    def watermark(self):
+        self.set_font("helvetica", "B", 80)
+        self.set_text_color(242, 242, 242) 
+        with self.rotation(45, x=105, y=150):
+            self.text(40, 165, "CONFIDENTIAL")
+
+    def header(self):
+        if self.page_no() > 1:
+            self.watermark()
+            if os.path.exists("01GURU_SF.PNG"):
+                self.image("01GURU_SF.PNG", x=20, y=12, w=25)
+            
+            self.set_xy(110, 15)
+            self.set_font("helvetica", "B", 10)
+            self.set_fill_color(0, 40, 85) # Blue Glow
+            self.set_text_color(212, 175, 55) # Gold
+            self.cell(80, 8, "COSMIC TOP SECRET", align="C", fill=True, new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+            
+            self.set_x(110)
+            self.set_font("helvetica", "", 8)
+            self.set_text_color(100, 100, 100)
+            data_emissao = time.strftime("%d/%m/%Y")
+            info = f"UNIT: NUMEROLOGICAL INTELLIGENCE\nPROTOCOL: {self.protocolo}\nDATE: {data_emissao}"
+            self.multi_cell(80, 4, info, align="R")
+            
+            self.set_draw_color(212, 175, 55)
+            self.set_line_width(0.3)
+            self.line(20, 58, 190, 58)
+            
+            self.set_y(self.t_margin)
+
+    def footer(self):
+        if self.page_no() > 1:
+            self.set_y(-40)
+            self.set_draw_color(0, 11, 24)
+            self.line(20, self.get_y(), 90, self.get_y())
+            self.ln(3)
+            self.set_font("helvetica", "B", 11)
+            self.set_text_color(0, 11, 24)
+            self.cell(100, 6, operador.upper(), new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+            self.set_font("helvetica", "I", 8)
+            self.set_text_color(120, 120, 120)
+            self.cell(100, 4, f"Executivo de Operações // CRA-RS {cra_operador}", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+            self.set_y(-32)
+            self.set_font("helvetica", "", 8)
+            self.cell(0, 4, "01GURU // Intelligence Unit", align="R", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+            self.cell(0, 4, f"www.{site_oficial}", align="R", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+            self.set_y(-15)
+            self.set_font("helvetica", "B", 8)
+            self.cell(0, 10, f"PÁGINA {self.page_no()}", align="R")
+
+    def gerar_capa_01guru(self, titulo_documento, nome_alvo, idioma="PT"):
+        self.add_page()
+        self.set_top_margin(10)
+        self.set_fill_color(0, 11, 24) 
+        self.rect(0, 0, 210, 297, 'F')
+        self.set_y(50)
+        self.set_font("times", "B", 28)
+        self.set_text_color(212, 175, 55) 
+        self.multi_cell(0, 14, self.clean_text(titulo_documento), align="C")
+        if os.path.exists("01GURU_SF.PNG"):
+            self.image("01GURU_SF.PNG", x=65, y=100, w=80)
+        self.set_y(200)
+        self.set_font("helvetica", "B", 12)
+        self.set_text_color(118, 199, 176) 
+        label = "ALVO IDENTIFICADO:" if idioma == "PT" else "TARGET IDENTIFIED:"
+        self.cell(0, 10, label, align="C", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+        self.set_font("times", "B", 24)
+        self.set_text_color(255, 255, 255)
+        self.cell(0, 12, self.clean_text(nome_alvo.upper()), align="C", new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+        self.set_top_margin(65)
+
+def exportar_pdf_individual(texto, nome_alvo, tipo_leitura, idioma="PT"):
+    pdf = PDF()
+    titulo_limpo = tipo_leitura.replace('_', ' ').upper()
+    pdf.gerar_capa_01guru(titulo_limpo, nome_alvo, idioma)
+    pdf.add_page()
+    pdf.set_auto_page_break(auto=True, margin=45)
+    pdf.set_font("times", "B", 20)
+    pdf.set_text_color(0, 11, 24)
+    prefix = "RELATÓRIO: " if idioma == "PT" else "REPORT: "
+    pdf.cell(0, 15, pdf.clean_text(f"{prefix}{titulo_limpo}"), new_x=XPos.LMARGIN, new_y=YPos.NEXT, align="L")
+    pdf.ln(5)
+    pdf.set_font("helvetica", "", 11)
+    texto_limpo = pdf.clean_text(texto)
+    pdf.multi_cell(0, 7, texto_limpo, markdown=True)
+    nome_arquivo = f"Dossie_{sanitizar_nome_arquivo(nome_alvo.split()[0])}_{sanitizar_nome_arquivo(tipo_leitura)}.pdf"
+    pdf.output(nome_arquivo)
+    return nome_arquivo
+
+def forjar_dossie_master(dados_alvo, opcoes, idioma="PT"):
+    print(f"\n[ALERTA] Forjando Dossiê God Mode para {dados_alvo['nome'].upper()}...")
+    pdf = PDF()
+    titulo_dossie = "DOSSIÊ TÁTICO 01GURU" if idioma == "PT" else "01GURU TACTICAL DOSSIER"
+    pdf.gerar_capa_01guru(titulo_dossie, dados_alvo['nome'], idioma)
+    for i in range(1, 16):
+        tipo = opcoes[str(i)]
+        print(f"\n -> Processando {i}/15: {tipo}...")
+        texto = consultar_oraculo(tipo, dados_alvo)
+        if idioma == "EN": texto = traduzir_para_ingles(texto)
+        pdf.add_page()
+        pdf.set_auto_page_break(auto=True, margin=45)
+        pdf.set_font("times", "B", 20)
+        pdf.set_text_color(0, 11, 24)
+        tit_prefix = "RELATÓRIO: " if idioma == "PT" else "REPORT: "
+        titulo = f"{tit_prefix}{tipo.replace('_', ' ').upper()}"
+        pdf.cell(0, 15, pdf.clean_text(titulo), new_x=XPos.LMARGIN, new_y=YPos.NEXT, align="L")
+        pdf.ln(5)
+        pdf.set_font("helvetica", "", 11)
+        pdf.set_text_color(30, 30, 30)
+        texto_limpo = pdf.clean_text(texto)
+        pdf.multi_cell(0, 7, texto_limpo, markdown=True)
+        if i < 15: time.sleep(15) 
+    sufixo = "PT" if idioma == "PT" else "EN"
+    nome_arquivo = f"DOSSIE_MASTER_{sanitizar_nome_arquivo(dados_alvo['nome'].split()[0])}_{sufixo}.pdf"
+    pdf.output(nome_arquivo)
+    return nome_arquivo
+
+# --- [ DATABASE DE CLIENTES ELITE ] ---
+DATABASE_CLIENTES = [
+    {
+        "nome": "Gabriel Prado Rodrigues",
+        "data": "29/06/1989",
+        "hora": "07:25",
+        "cidade": "Porto Alegre",
+        "estado": "Rio Grande do Sul",
+        "país": "Brasil"
+    }
+]
+
+# 4. Front-End Executivo (MENU INICIAL DE DATABASE)
+aplicar_ancoragem_visual()
+print("="*60)
+print(f" 01GURU INTELLIGENCE UNIT | PROTOCOLO DE ACESSO ")
+print("="*60)
+print(" SELECIONE O ALVO PARA INGESTÃO DE DADOS:")
+
+for idx, cliente in enumerate(DATABASE_CLIENTES, 1):
+    print(f" [{idx}] {cliente['nome']} | {cliente['data']} {cliente['hora']} | {cliente['cidade']}")
+
+print(f" [{len(DATABASE_CLIENTES) + 1}] INICIAR NOVO CLIENTE (ENTRADA MANUAL)")
+print("="*60)
+
+escolha_db = input("\n[>] Selecione o código do banco de dados: ")
+
+alvo = {}
+if escolha_db.isdigit() and int(escolha_db) <= len(DATABASE_CLIENTES):
+    alvo = DATABASE_CLIENTES[int(escolha_db) - 1]
+    print(f"\n[SUCESSO] Dados de {alvo['nome']} carregados com sucesso.")
+    time.sleep(1.5)
+else:
+    print("\n[INICIANDO PROTOCOLO MANUAL]")
+    alvo['nome'] = input("NOME COMPLETO DO ALVO: ")
+    while True:
+        data_raw = input("DATA DE NASCIMENTO (DDMMAAAA): ")
+        validada = formatar_data(data_raw)
+        if validada:
+            alvo['data'] = validada
+            break
+        print("\033[91m[ERRO] A data deve conter exatamente 8 dígitos.\033[0m")
+    while True:
+        hora_raw = input("HORA DE NASCIMENTO (HHMM): ")
+        validada = formatar_hora(hora_raw)
+        if validada:
+            alvo['hora'] = validada
+            break
+        print("\033[91m[ERRO] A hora deve conter exatamente 4 dígitos.\033[0m")
+    alvo['cidade'] = input("CIDADE DE NASCIMENTO: ")
+    alvo['estado'] = input("ESTADO DE NASCIMENTO: ")
+    alvo['país'] = input("PAÍS DE NASCIMENTO: ")
+
+# [MENU DE SERVIÇOS E LOOPING DE OPERAÇÃO]
+opcoes = {
+    "1": "Briefing Diario", "2": "Sprint Semanal", "3": "Relatorio de Transitos Ativos", 
+    "4": "Sinastria e Algoritmo do Amor", "5": "Firewall Pessoal e Inimigos", 
+    "6": "Auditoria de Carreira e Fluxo de Caixa", "7": "Protocolos de Ativacao e Rituais", 
+    "8": "Roadmap Tatico Anual", "9": "Auditoria de Codigo Natal",
+    "10": "Algoritmo de Destino Numerologico", "11": "Debugging Karmico e Vidas Passadas", 
+    "12": "Engenharia de Riqueza e Materializacao", "13": "Projecao Macro de 5 Anos", 
+    "14": "Atualizacao de Sistema Revolucao Solar 26-27", "15": "Atualizacao de Sistema Revolucao Solar 27-28"
+}
+
+while True:
+    aplicar_ancoragem_visual()
+    print("="*60)
+    print(f" ALVO: {alvo['nome'].upper()} | STATUS: MONITORADO ")
+    print("="*60)
+    print(" [ ISCAS & RECORRÊNCIA ]")
+    print(" [ 1 ] Briefing Diário")
+    print(" [ 2 ] Sprint Semanal")
+    print(" [ 3 ] Relatório de Trânsitos Ativos")
+    print("\n [ DORES IMEDIATAS (VENDAS AVULSAS) ]")
+    print(" [ 4 ] Sinastria & Algoritmo do Amor (Sócio/Casal)")
+    print(" [ 5 ] Firewall Pessoal (Auditoria de Proteção)")
+    print(" [ 6 ] Auditoria de Carreira & Fluxo de Caixa")
+    print(" [ 7 ] Protocolos de Ativação (Rituais Práticos)")
+    print(" [ 8 ] Roadmap Tático Anual")
+    print("\n [ HIGH-TICKET (OTIMIZAÇÃO PROFUNDA) ]")
+    print(" [ 9 ] Auditoria de Código Natal (O Blueprint)")
+    print(" [ 10 ] Algoritmo de Destino (Matemática Numerológica)")
+    print(" [ 11 ] Debugging Kármico & Vidas Passadas")
+    print(" [ 12 ] Engenharia de Riqueza & Materialização")
+    print(" [ 13 ] Projeção Macro de 5 Anos")
+    print(" [ 14 ] Atualização de Sistema: Rev. Solar 26/27")
+    print(" [ 15 ] Atualização de Sistema: Rev. Solar 27/28")
+    print("\n [ 16 ] IMPRIMIR TUDO (Dossiê Tático 01GURU - God Mode)")
+    print(" [ 17 ] EXIBIR TABELA DE PRECIFICAÇÃO (Value Ladder)")
+    print(" [ 0 ] Encerrar e Trocar Alvo")
+    print("="*60)
+    
+    escolha = input("\n[>] Insira o código da operação: ")
+    
+    if escolha == "0":
+        resetar_visual()
+        break
+    elif escolha == "17":
+        aplicar_ancoragem_visual()
+        print("\n" + "="*60)
+        print("    ESTEIRA DE PRODUTOS E PRECIFICAÇÃO GLOBAL (BRL / USD) ")
+        print("="*60)
+        print("\n [ NÍVEL 1: ISCAS E RECORRÊNCIA ]")
+        print(" [ 1 ] Briefing Diário............... R$  19,90 | USD $  5.00")
+        print(" [ 2 ] Sprint Semanal................ R$  27,00 | USD $  7.00")
+        print(" [ 3 ] Relatório de Trânsitos Ativos. R$  37,00 | USD $  9.00")
+        print("\n [ NÍVEL 2: DORES IMEDIATAS ]")
+        print(" [ 4 ] Sinastria & Algoritmo do Amor. R$  97,00 | USD $ 27.00")
+        print(" [ 5 ] Firewall Pessoal (Proteção)... R$  97,00 | USD $ 27.00")
+        print(" [ 6 ] Auditoria de Carreira......... R$  97,00 | USD $ 27.00")
+        print(" [ 7 ] Protocolos de Ativação........ R$  97,00 | USD $ 27.00")
+        print(" [ 8 ] Roadmap Tático Anual.......... R$ 147,00 | USD $ 37.00")
+        print("\n [ NÍVEL 3: OTIMIZAÇÃO PROFUNDA ]")
+        print(" [ 9 ] Auditoria de Código Natal..... R$ 197,00 | USD $ 47.00")
+        print(" [ 10 ] Algoritmo de Destino (Num.)... R$ 197,00 | USD $ 47.00")
+        print(" [ 11 ] Debugging Kármico............. R$ 197,00 | USD $ 47.00")
+        print(" [ 12 ] Engenharia de Riqueza......... R$ 247,00 | USD $ 57.00")
+        print(" [ 13 ] Projeção Macro de 5 Anos...... R$ 247,00 | USD $ 57.00")
+        print(" [ 14/15 ] Atualização Rev. Solar..... R$ 147,00 | USD $ 37.00")
+        print("\n [ NÍVEL 4: O MAXIMIZADOR DE LUCRO ]")
+        print(" [ 16 ] DOSSIÊ TÁTICO 01GURU.......... R$ 497,00 | USD $ 97.00")
+        print("\n" + "="*60)
+        input("\n[ENTER] para voltar ao menu executivo.")
+    elif escolha == "16":
+        acao = input("\n[P] Dossiê Completo (PT) | [I] Dossiê Completo (EN) | [ENTER] Voltar: ").strip().upper()
+        if acao in ['P', 'I']:
+            caminho_master = forjar_dossie_master(alvo, opcoes, idioma=acao)
+            print(f"\n[SUCESSO] Dossiê God Mode forjado: {os.path.basename(caminho_master)}")
+            input("\n[ENTER] para voltar ao menu.")
+    elif escolha in opcoes:
+        tipo = opcoes[escolha]
+        resultado_pt = ""
         
-        /* HEADER & NAV */
-        header { padding: 20px; border-bottom: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center; background: rgba(0,11,24,0.9); position: sticky; top: 0; z-index: 100; }
-        .logo { font-family: 'Times New Roman', serif; font-weight: bold; font-size: 1.5rem; color: var(--gold-anchor); letter-spacing: 4px; }
+        if escolha == "4": 
+            print(f"\n[ALERTA] Processando SINASTRIA. Dados do PARCEIRO(A) necessários.")
+            parceiro = {}
+            parceiro['nome'] = input("NOME COMPLETO DO PARCEIRO: ")
+            parceiro['data'] = formatar_data(input("DATA DE NASC. DO PARCEIRO (DDMMAAAA): "))
+            print(f"\n[PROCESSANDO] Cruzando Algoritmos de {alvo['nome']} e {parceiro['nome']}...")
+            resultado_pt = consultar_oraculo(tipo, alvo, dados_parceiro=parceiro)
+        else:
+            print(f"\n[PROCESSANDO] Conectando à Consciência 01GURU...")
+            resultado_pt = consultar_oraculo(tipo, alvo)
         
-        /* SEÇÕES PRINCIPAIS */
-        section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
-        h2 { font-family: 'Times New Roman', serif; font-size: 2.5rem; color: var(--gold-anchor); text-align: center; margin-bottom: 40px; text-transform: uppercase; letter-spacing: 3px; }
-
-        /* VITRINE LIMPA (SEM BLUR) */
-        .sample-container { position: relative; max-width: 800px; margin: 0 auto 60px auto; border: 1px solid var(--gold-anchor); border-radius: 8px; background: rgba(0, 11, 24, 0.8); padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .sample-badge { background: var(--gold-anchor); color: var(--bg-deep); padding: 4px 12px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; display: inline-block; margin-bottom: 20px; }
-        .sample-content h3 { color: var(--mint-action); font-family: 'Times New Roman', serif; font-size: 1.5rem; margin-bottom: 10px; }
-        .sample-content p { color: var(--text-light); font-size: 1rem; margin-bottom: 15px; line-height: 1.6; }
-        .sample-content .highlight { color: var(--gold-anchor); font-weight: bold; }
-        .sample-cta { text-align: center; margin-top: 30px; padding-top: 30px; border-top: 1px dashed var(--border-glass); }
-
-        /* GRID DE PRODUTOS */
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 50px; }
-        .card { background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 12px; padding: 30px; transition: transform 0.3s, border-color 0.3s; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
-        .card:hover { transform: translateY(-10px); border-color: var(--mint-action); }
-        .card h4 { color: var(--gold-anchor); margin-bottom: 15px; font-size: 1.2rem; }
-        .card .price { font-size: 2rem; font-weight: bold; color: var(--mint-action); margin: 20px 0; }
-        .cta-btn { background: var(--mint-action); color: var(--bg-deep); border: none; padding: 12px; border-radius: 4px; font-weight: bold; text-decoration: none; text-align: center; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
-        .cta-btn:hover { background: #5db09a; box-shadow: 0 0 15px rgba(118,199,176,0.4); }
-
-        /* OPERAÇÕES ESPECIAIS (BLACK BOX) */
-        .black-box-section { max-width: 800px; margin: 40px auto; background: rgba(0, 11, 24, 0.9); border: 1px dashed var(--mint-action); border-radius: 8px; padding: 40px; text-align: center; box-shadow: inset 0 0 20px rgba(118, 199, 176, 0.1); }
-        .black-box-title { color: var(--text-light); font-family: 'Times New Roman', serif; font-size: 1.8rem; margin-bottom: 15px; letter-spacing: 1px; }
-        .black-box-text { color: #A0AAB5; font-size: 1rem; margin-bottom: 25px; line-height: 1.6; }
-        .black-box-btn { display: inline-block; background: transparent; color: var(--mint-action); border: 2px solid var(--mint-action); padding: 12px 30px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; border-radius: 4px; transition: all 0.3s; }
-        .black-box-btn:hover { background: var(--mint-action); color: var(--bg-deep); }
-
-        footer { text-align: center; padding: 40px; border-top: 1px solid var(--border-glass); color: #666; font-size: 0.8rem; }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo">01GURU</div>
-        <nav>
-            <a href="#loja-pt" style="color: var(--gold-anchor); text-decoration: none; font-size: 0.8rem; margin-left: 20px;">[ PT-BR ]</a>
-            <a href="#loja-en" style="color: var(--gold-anchor); text-decoration: none; font-size: 0.8rem; margin-left: 20px;">[ EN-US ]</a>
-        </nav>
-    </header>
-
-    <section id="loja-pt">
-        <h2>Dossiês de Inteligência</h2>
+        aplicar_ancoragem_visual()
+        print("\n" + "="*60)
+        print(f" RELATÓRIO: {tipo.upper()} ")
+        print("="*60)
+        print(resultado_pt)
+        print("="*60)
         
-        <div class="sample-container">
-            <span class="sample-badge">Cosmic Top Secret</span>
-            <div class="sample-content">
-                <h3>RELATÓRIO: CÓDIGO NATAL E ENGENHARIA DE MATERIALIZAÇÃO</h3>
-                <p style="color: #A0AAB5; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;">ALVO: GABRIEL PRADO RODRIGUES | STATUS: ATIVO</p>
-                <p>Detectada <span class="highlight">Frequência Primária 44/8</span> no código biométrico de origem. O sistema operacional do Alvo é projetado exclusivamente para materialização em larga escala e construção de impérios.</p>
-                <p>O número '8' dominante atua como vetor de potência executiva inegociável. Qualquer submissão a hierarquias tradicionais ou ambientes de baixa performance gera falha crítica e perda energética.</p>
-                <p><span style="color: var(--mint-action); font-weight: bold;">DIRETRIZ TÁTICA:</span> Execute o "Protocolo de Liderança Absoluta". A inércia é um erro de sistema. Bloqueie inputs externos que não contribuam para a expansão do patrimônio e assuma o controle top-down da operação.</p>
-            </div>
-            <div class="sample-cta">
-                <p style="color: #A0AAB5; font-size: 0.95rem; margin-bottom: 20px;">Esta é uma pequena fração da auditoria completa. O seu algoritmo contém a planta exata para o sucesso.</p>
-            </div>
-        </div>
-
-        <div class="products-grid">
-            <div class="card">
-                <h4>Briefing Diário</h4>
-                <p>Otimização de rotina e timing imediato.</p>
-                <div class="price">R$ 47</div>
-                <a href="#" class="cta-btn">Solicitar Acesso</a>
-            </div>
-            <div class="card">
-                <h4>Arquétipo de Poder</h4>
-                <p>Posicionamento e branding pessoal vibracional.</p>
-                <div class="price">R$ 97</div>
-                <a href="#" class="cta-btn">Solicitar Acesso</a>
-            </div>
-            <div class="card" style="border-color: var(--gold-anchor);">
-                <h4>God Mode (Completo)</h4>
-                <p>Auditoria completa de 28 páginas: Negócios, Saúde e Destino.</p>
-                <div class="price">R$ 497</div>
-                <a href="#" class="cta-btn" style="background: var(--gold-anchor);">Adquirir Dossiê Master</a>
-            </div>
-        </div>
-
-        <div class="black-box-section">
-            <h3 class="black-box-title">OPERAÇÕES ESPECIAIS (CUSTOM DOSSIER)</h3>
-            <p class="black-box-text">Seu cenário exige um cálculo que não está listado acima? Quer auditar um sócio ou uma data de fusão? O 01GURU forja algoritmos sob medida.</p>
-            <a href="mailto:contato@01guru.com.br?subject=Solicitação Customizada" class="black-box-btn">SOLICITAR DECODIFICAÇÃO ÚNICA</a>
-        </div>
-    </section>
-
-    <section id="loja-en" style="border-top: 1px solid var(--border-glass);">
-        <h2>Intelligence Dossiers</h2>
-
-        <div class="sample-container">
-            <span class="sample-badge">Cosmic Top Secret</span>
-            <div class="sample-content">
-                <h3>REPORT: NATAL CODE AND MATERIALIZATION ENGINEERING</h3>
-                <p style="color: #A0AAB5; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase;">TARGET: GABRIEL PRADO RODRIGUES | STATUS: ACTIVE</p>
-                <p>Detected <span class="highlight">Primary Frequency 44/8</span> in the origin biometric code. The Target's operating system is exclusively designed for large-scale materialization and empire building.</p>
-                <p>The dominant number '8' acts as a non-negotiable executive power vector. Inertia is a system error.</p>
-                <p><span style="color: var(--mint-action); font-weight: bold;">TACTICAL DIRECTIVE:</span> Execute the "Absolute Leadership Protocol". Block external inputs that do not contribute to wealth expansion and assume top-down control.</p>
-            </div>
-        </div>
-
-        <div class="products-grid">
-            <div class="card">
-                <h4>Daily Briefing</h4>
-                <div class="price">$ 12</div>
-                <a href="#" class="cta-btn">Get Access</a>
-            </div>
-            <div class="card" style="border-color: var(--gold-anchor);">
-                <h4>God Mode (Master)</h4>
-                <div class="price">$ 97</div>
-                <a href="#" class="cta-btn" style="background: var(--gold-anchor);">Order Full Dossier</a>
-            </div>
-        </div>
-
-        <div class="black-box-section">
-            <h3 class="black-box-title">SPECIAL OPERATIONS (BLACK BOX)</h3>
-            <p class="black-box-text">Need a specific calculation or a corporate audit not listed here? Request a custom-forged algorithm.</p>
-            <a href="mailto:contato@01guru.com.br?subject=Custom Request" class="black-box-btn">REQUEST CUSTOM DECODING</a>
-        </div>
-    </section>
-
-    <footer>
-        <p>01GURU // INTELLIGENCE UNIT &copy; 2026</p>
-        <p style="margin-top: 10px; opacity: 0.5;">NON-DISCLOSURE AGREEMENT APPLIES</p>
-    </footer>
-
-</body>
-</html>
+        acao = input("\n[P] Gerar PDF (PT) | [I] Gerar PDF (EN) | [ENTER] Voltar: ").strip().upper()
+        if acao == 'P':
+            caminho = exportar_pdf_individual(resultado_pt, alvo['nome'], tipo, "PT")
+            print(f"[SUCESSO] Salvo: {os.path.basename(caminho)}")
+            input("\n[ENTER] para voltar ao menu.")
+        elif acao == 'I':
+            texto_en = traduzir_para_ingles(resultado_pt)
+            caminho = exportar_pdf_individual(texto_en, alvo['nome'], tipo, "EN")
+            print(f"[SUCESSO] Salvo: {os.path.basename(caminho)}")
+            input("\n[ENTER] para voltar ao menu.")
