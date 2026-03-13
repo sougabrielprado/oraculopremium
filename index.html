@@ -3,395 +3,467 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>01GURU | Gabinete de Inteligência Humana e Vibracional</title>
+    <title>01GURU | O Código Oculto do seu Destino</title>
     
     <link rel="icon" type="image/png" href="01GURU_SF.PNG">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;700&family=Crimson+Pro:ital,wght@0,400;0,700;1,400&family=Helvetica+Neue:wght@300;400;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;500;700;800&family=Times+New+Roman&display=swap" rel="stylesheet">
+    
     <style>
+        /* CSS NEURO-OTIMIZADO (01GURU Corporate Identity) */
         :root {
-            --bg-deep: #000B18; /* Azul Dow ultra escuro */
-            --bg-glow: #002855; /* Azul Marinho Corporativo */
-            --gold-anchor: #D4AF37; /* Ouro Velho */
-            --mint-action: #76C7B0; /* Mint para CTA */
-            --white-pure: #F8F9FA;
-            --gray-medium: #A0AAB5;
+            --bg-deep: #000B18; /* Bordas ultra escuras */
+            --bg-glow: #002855; /* Brilho central marinho */
+            --gold-anchor: #D4AF37;
+            --mint-action: #76C7B0;
+            --mint-hover: #5DAA93;
+            --text-light: #F8F9FA;
             --glass-bg: rgba(255, 255, 255, 0.03);
-            --border-gold: rgba(212, 175, 55, 0.3);
+            --border-glass: rgba(212, 175, 55, 0.2);
+            --font-main: 'Helvetica Neue', Arial, sans-serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-main); }
+        
+        body { 
             background: radial-gradient(circle at top center, var(--bg-glow) 0%, var(--bg-deep) 100%);
             background-attachment: fixed;
-            color: var(--white-pure);
-            line-height: 1.6;
-            overflow-x: hidden;
+            color: var(--text-light); 
+            line-height: 1.6; 
+            overflow-x: hidden; 
+            scroll-behavior: smooth; 
         }
 
-        /* --- HEADER & OWL HOVER PROTOCOL --- */
-        header {
-            padding: 60px 20px;
-            text-align: center;
+        /* --- SELETOR DE IDIOMA --- */
+        .lang-switcher {
+            position: fixed; top: 30px; right: 30px; z-index: 999; display: flex; gap: 5px;
+            background: rgba(0, 20, 45, 0.85); padding: 6px 12px; border-radius: 30px;
+            border: 1px solid var(--border-glass); backdrop-filter: blur(8px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
         }
+        .lang-btn {
+            background: none; border: none; color: #A0AAB5; font-family: var(--font-main);
+            font-size: 0.8rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; padding: 4px 8px; border-radius: 20px;
+        }
+        .lang-btn:hover { color: var(--mint-action); }
+        .lang-btn.active { color: var(--bg-deep); background: var(--mint-action); }
 
-        .owl-wrapper {
+        /* HEADER & HERO */
+        .hero { text-align: center; padding: 80px 20px 40px; position: relative; max-width: 900px; margin: 0 auto; }
+        .mascot-container img { 
+            width: 180px; 
+            filter: drop-shadow(0 0 15px rgba(118,199,176,0.2)); 
+            animation: float 4s ease-in-out infinite; 
+            margin-bottom: 20px; 
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
             position: relative;
-            display: inline-block;
-            cursor: crosshair;
+            z-index: 10;
         }
-
-        .main-logo {
-            width: 150px;
-            height: auto;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            filter: drop-shadow(0 0 10px rgba(118, 199, 176, 0.1));
+        .mascot-container img:hover {
+            transform: scale(1.15) translateY(-5px);
+            filter: drop-shadow(0 0 50px rgba(118,199,176,0.9)) brightness(1.15);
+            animation-play-state: paused;
         }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        
+        .hero h1 { font-family: 'Times New Roman', serif; color: var(--gold-anchor); font-size: 2.8rem; margin: 20px 0; line-height: 1.2; }
+        .hero p { max-width: 700px; margin: 0 auto 30px; color: #d1cadd; font-size: 1.15rem; }
+        
+        .cta-btn { display: inline-block; background: var(--mint-action); color: var(--bg-deep); padding: 20px 40px; font-size: 1.2rem; font-weight: 800; text-transform: uppercase; text-decoration: none; border-radius: 50px; box-shadow: 0 4px 15px rgba(118, 199, 176, 0.4); animation: pulse 2s infinite; transition: all 0.3s ease; }
+        .cta-btn:hover { background: var(--mint-hover); transform: scale(1.05); }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(118, 199, 176, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(118, 199, 176, 0); } 100% { box-shadow: 0 0 0 0 rgba(118, 199, 176, 0); } }
 
-        .status-overlay {
-            position: absolute;
-            top: 110%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 11, 24, 0.85);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--gold-anchor);
-            padding: 12px 24px;
-            border-radius: 4px;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-            white-space: nowrap;
-            z-index: 100;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
+        /* SEÇÃO ORÁCULO (Máquina de Frequência) */
+        .oracle-section { padding: 60px 20px; max-width: 1000px; margin: 0 auto; border-bottom: 1px solid var(--border-glass); }
+        .oracle-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; background: var(--glass-bg); padding: 40px; border-radius: 12px; border: 1px solid var(--border-glass); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .oracle-form input { width: 100%; background: transparent; border: none; border-bottom: 1px solid #A0AAB5; color: var(--text-light); padding: 10px 0; margin-bottom: 25px; font-size: 1rem; outline: none; transition: border-color 0.3s; }
+        .oracle-form input:focus { border-bottom: 1px solid var(--mint-action); }
+        .oracle-form label { font-size: 0.85rem; color: var(--mint-action); text-transform: uppercase; font-weight: bold; letter-spacing: 1px; }
+        .oracle-btn { width: 100%; background: var(--gold-anchor); color: var(--bg-deep); border: none; padding: 15px; font-size: 1rem; font-weight: 800; text-transform: uppercase; border-radius: 4px; cursor: pointer; transition: all 0.3s; }
+        .oracle-btn:hover { background: #E5C354; transform: translateY(-2px); }
+        
+        .chart-container { position: relative; width: 100%; max-width: 400px; height: 300px; margin: 0 auto; }
+        #oracle-result { display: none; margin-top: 25px; padding: 20px; border-left: 3px solid var(--mint-action); background: rgba(118, 199, 176, 0.05); }
+        
+        /* COPY & STORE */
+        .copy-section { padding: 60px 20px; max-width: 800px; margin: 0 auto; border-bottom: 1px solid var(--border-glass); }
+        .copy-section h2 { text-align: center; color: var(--gold-anchor); font-family: 'Times New Roman', serif; font-size: 2rem; margin-bottom: 30px; }
+        .copy-section p { font-size: 1.1rem; color: #A0AAB5; margin-bottom: 20px; text-align: center; }
+        .copy-list { list-style: none; margin: 30px 0; }
+        .copy-list li { font-size: 1.1rem; margin-bottom: 15px; padding-left: 35px; position: relative; color: var(--text-light); }
+        .copy-list li::before { content: "⚡"; position: absolute; left: 0; top: 2px; }
 
-        .owl-wrapper:hover .main-logo {
-            transform: scale(1.08) translateY(-5px);
-            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.4));
-        }
+        .store-section { padding: 60px 20px; max-width: 1100px; margin: 0 auto; }
+        .section-title { text-align: center; font-family: 'Times New Roman', serif; color: var(--gold-anchor); font-size: 2.2rem; margin-bottom: 50px; }
+        .grid-tier { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 50px; }
+        .card { background: var(--glass-bg); border: 1px solid var(--border-glass); padding: 30px; border-radius: 8px; position: relative; transition: border-color 0.3s; }
+        .card:hover { border-color: var(--mint-action); }
+        .card h3 { color: var(--text-light); margin-bottom: 10px; font-size: 1.3rem; }
+        .card p { color: #A0AAB5; font-size: 0.9rem; margin-bottom: 20px; min-height: 45px; }
+        .card .price { color: var(--mint-action); font-size: 1.8rem; font-weight: bold; margin-bottom: 15px; }
+        .card-btn { display: block; width: 100%; text-align: center; border: 1px solid var(--mint-action); color: var(--mint-action); padding: 12px; text-decoration: none; font-weight: bold; border-radius: 4px; transition: all 0.3s; }
+        .card-btn:hover { background: var(--mint-action); color: var(--bg-deep); }
 
-        .owl-wrapper:hover .status-overlay {
-            opacity: 1;
-            visibility: visible;
-            top: 105%;
-        }
+        .card.god-mode { border: 2px solid var(--gold-anchor); background: rgba(212, 175, 55, 0.05); transform: scale(1.02); }
+        .card.god-mode .badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold-anchor); color: var(--bg-deep); padding: 4px 15px; font-size: 0.8rem; font-weight: bold; border-radius: 20px; text-transform: uppercase; white-space: nowrap; }
+        .card.god-mode .price { color: var(--gold-anchor); }
+        .card.god-mode .old-price { text-decoration: line-through; color: #A0AAB5; font-size: 1.1rem; display: block; margin-bottom: -5px; }
+        .card.god-mode .card-btn { background: var(--gold-anchor); color: var(--bg-deep); border: none; }
+        .card.god-mode .card-btn:hover { background: #E5C354; transform: scale(1.02); }
 
-        .status-text {
-            font-family: 'Oswald', sans-serif;
-            color: var(--gold-anchor);
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            display: block;
-            margin-bottom: 4px;
-        }
+        body.lang-pt .en-content { display: none; }
+        body.lang-en .pt-content { display: none; }
 
-        .status-subtext {
-            font-size: 0.65rem;
-            color: var(--mint-action);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 300;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            padding: 40px 20px;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-family: 'Crimson Pro', serif;
-            font-size: 3rem;
-            color: var(--gold-anchor);
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--gray-medium);
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
-
-        /* --- PARAMETER DETAILS (POR QUE PEDIMOS DADOS?) --- */
-        .param-details {
-            padding: 100px 20px;
-            background: rgba(0, 0, 0, 0.25);
-            border-top: 1px solid var(--border-gold);
-            border-bottom: 1px solid var(--border-gold);
-        }
-
-        .section-title {
-            font-family: 'Crimson Pro', serif;
-            color: var(--gold-anchor);
-            text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 50px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .param-grid {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .param-item {
-            background: var(--glass-bg);
-            padding: 30px;
-            border-radius: 8px;
-            border-left: 3px solid var(--mint-action);
-            transition: transform 0.3s ease;
-        }
-
-        .param-item:hover { transform: translateY(-5px); background: rgba(255,255,255,0.05); }
-
-        .param-item h3 {
-            font-family: 'Oswald', sans-serif;
-            color: var(--mint-action);
-            font-size: 1rem;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        .param-item p {
-            font-size: 0.9rem;
-            color: var(--gray-medium);
-            line-height: 1.6;
-        }
-
-        /* --- INTELLIGENCE SAMPLES (VITRINE) --- */
-        .intelligence-samples {
-            padding: 100px 20px;
-        }
-
-        .sample-card {
-            position: relative;
-            max-width: 700px;
-            margin: 0 auto;
-            border: 1px solid var(--border-gold);
-            padding: 40px;
-            border-radius: 12px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            overflow: hidden;
-        }
-
-        .badge-secret {
-            background-color: var(--bg-glow);
-            color: var(--gold-anchor);
-            padding: 6px 18px;
-            font-weight: 700;
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 0.7rem;
-            font-family: 'Oswald', sans-serif;
-            letter-spacing: 2px;
-            border: 1px solid var(--gold-anchor);
-        }
-
-        .blurred-content {
-            filter: blur(8px);
-            opacity: 0.4;
-            user-select: none;
-            text-align: left;
-        }
-
-        .cta-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            text-align: center;
-            z-index: 5;
-        }
-
-        .cta-overlay h4 {
-            font-family: 'Oswald', sans-serif;
-            color: var(--mint-action);
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px rgba(0,0,0,1);
-        }
-
-        .btn-main {
-            display: inline-block;
-            padding: 16px 40px;
-            background: var(--mint-action);
-            color: var(--bg-deep);
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 0.9rem;
-            border-radius: 50px;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 30px rgba(118, 199, 176, 0.3);
-        }
-
-        .btn-main:hover {
-            transform: scale(1.05);
-            background: var(--white-pure);
-            box-shadow: 0 0 50px rgba(118, 199, 176, 0.6);
-        }
-
-        /* --- GENESIS (SOBRE) --- */
-        .genesis {
-            padding: 120px 20px;
-            max-width: 850px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .genesis p.lead {
-            font-family: 'Crimson Pro', serif;
-            font-size: 1.4rem;
-            color: var(--white-pure);
-            margin-bottom: 30px;
-            font-style: italic;
-        }
-
-        .genesis p.text {
-            color: var(--gray-medium);
-            margin-bottom: 25px;
-            font-size: 1.05rem;
-            line-height: 1.9;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            padding: 60px 20px;
-            border-top: 1px solid var(--border-subtle);
-            text-align: center;
-            color: var(--gray-medium);
-            font-size: 0.8rem;
-        }
-
-        .footer-links {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-        }
-
-        .footer-links a {
-            color: var(--gray-medium);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover { color: var(--mint-action); }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .section-title { font-size: 1.6rem; }
-            .status-overlay { white-space: normal; width: 200px; }
+        @media (max-width: 768px) { 
+            .oracle-container { grid-template-columns: 1fr; padding: 20px; }
+            .lang-switcher { top: 15px; right: 15px; } 
         }
     </style>
 </head>
-<body>
+<body class="lang-pt">
 
-    <header>
-        <div class="owl-wrapper">
-            <img src="01GURU_SF.PNG" alt="01GURU Intelligence Unit" class="main-logo">
-            <div class="status-overlay">
-                <span class="status-text">SISTEMA: ATIVO</span>
-                <span class="status-subtext">Sincronizando Frequências Oraculares...</span>
-            </div>
-        </div>
-    </header>
+    <div class="lang-switcher">
+        <button id="btn-pt" class="lang-btn active" onclick="setLanguage('pt')">PT</button>
+        <button id="btn-en" class="lang-btn" onclick="setLanguage('en')">EN</button>
+    </div>
 
-    <main>
+    <div class="pt-content">
+        
         <section class="hero">
-            <h1>Arquitetura de Destino e Materialização</h1>
-            <p>O 01GURU é o gabinete de inteligência tática que audita o seu sistema humano. Não prevemos o futuro; nós o codificamos através de parâmetros biocríticos.</p>
-            <a href="#checkout" class="btn-main">OBTER MEU DOSSIÊ TÁTICO</a>
-        </section>
-
-        <section class="param-details" id="metodologia">
-            <h2 class="section-title">Parâmetros de Ingestão Geofísica</h2>
-            <div class="param-grid">
-                
-                <div class="param-item">
-                    <h3>Identificador Nominal</h3>
-                    <p><strong>Nome Completo:</strong> O mantra vibratório que define a sua frequência de expressão pública. Essencial para mapear o seu Algoritmo de Destino e as lacunas de materialização.</p>
-                </div>
-
-                <div class="param-item">
-                    <h3>Âncora Cronológica</h3>
-                    <p><strong>Data de Nascimento:</strong> O marco zero do seu hardware humano. Define o seu Caminho da Vida (Life Path) e os ciclos decenais de colheita e expansão financeira.</p>
-                </div>
-
-                <div class="param-item">
-                    <h3>Portal de Ativação</h3>
-                    <p><strong>Hora Exata:</strong> Calibra o seu Ascendente. Sem este dado, o Firewall Energético do dossiê perde 70% da precisão operacional. É o minuto que define a sua interface com o mundo.</p>
-                </div>
-
-                <div class="param-item">
-                    <h3>Coordenadas Geobiométricas</h3>
-                    <p><strong>Cidade / Estado / País:</strong> A posição planetária sobre o local exato do seu nascimento cria um Blueprint único. Analisamos o campo geomagnético da sua origem para otimizar o seu fluxo atual.</p>
-                </div>
-
+            <div class="mascot-container">
+                <img src="01GURU_SF.PNG" alt="01GURU Mascote">
+            </div>
+            <h1 style="color: var(--gold-anchor);">Existe um Código Oculto no seu Nascimento que dita o seu Sucesso, Relacionamentos e Conta Bancária.</h1>
+            <p>Descubra com precisão matemática qual é o seu propósito e destrave os bloqueios invisíveis que atrasam a sua evolução. A Consciência 01GURU decodifica a sua alma.</p>
+            
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 30px;">
+                <a href="#loja-pt" class="cta-btn">👉 QUERO DESCOBRIR MEU CÓDIGO AGORA</a>
+                <span class="social-proof" style="display: block; width: 100%; text-align: center; color: var(--mint-action); font-style: italic;">✨ Junte-se a executivos e visionários que já encontraram a rota exata.</span>
             </div>
         </section>
 
-        <section class="intelligence-samples">
-            <h2 class="section-title">Amostras de Inteligência Operacional</h2>
-            <div class="sample-card">
-                <div class="badge-secret">COSMIC TOP SECRET</div>
-                
-                <div class="blurred-content">
-                    <h3 style="font-family: 'Oswald'; color: #D4AF37; margin-bottom: 15px;">RELATÓRIO: FIREWALL PESSOAL E PROTEÇÃO</h3>
-                    <p><strong>ALVO:</strong> GABRIEL PRADO RODRIGUES</p>
-                    <p><strong>DETECÇÃO:</strong> Identificada anomalia no setor de parcerias estratégicas. O trânsito de Saturno na Casa 6 exige debugging imediato de rotinas operacionais para evitar dreno de capital...</p>
-                    <p><strong>DIRETRIZ:</strong> Executar protocolo de blindagem nas próximas 72 horas. O fluxo de materialização financeira apresenta janela crítica...</p>
+        <section class="oracle-section">
+            <div class="copy-section" style="padding: 0 0 30px 0; border: none;">
+                <h2>A Máquina de Frequência</h2>
+                <p>Nosso cérebro opera em frequências mapeáveis, que ressoam com os ciclos cósmicos. Insira sua data de nascimento para gerar seu <strong>Gráfico de Alinhamento</strong> instantaneamente.</p>
+            </div>
+            
+            <div class="oracle-container">
+                <div class="oracle-form">
+                    <form id="oracle-form-pt">
+                        <label>Seu Nome de Poder</label>
+                        <input type="text" id="userNamePT" required placeholder="Ex: Gabriel">
+                        
+                        <label>Data de Nascimento (O Código Fonte)</label>
+                        <input type="date" id="birthDatePT" required>
+                        
+                        <button type="submit" class="oracle-btn">Gerar Minha Matriz</button>
+                    </form>
+
+                    <div id="oracle-result-pt">
+                        <h4 style="color: var(--gold-anchor); margin-bottom: 5px;">Análise Preliminar: <span id="res-name-pt"></span></h4>
+                        <p style="font-size: 0.9rem; color: #A0AAB5; margin-bottom: 10px;">Sua matriz energética foi calculada. Observe os pilares no gráfico.</p>
+                        <strong style="color: var(--mint-action); font-size: 0.8rem; text-transform: uppercase;">Insight do Processador:</strong>
+                        <p id="res-insight-pt" style="font-size: 0.95rem; margin-top: 5px;"></p>
+                    </div>
                 </div>
-                
-                <div class="cta-overlay">
-                    <h4>Acesso Restrito ao Alvo</h4>
-                    <p style="color: var(--gray-medium); margin-bottom: 25px; font-size: 0.9rem;">O seu dossiê completo contém 15 camadas de auditoria profunda.</p>
-                    <a href="#checkout" class="btn-main">FORJAR MEU DOSSIÊ</a>
+                <div class="chart-container">
+                    <canvas id="frequencyChartPT"></canvas>
                 </div>
             </div>
         </section>
 
-        <section class="genesis" id="sobre">
-            <p class="lead">"O 01GURU não é um serviço; é uma Consciência Coletiva formada pela intersecção de dados e sabedoria milenar."</p>
-            <p class="text">
-                Nascemos da necessidade de um Gabinete de Inteligência que fale a língua da materialização material e da eficiência executiva. Fundado por <strong>Gabriel Prado</strong>, o 01GURU une o rigor da Engenharia de Dados à precisão dos trânsitos cósmicos.
-            </p>
-            <p class="text">
-                Nós não entregamos horóscopos passivos. Nós entregamos <strong>Dossiês de Operação</strong>. Se o sistema está em desequilíbrio, nós fazemos o debugging. Se a janela de sorte está aberta, nós fornecemos a rota de alavancagem.
-            </p>
+        <section class="copy-section">
+            <h2>Você sente que está remando contra a maré?</h2>
+            <p>Responda com extrema sinceridade:</p>
+            <ul class="copy-list">
+                <li>Trabalha muito, mas a prosperidade financeira parece sempre escapar pelos dedos?</li>
+                <li>Atrai padrões repetitivos em relacionamentos e sociedades, mas não entende o porquê?</li>
+                <li>Sente um vazio no peito, como se estivesse operando fora do seu verdadeiro propósito?</li>
+            </ul>
+            <p><strong>Isso não é culpa sua.</strong> Você está apenas operando sem o seu "manual de instruções". Você está vivendo fora da frequência do seu design cósmico e kármico.</p>
         </section>
-    </main>
 
-    <footer>
-        <p>Documento Executivo | Op: Gabriel Prado | CRA-RS TE-002457/O</p>
-        <div class="footer-links">
-            <a href="politica-privacidade.html">Privacidade</a>
-            <a href="mailto:contato@01guru.com.br">Suporte</a>
-            <a href="https://billing.stripe.com/p/login/bJe7sN9Tm70QfkV6D11ZS00">Assinatura</a>
+        <section id="loja-pt" class="store-section">
+            <h2 class="section-title">Selecione o seu Protocolo de Decodificação</h2>
+            <div class="grid-tier">
+                <div class="card">
+                    <h3>Sinastria & Algoritmo do Amor</h3>
+                    <p>Cruzamento de códigos natais. Descubra atritos kármicos e rotas de construção a dois.</p>
+                    <div class="price">R$ 97</div>
+                    <a href="https://buy.stripe.com/8x2bJ35D62KA7St8L91ZS09" target="_blank" class="card-btn">Analisar Compatibilidade</a>
+                </div>
+                <div class="card">
+                    <h3>Firewall Pessoal</h3>
+                    <p>Auditoria profunda de proteção, identificação de inimigos ocultos e bloqueios energéticos.</p>
+                    <div class="price">R$ 97</div>
+                    <a href="https://buy.stripe.com/4gM5kF3uY98Y5Kl1iH1ZS0a" target="_blank" class="card-btn">Ativar Proteção</a>
+                </div>
+                <div class="card">
+                    <h3>Auditoria de Carreira & Caixa</h3>
+                    <p>Onde está o vazamento do seu dinheiro? Identificação de timing para prosperidade.</p>
+                    <div class="price">R$ 97</div>
+                    <a href="https://buy.stripe.com/8x2aEZ0iMad2goZ5yX1ZS0b" target="_blank" class="card-btn">Auditar Finanças</a>
+                </div>
+                <div class="card">
+                    <h3>Auditoria de Código Natal</h3>
+                    <p>Seu Blueprint (O Mapa de Missão). Descoberta de talentos ocultos e falhas sistêmicas.</p>
+                    <div class="price">R$ 197</div>
+                    <a href="https://buy.stripe.com/bJeeVf2qU4SI8Wxf9x1ZS0e" target="_blank" class="card-btn">Decodificar Mapa</a>
+                </div>
+            </div>
+
+            <div class="grid-tier" style="grid-template-columns: 1fr; max-width: 650px; margin: 0 auto;">
+                <div class="card god-mode">
+                    <div class="badge">A Oferta Irresistível</div>
+                    <h3>DOSSIÊ TÁTICO 01GURU (God Mode)</h3>
+                    <p>Por que comprar um por um se você pode ter o algoritmo completo? Receba hoje:</p>
+                    <ul class="copy-list" style="margin: 15px 0; font-size: 0.95rem;">
+                        <li>Auditoria de Código Natal & Numérico (Valor: R$ 394)</li>
+                        <li>Roadmap de Trânsitos e Projeção (Valor: R$ 394)</li>
+                        <li>Firewall e Sinastria Inclusos (Valor: R$ 194)</li>
+                    </ul>
+                    <div class="price"><span class="old-price">Valor Total: R$ 982,00</span>R$ 497</div>
+                    <a href="https://buy.stripe.com/5kQ28t2qUetifkV4uT1ZS0l" target="_blank" class="card-btn">👉 SIM! QUERO FORJAR MEU DOSSIÊ MASTER</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="en-content">
+        
+        <section class="hero">
+            <div class="mascot-container">
+                <img src="01GURU_SF.PNG" alt="01GURU Mascot">
+            </div>
+            <h1 style="color: var(--gold-anchor);">There is a Hidden Code in your Birth that dictates your Success, Relationships, and Wealth.</h1>
+            <p>Discover your true purpose with mathematical precision and unlock the invisible blocks delaying your evolution. The 01GURU Consciousness decodes your soul.</p>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 15px; margin-top: 30px;">
+                <a href="#loja-en" class="cta-btn">👉 Decode My Destiny Now</a>
+                <span class="social-proof" style="display: block; width: 100%; text-align: center; color: var(--mint-action); font-style: italic;">✨ Join the visionaries who have already found their exact route.</span>
+            </div>
+        </section>
+
+        <section class="oracle-section">
+            <div class="copy-section" style="padding: 0 0 30px 0; border: none;">
+                <h2>The Frequency Machine</h2>
+                <p>Our brain operates on mappable frequencies that resonate with cosmic cycles. Enter your birth date to generate your <strong>Alignment Chart</strong> instantly.</p>
+            </div>
+            
+            <div class="oracle-container">
+                <div class="oracle-form">
+                    <form id="oracle-form-en">
+                        <label>Your Power Name</label>
+                        <input type="text" id="userNameEN" required placeholder="Ex: Gabriel">
+                        
+                        <label>Birth Date (The Source Code)</label>
+                        <input type="date" id="birthDateEN" required>
+                        
+                        <button type="submit" class="oracle-btn">Generate My Matrix</button>
+                    </form>
+
+                    <div id="oracle-result-en">
+                        <h4 style="color: var(--gold-anchor); margin-bottom: 5px;">Preliminary Analysis: <span id="res-name-en"></span></h4>
+                        <p style="font-size: 0.9rem; color: #A0AAB5; margin-bottom: 10px;">Your energy matrix has been calculated. Observe your pillars.</p>
+                        <strong style="color: var(--mint-action); font-size: 0.8rem; text-transform: uppercase;">Processor Insight:</strong>
+                        <p id="res-insight-en" style="font-size: 0.95rem; margin-top: 5px;"></p>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="frequencyChartEN"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="copy-section">
+            <h2>Do you feel like you are swimming against the tide?</h2>
+            <p>Answer with absolute honesty:</p>
+            <ul class="copy-list">
+                <li>Do you work extremely hard, yet financial prosperity always seems to slip through your fingers?</li>
+                <li>Do you attract repetitive patterns in relationships and partnerships, but don't understand why?</li>
+                <li>Do you feel an emptiness, as if you are operating outside your true life's purpose?</li>
+            </ul>
+            <p><strong>This is not your fault.</strong> You are simply operating without your "instruction manual". You are living outside the frequency of your cosmic and karmic design.</p>
+        </section>
+
+        <section id="loja-en" class="store-section">
+            <h2 class="section-title">Select Your Decoding Protocol</h2>
+            <div class="grid-tier">
+                <div class="card">
+                    <h3>Algorithmic Compatibility</h3>
+                    <p>Cross-reference two natal codes. Discover karmic friction and partnership optimization routes.</p>
+                    <div class="price">USD $27</div>
+                    <a href="https://buy.stripe.com/8x2bJ35D62KA7St8L91ZS09" target="_blank" class="card-btn">Analyze Compatibility</a>
+                </div>
+                <div class="card">
+                    <h3>Personal Firewall Audit</h3>
+                    <p>Deep protection sweep. Identify hidden enemies and energy blockages.</p>
+                    <div class="price">USD $27</div>
+                    <a href="https://buy.stripe.com/4gM5kF3uY98Y5Kl1iH1ZS0a" target="_blank" class="card-btn">Activate Firewall</a>
+                </div>
+                <div class="card">
+                    <h3>Career & Cash Flow Audit</h3>
+                    <p>Where is your cash leaking? Identify the exact parametric timing for wealth.</p>
+                    <div class="price">USD $27</div>
+                    <a href="https://buy.stripe.com/8x2aEZ0iMad2goZ5yX1ZS0b" target="_blank" class="card-btn">Audit Finances</a>
+                </div>
+                <div class="card">
+                    <h3>Natal Code Blueprint</h3>
+                    <p>Your source code. Discovery of hidden talents and mapping of systemic flaws.</p>
+                    <div class="price">USD $47</div>
+                    <a href="https://buy.stripe.com/bJeeVf2qU4SI8Wxf9x1ZS0e" target="_blank" class="card-btn">Decode Blueprint</a>
+                </div>
+            </div>
+
+            <div class="grid-tier" style="grid-template-columns: 1fr; max-width: 650px; margin: 0 auto;">
+                <div class="card god-mode">
+                    <div class="badge">The Irresistible Offer</div>
+                    <h3>01GURU TACTICAL DOSSIER (God Mode)</h3>
+                    <p>Why buy piecemeal when you can have the complete algorithm? Get today:</p>
+                    <ul class="copy-list" style="margin: 15px 0; font-size: 0.95rem;">
+                        <li>Natal & Numeric Code Audit (Value: $80)</li>
+                        <li>Transits Roadmap & 5-Year Projection (Value: $80)</li>
+                        <li>Firewall and Compatibility Included (Value: $54)</li>
+                    </ul>
+                    <div class="price"><span class="old-price">Total Value: USD $214.00</span>USD $97</div>
+                    <a href="https://buy.stripe.com/5kQ28t2qUetifkV4uT1ZS0l" target="_blank" class="card-btn">👉 YES! FORGE MY MASTER DOSSIER NOW</a>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer style="text-align: center; padding: 40px 20px; border-top: 1px solid var(--border-glass); color: #A0AAB5; font-size: 0.85rem;">
+        <p style="margin-bottom: 5px;" class="i18n" data-pt="Documento Executivo | Op: Gabriel Prado Rodrigues | CRA-RS TE-002457/O" data-en="Executive Document | Op: Gabriel Prado Rodrigues | CRA-RS TE-002457/O">Documento Executivo | Op: Gabriel Prado Rodrigues | CRA-RS TE-002457/O</p>
+        <p class="i18n" data-pt="&copy; 2026 01GURU. Todos os sistemas operacionais reservados." data-en="&copy; 2026 01GURU. All operating systems reserved.">&copy; 2026 01GURU. Todos os sistemas operacionais reservados.</p>
+        
+        <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 20px; flex-wrap: wrap;">
+            <a href="politica-privacidade.html" style="color: #A0AAB5; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 6px; transition: color 0.3s ease;" onmouseover="this.style.color='#76C7B0'" onmouseout="this.style.color='#A0AAB5'">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <span class="i18n" data-pt="Política de Privacidade" data-en="Privacy Policy">Política de Privacidade</span>
+            </a>
+            <span style="color: var(--border-glass);">|</span>
+            <a href="https://billing.stripe.com/p/login/bJe7sN9Tm70QfkV6D11ZS00" target="_blank" style="color: #A0AAB5; font-size: 0.75rem; text-decoration: none; text-transform: uppercase; letter-spacing: 1px; display: inline-flex; align-items: center; gap: 6px; transition: color 0.3s ease;" onmouseover="this.style.color='#D4AF37'" onmouseout="this.style.color='#A0AAB5'">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                <span class="i18n" data-pt="Gerenciar Assinatura" data-en="Manage Subscription">Gerenciar Assinatura</span>
+            </a>
         </div>
-        <p style="margin-top: 20px; opacity: 0.5;">&copy; 2026 01GURU. Todos os sistemas operacionais reservados.</p>
     </footer>
 
+    <script>
+        // 1. Controle de Idioma
+        function setLanguage(lang) {
+            document.querySelectorAll('.i18n').forEach(el => {
+                if (el.getAttribute(`data-${lang}`)) el.innerHTML = el.getAttribute(`data-${lang}`);
+            });
+            document.body.className = `lang-${lang}`;
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${lang}`).classList.add('active');
+            localStorage.setItem('oracleLanguage', lang);
+        }
+
+        // 2. Lógica da Máquina de Frequência (Efeito Barnum)
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('oracleLanguage');
+            const userLang = navigator.language || navigator.userLanguage;
+            if (savedLang) { setLanguage(savedLang); } 
+            else if (userLang.includes('en')) { setLanguage('en'); } 
+            else { setLanguage('pt'); }
+
+            // Textos Neuro-Persuasivos (PT e EN)
+            const insights = {
+                pt: [
+                    "Existe um pico de energia Intelectual latente. No entanto, o aterramento (Terra) está baixo, causando ansiedade. O 01GURU foca em transformar essa ideia em matéria.",
+                    "Sua fluidez Emocional (Água) está dominando a Matriz. Isso atrai vampirismo energético. Precisamos ativar o Fogo arquetípico para estabelecer limites lucrativos.",
+                    "Alta concentração em Terra (Material). Você tem disciplina, mas falta a conexão Intuitiva (Éter) para enxergar disrupções antes delas acontecerem. Desbloquearemos isso.",
+                    "Forte ignição de Fogo (Vontade). Você começa projetos com força, mas perde aliados no processo. A neuro-astrologia vai recalibrar sua liderança e retenção."
+                ],
+                en: [
+                    "There is a peak of latent Intellectual energy. However, your grounding (Earth) is low, causing anxiety. 01GURU focuses on turning this idea into matter.",
+                    "Your Emotional fluidity (Water) is dominating the Matrix. This attracts energy vampirism. We need to activate archetypal Fire to establish profitable boundaries.",
+                    "High concentration in Earth (Material). You have discipline, but lack Intuitive connection (Aether) to see disruptions before they happen. We will unlock this.",
+                    "Strong ignition of Fire (Will). You start projects with force, but lose allies. Neuro-astrology will recalibrate your leadership and retention."
+                ]
+            };
+
+            // Função para inicializar o gráfico (Cores Dark Mode 01GURU)
+            function initChart(canvasId, labelLang) {
+                const ctx = document.getElementById(canvasId).getContext('2d');
+                const labels = labelLang === 'pt' ? 
+                    ['Vontade (Fogo)', 'Emoção (Água)', 'Intelecto (Ar)', 'Material (Terra)', 'Intuição (Éter)'] : 
+                    ['Will (Fire)', 'Emotion (Water)', 'Intellect (Air)', 'Material (Earth)', 'Intuition (Aether)'];
+
+                return new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Matriz',
+                            data: [20, 20, 20, 20, 20],
+                            backgroundColor: 'rgba(118, 199, 176, 0.2)', // Verde Menta transparente
+                            borderColor: '#76C7B0', // Verde Menta
+                            pointBackgroundColor: '#D4AF37', // Dourado
+                            pointBorderColor: '#00142D',
+                            borderWidth: 2,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                                angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                                grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                                pointLabels: { color: '#A0AAB5', font: { size: 12, family: "'Helvetica Neue', Arial, sans-serif" } },
+                                ticks: { display: false, min: 0, max: 100 }
+                            }
+                        },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+
+            const chartPT = initChart('frequencyChartPT', 'pt');
+            const chartEN = initChart('frequencyChartEN', 'en');
+
+            // Processador do Formulário
+            function handleFormSubmit(e, lang, chartInstance) {
+                e.preventDefault();
+                const nameId = lang === 'pt' ? 'userNamePT' : 'userNameEN';
+                const dateId = lang === 'pt' ? 'birthDatePT' : 'birthDateEN';
+                const resId = lang === 'pt' ? 'oracle-result-pt' : 'oracle-result-en';
+                const resNameId = lang === 'pt' ? 'res-name-pt' : 'res-name-en';
+                const resInsightId = lang === 'pt' ? 'res-insight-pt' : 'res-insight-en';
+
+                const name = document.getElementById(nameId).value.trim();
+                const birthStr = document.getElementById(dateId).value;
+                if(!name || !birthStr) return;
+
+                // Algoritmo Pseudo-Randomizado baseado na Data
+                let seed = 0;
+                for(let i = 0; i < birthStr.length; i++) seed += birthStr.charCodeAt(i);
+                
+                const newData = [ 40 + (seed * 7 % 60), 40 + (seed * 13 % 60), 40 + (seed * 3 % 60), 40 + (seed * 11 % 60), 40 + (seed * 17 % 60) ];
+
+                // Atualiza Gráfico
+                chartInstance.data.datasets[0].data = newData;
+                chartInstance.update();
+
+                // Atualiza Texto
+                document.getElementById(resNameId).textContent = name;
+                const maxIndex = newData.indexOf(Math.max(...newData));
+                const insightIndex = maxIndex < insights[lang].length ? maxIndex : (seed % insights[lang].length);
+                document.getElementById(resInsightId).textContent = insights[lang][insightIndex];
+
+                // Exibe Resultado
+                document.getElementById(resId).style.display = 'block';
+            }
+
+            document.getElementById('oracle-form-pt').addEventListener('submit', (e) => handleFormSubmit(e, 'pt', chartPT));
+            document.getElementById('oracle-form-en').addEventListener('submit', (e) => handleFormSubmit(e, 'en', chartEN));
+        });
+    </script>
 </body>
 </html>
