@@ -1,0 +1,18 @@
+# Environment variables
+.env
+
+# Python folders
+__pycache__/
+*.pyc
+.venv/
+env/
+venv/
+
+# Database and Generated Files
+*.db
+RELATORIOS_01GURU/
+matriz_alvos.json
+
+# IDEs
+.vscode/
+.idea/

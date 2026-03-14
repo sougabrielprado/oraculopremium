@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: oraculo-premium
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    rootDir: web_app
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false # Set this in the Render dashboard
