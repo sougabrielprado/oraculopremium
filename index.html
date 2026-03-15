@@ -4,10 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>01GURU | Diagnóstico de Sistema Vital</title>
-<meta name="description" content="01GURU — Gabinete de Inteligência Humana e Vibracional.">
-<link rel="icon" type="image/png" href="./static/img/favicon.png">
-<link rel="apple-touch-icon" href="./static/img/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#00142D;--panel:#00213D;--gold:#D4AF37;--mint:#76C7B0;--light:#F8F9FA;--muted:#A0AAB5;--bgold:rgba(212,175,55,0.25);--bmint:rgba(118,199,176,0.25);--fh:'Oswald',sans-serif;--fb:'Crimson Pro',serif;--fu:'Inter',sans-serif}
@@ -15,20 +11,15 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--light);font-family:var(--fb);font-size:17px;line-height:1.7;overflow-x:hidden}
 
-/* LANG */
-.lang-toggle{position:absolute;top:18px;right:22px;z-index:1000;display:flex;gap:4px;background:rgba(0,33,61,.92);border:1px solid var(--bgold);border-radius:6px;padding:4px}
-.lang-btn{background:transparent;color:var(--muted);border:none;padding:6px 14px;font-family:var(--fu);font-size:.72rem;font-weight:700;cursor:pointer;border-radius:4px;transition:all .2s}
-.lang-btn.active{background:var(--gold);color:var(--bg)}
+/* HEADER - LOGO CENTRALIZADO E PARADO */
+header{position:fixed;top:0;left:0;width:100%;height:70px;background:rgba(0,20,45,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--bgold);z-index:900;display:flex;justify-content:center;align-items:center;}
+.hlogo img{height:45px;width:auto;}
 
-/* HERO & LOGO PARADO NO CENTRO */
-.hero{text-align:center;padding:80px 24px 50px;position:relative}
-.hero-logo{margin-bottom: 30px;}
-.hero-logo img{width: 180px; height: auto; filter: drop-shadow(0 0 15px rgba(212,175,55,.3));}
+.hero{text-align:center;padding:130px 24px 50px;position:relative}
 .badge{display:inline-block;font-family:var(--fu);font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mint);border:1px solid var(--bmint);padding:5px 16px;border-radius:20px;margin-bottom:22px}
 .hero h1{font-family:var(--fh);font-size:clamp(2rem,5vw,3.6rem);color:var(--gold);line-height:1.1;margin-bottom:18px}
 .hero p{font-size:1.15rem;color:var(--muted);max-width:600px;margin:0 auto 36px}
-.cta-btn{display:inline-block;background:var(--mint);color:var(--bg);padding:16px 42px;font-family:var(--fu);font-size:.9rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;transition:all .3s}
-.cta-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 8px 28px rgba(118,199,176,.5)}
+.cta-btn{display:inline-block;background:var(--mint);color:var(--bg);padding:16px 42px;font-family:var(--fu);font-size:.9rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;}
 
 /* PARAMETERS */
 .params-wrap{max-width:1100px;margin:0 auto;padding:70px 32px}
@@ -37,18 +28,7 @@ body{background:var(--bg);color:var(--light);font-family:var(--fb);font-size:17p
 .param-row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 .param-card{background:var(--panel);border:1px solid var(--bgold);border-radius:6px;padding:24px 20px}
 .param-card h3{font-family:var(--fh);font-size:.95rem;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
-
-/* SPIDER GRAPH (TEIA ANIMADA) */
-.spider-graph-wrap{max-width:780px;margin:50px auto;background:rgba(0,20,45,0.8);border:1px solid var(--mint);border-radius:6px;padding:30px;text-align:center}
-.scanner-header{display:flex;justify-content:space-between;border-bottom:1px solid rgba(118,199,176,.3);padding-bottom:15px;margin-bottom:20px}
-.scanner-title{font-family:var(--fu);font-size:.8rem;color:var(--mint);letter-spacing:3px;text-transform:uppercase}
-.scanner-status{font-family:var(--fh);font-size:1rem;color:var(--gold);}
-.spider-container{width:100%;height:320px;position:relative;margin-top:20px}
-.radar-grid{stroke:rgba(118,199,176,0.15);stroke-width:0.5;fill:none}
-.radar-axis{stroke:rgba(118,199,176,0.3);stroke-width:1}
-.radar-label{font-family:var(--fu);font-size:8px;fill:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* A MÁGICA DA ANIMAÇÃO ESTÁ AQUI */
-.radar-area{fill:rgba(212,175,55,0.25);stroke:var(--gold);stroke-width:2; transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);}
+.param-card p{font-size:.95rem;color:var(--muted);line-height:1.6}
 
 /* WHITE GLOVE SECTION */
 .white-glove{background:var(--panel);border-top:1px solid var(--bgold);border-bottom:1px solid var(--bgold);padding:70px 32px;text-align:center}
@@ -57,26 +37,35 @@ body{background:var(--bg);color:var(--light);font-family:var(--fb);font-size:17p
 .wg-text strong{color:var(--mint)}
 .wg-signature{font-family:var(--fu);font-size:.85rem;color:var(--muted);letter-spacing:2px;margin-top:30px}
 
-/* FORM SECTION */
-.form-wrap{max-width:780px;margin:0 auto;padding:70px 32px}
+/* FORM & INFOGRÁFICO LADO A LADO */
+.form-wrap{max-width:900px;margin:0 auto;padding:70px 32px}
 .terminal-box{background:var(--panel);border:1px solid var(--bgold);border-radius:6px;overflow:hidden}
 .t-head{background:var(--bg);border-bottom:1px solid var(--bgold);padding:13px 22px;display:flex;align-items:center;gap:8px}
 .tdot{width:10px;height:10px;border-radius:50%}
 .tdr{background:#ff5f57}.tda{background:#febc2e}.tdg{background:#28c840}
-.t-body{padding:32px 30px}
+.t-body{padding:40px 30px}
+
+.split-layout {display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid rgba(212,175,55,0.2);}
+
 .ig{margin-bottom:22px}
 .ig label{display:block;font-family:var(--fu);font-size:.68rem;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:7px}
 .ig input,.ig select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--bgold);color:var(--light);padding:13px 16px;font-family:var(--fb);font-size:1.05rem;border-radius:4px;}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(1) opacity(.5)}
 
-.proto-label{display:block;margin-top:32px}
+/* RADAR CHART (DIREITA) */
+.spider-container{width:100%; max-width: 300px; margin: 0 auto; position:relative;}
+#radar-chart{width:100%; height:auto; display:block; overflow:visible;}
+.radar-grid{stroke:rgba(118,199,176,0.15);stroke-width:0.5;fill:none}
+.radar-axis{stroke:rgba(118,199,176,0.3);stroke-width:1}
+.radar-label{font-family:var(--fu);font-size:7px;fill:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.radar-area{fill:rgba(212,175,55,0.25);stroke:var(--gold);stroke-width:2; transition: all 0.3s ease-out;}
+
+/* RESTO DO FORMULÁRIO */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.proto-label{display:block;margin-top:20px}
 #proto-detail{display:none;margin-top:20px;background:rgba(212,175,55,.05);border:1px solid var(--gold);border-radius:6px;padding:24px}
 .pd-title{font-family:var(--fh);font-size:1.3rem;color:var(--gold);margin-bottom:10px}
-.pd-desc{margin-bottom:16px}
-.pd-contents{font-family:var(--fu);font-size:.82rem;background:rgba(0,0,0,.2);padding:14px;border-radius:4px;margin-bottom:18px}
 .pd-price-main{font-family:var(--fh);font-size:1.6rem;color:var(--mint)}
-
 #btn-submit{width:100%;background:var(--mint);color:var(--bg);border:none;padding:17px;font-family:var(--fu);font-size:.88rem;font-weight:800;letter-spacing:3px;cursor:pointer;border-radius:4px;margin-top:24px;}
 
 /* GENESIS */
@@ -88,65 +77,34 @@ footer{border-top:1px solid var(--bgold);padding:44px 32px;text-align:center}
 .f-exec{font-family:var(--fh);font-size:.82rem;color:var(--gold);margin-bottom:10px}
 .f-links{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:20px;}
 .f-links a{font-family:var(--fu);font-size:.78rem;color:var(--muted);text-decoration:none;}
+.f-links a:hover{color:var(--mint);}
 
-#loading-overlay{display:none;position:fixed;inset:0;background:rgba(0,20,45,.97);z-index:9999;align-items:center;justify-content:center;flex-direction:column}
-.spinner{width:46px;height:46px;border:3px solid var(--bgold);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-@media(max-width:700px){.param-row{grid-template-columns:1fr 1fr}.g2{grid-template-columns:1fr}}
+@media(max-width:768px){
+  .param-row{grid-template-columns:1fr 1fr}
+  .split-layout{grid-template-columns:1fr; gap:20px;}
+  .g2{grid-template-columns:1fr}
+}
 @media(max-width:420px){.param-row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<div class="lang-toggle">
-  <button class="lang-btn active" onclick="setLanguage('PT')">PT</button>
-  <button class="lang-btn" onclick="setLanguage('EN')">EN</button>
-</div>
+<header>
+  <div class="hlogo">
+    <img src="./01GURU_SF.PNG" alt="01GURU">
+  </div>
+</header>
 
 <section class="hero">
-  <div class="hero-logo">
-    <img src="./static/img/01GURU_SF.PNG" alt="01GURU">
-  </div>
-  <div class="badge" id="tag-decodificacao">O Processador de Consciência Coletiva</div>
-  <h1 id="hero-title">Dados não mentem.<br>Os astros também não.</h1>
-  <p id="hero-subtitle">Cruzamos suas coordenadas exatas de nascimento com os maiores algoritmos de timing do mundo para forjar rotas matemáticas de materialização.</p>
+  <div class="badge">O Processador de Consciência Coletiva</div>
+  <h1>Dados não mentem.<br>Os astros também não.</h1>
+  <p>Cruzamos suas coordenadas exatas de nascimento com os maiores algoritmos de timing do mundo para forjar rotas matemáticas de materialização.</p>
   <button class="cta-btn" onclick="document.getElementById('terminal-section').scrollIntoView({behavior:'smooth'})">[ INICIAR DIAGNÓSTICO ]</button>
 </section>
 
-<div class="spider-graph-wrap">
-  <div class="scanner-header">
-    <span class="scanner-title" id="scan-title">Teia Algorítmica</span>
-    <span class="scanner-status" id="scan-status">Aguardando Input...</span>
-  </div>
-  <div class="spider-container">
-    <svg id="radar-chart" viewBox="0 0 100 100">
-      <circle class="radar-grid" cx="50" cy="50" r="10"></circle>
-      <circle class="radar-grid" cx="50" cy="50" r="20"></circle>
-      <circle class="radar-grid" cx="50" cy="50" r="30"></circle>
-      <circle class="radar-grid" cx="50" cy="50" r="40"></circle>
-      <line class="radar-axis" x1="50" y1="50" x2="50" y2="10"></line>
-      <line class="radar-axis" x1="50" y1="50" x2="84.6" y2="30"></line>
-      <line class="radar-axis" x1="50" y1="50" x2="84.6" y2="70"></line>
-      <line class="radar-axis" x1="50" y1="50" x2="50" y2="90"></line>
-      <line class="radar-axis" x1="50" y1="50" x2="15.4" y2="70"></line>
-      <line class="radar-axis" x1="50" y1="50" x2="15.4" y2="30"></line>
-      
-      <text class="radar-label" x="50" y="7" text-anchor="middle">Expressão</text>
-      <text class="radar-label" x="87" y="28" text-anchor="start">Alma</text>
-      <text class="radar-label" x="87" y="73" text-anchor="start">Kármico</text>
-      <text class="radar-label" x="50" y="96" text-anchor="middle">Destino</text>
-      <text class="radar-label" x="13" y="73" text-anchor="end">Riqueza</text>
-      <text class="radar-label" x="13" y="28" text-anchor="end">Vetor</text>
-      
-      <polygon id="radar-data" class="radar-area" points="50,50 50,50 50,50 50,50 50,50 50,50"></polygon>
-    </svg>
-  </div>
-</div>
-
 <section class="params-wrap">
   <div class="sec-label">Precisão Cirúrgica</div>
-  <h2 class="sec-title" id="param-title">A Engenharia dos Seus Parâmetros</h2>
+  <h2 class="sec-title">A Engenharia dos Seus Parâmetros</h2>
   <div class="param-row">
     <div class="param-card"><h3>Nome Completo</h3><p>O identificador vibratório primário da sua assinatura no mundo.</p></div>
     <div class="param-card"><h3>Data de Nascimento</h3><p>O Código Fonte. Define matematicamente os ciclos de materialização.</p></div>
@@ -171,22 +129,59 @@ footer{border-top:1px solid var(--bgold);padding:44px 32px;text-align:center}
 <section id="terminal-section" class="form-wrap">
   <div class="sec-label">Acesso Restrito</div>
   <h2 class="sec-title">Terminal de Inserção de Parâmetros</h2>
+  
   <div class="terminal-box">
     <div class="t-head"><div class="tdot tdr"></div><div class="tdot tda"></div><div class="tdot tdg"></div></div>
     <div class="t-body">
       <form id="dossie-form">
-        <div class="ig">
-          <label>NOME COMPLETO DO ALVO</label>
-          <input type="text" id="nome" required oninput="animarTeia()">
-        </div>
-        <div class="g2">
-          <div class="ig">
-            <label>DATA DE NASCIMENTO</label>
-            <input type="date" id="dataNascimento" required oninput="animarTeia()">
+        
+        <div class="split-layout">
+          <div class="split-left">
+            <div class="ig">
+              <label>NOME COMPLETO DO ALVO</label>
+              <input type="text" id="nome" required oninput="animarTeia()">
+            </div>
+            <div class="ig">
+              <label>DATA DE NASCIMENTO</label>
+              <input type="date" id="dataNascimento" required oninput="animarTeia()">
+            </div>
           </div>
+          
+          <div class="split-right">
+            <div class="spider-container">
+              <svg id="radar-chart" viewBox="0 0 100 100">
+                <circle class="radar-grid" cx="50" cy="50" r="10"></circle>
+                <circle class="radar-grid" cx="50" cy="50" r="20"></circle>
+                <circle class="radar-grid" cx="50" cy="50" r="30"></circle>
+                <circle class="radar-grid" cx="50" cy="50" r="40"></circle>
+                <line class="radar-axis" x1="50" y1="50" x2="50" y2="10"></line>
+                <line class="radar-axis" x1="50" y1="50" x2="84.6" y2="30"></line>
+                <line class="radar-axis" x1="50" y1="50" x2="84.6" y2="70"></line>
+                <line class="radar-axis" x1="50" y1="50" x2="50" y2="90"></line>
+                <line class="radar-axis" x1="50" y1="50" x2="15.4" y2="70"></line>
+                <line class="radar-axis" x1="50" y1="50" x2="15.4" y2="30"></line>
+                
+                <text class="radar-label" x="50" y="6" text-anchor="middle">Expressão</text>
+                <text class="radar-label" x="87" y="32" text-anchor="start">Alma</text>
+                <text class="radar-label" x="87" y="71" text-anchor="start">Kármico</text>
+                <text class="radar-label" x="50" y="97" text-anchor="middle">Destino</text>
+                <text class="radar-label" x="13" y="71" text-anchor="end">Riqueza</text>
+                <text class="radar-label" x="13" y="32" text-anchor="end">Vetor</text>
+                
+                <polygon id="radar-data" class="radar-area" points="50,50 50,50 50,50 50,50 50,50 50,50"></polygon>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="g2">
           <div class="ig">
             <label>HORA EXATA</label>
             <input type="time" id="horaNascimento" required>
+          </div>
+          <div class="ig">
+            <label>LOCAL (CIDADE/UF/PAÍS)</label>
+            <input type="text" id="localNascimento" placeholder="Ex: Porto Alegre, RS, Brasil" required>
           </div>
         </div>
 
@@ -212,28 +207,20 @@ footer{border-top:1px solid var(--bgold);padding:44px 32px;text-align:center}
   </div>
 </section>
 
-<div id="loading-overlay">
-  <div class="spinner"></div>
-  <h3 style="color:#D4AF37; margin-top:20px;">Conectando ao Gateway Stripe...</h3>
-</div>
-
 <footer>
   <div class="f-exec">Gabriel Prado Rodrigues | CRA-RS TE-002457/O</div>
   <div style="font-size:0.8rem; color:#A0AAB5;">© 2026 01GURU. Todos os sistemas reservados.</div>
+  
   <div class="f-links">
     <a href="mailto:contato@01guru.com.br">contato@01guru.com.br</a>
     <a href="./politica-privacidade.html">Política de Privacidade</a>
-    <a href="./politica-cookies.html">Política de Cookies</a>
-    <a href="./termos-de-uso.html">Termos de Uso</a>
+    <a href="./cookies.html">Política de Cookies</a>
+    <a href="./termos.html">Termos de Uso</a>
     <a href="https://billing.stripe.com/p/login/bJe7sN9Tm70QfkV6D11ZS00">Gerenciar Assinatura</a>
   </div>
 </footer>
 
 <script>
-function setLanguage(lang) {
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang));
-}
-
 function showProtocolDetail(val) {
   document.getElementById('protocolo-hidden').value = val;
   const detail = document.getElementById('proto-detail');
@@ -244,24 +231,16 @@ function showProtocolDetail(val) {
   if(val==='16') { document.getElementById('pd-title').innerText = 'Dossiê God Mode'; document.getElementById('pd-price').innerText = 'R$ 497,00'; }
 }
 
-// LÓGICA DE ANIMAÇÃO DA TEIA (RADAR CHART)
 function animarTeia() {
     const nome = document.getElementById('nome').value;
     const data = document.getElementById('dataNascimento').value;
     const polygon = document.getElementById('radar-data');
-    const status = document.getElementById('scan-status');
 
     if (!nome && !data) {
         polygon.setAttribute('points', '50,50 50,50 50,50 50,50 50,50 50,50');
-        status.innerText = "Aguardando Input...";
-        status.style.color = "var(--gold)";
         return;
     }
 
-    status.innerText = "Decodificando Frequência...";
-    status.style.color = "var(--mint)";
-
-    // Simulação determinística baseada no que o usuário digita
     let v1 = nome.length > 0 ? (nome.length * 4) % 30 + 10 : 10;
     let v2 = data ? parseInt(data.slice(-2)) % 30 + 10 : 10;
     let v3 = nome.length > 2 ? (nome.charCodeAt(0) * 2) % 30 + 10 : 10;
@@ -287,14 +266,12 @@ document.getElementById('dossie-form').addEventListener('submit', function(e) {
   const protoId = document.getElementById('protocolo-hidden').value;
   if(!protoId) { alert('Selecione um protocolo'); return; }
   
-  document.getElementById('loading-overlay').style.display = 'flex';
-  
-  let link = 'https://buy.stripe.com/5kQ28t2qUetifkV4uT1ZS0l'; // Exemplo genérico
+  let link = 'https://buy.stripe.com/5kQ28t2qUetifkV4uT1ZS0l'; 
   if(protoId === '1') link = 'https://buy.stripe.com/9B628t1mQ1Gw0q1e5t1ZS0n';
   if(protoId === '4') link = 'https://buy.stripe.com/8x2bJ35D62KA7St8L91ZS09';
   if(protoId === '16') link = 'https://buy.stripe.com/5kQ28t2qUetifkV4uT1ZS0l';
 
-  setTimeout(() => { window.location.href = link; }, 1000);
+  window.location.href = link;
 });
 </script>
 </body>
