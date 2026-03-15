@@ -1,0 +1,33 @@
+01GURU | Política de Rastreio Tático e Sincronização (Cookies)
+1. Definição do Protocolo
+O domínio 01guru.com.br (doravante "Sistema") não opera com sites genéricos; operamos uma arquitetura de inteligência baseada em Python. Para garantir o funcionamento da nossa Black Box e a segurança das suas transações, utilizamos fragmentos de dados persistentes e voláteis, conhecidos comercialmente como "cookies" ou "web beacons". Ao ingressar em nosso Sistema, seus sensores de navegação são sincronizados com a nossa base.
+
+2. Escopo de Operação
+Os parâmetros rastreados têm o objetivo exclusivo de manter a integridade da sua sessão, blindar o fluxo de pagamento e fornecer telemetria de marketing para o escalonamento tático da nossa operação. Os seus parâmetros biocríticos (data, hora e local de nascimento) fornecidos para o motor oracular JAMAIS são rastreados por cookies de terceiros ou vendidos.
+
+3. Classificação dos Parâmetros (Níveis de Acesso)
+Nosso Sistema injeta apenas o essencial para a otimização de fluxo:
+
+3.1. Núcleo Estrutural (Obrigatórios): Cookies de sessão para manter o seu login ativo durante o forjamento do Dossiê e cookies de segurança do nosso gateway de pagamento (Stripe) para prevenção de fraudes. Sem eles, a arquitetura colapsa e a compra não é processada.
+
+3.2. Auditoria de Tráfego (Analíticos): Sensores que mapeiam a eficiência do nosso código e o comportamento macro de acesso.
+
+3.3. Inteligência de Mercado (Marketing): Pixels de rastreamento de plataformas de tráfego (Meta/Google Ads). Eles identificam o seu perfil de consumo para que nossos algoritmos de tráfego apresentem ofertas de alta precisão (remarketing).
+
+4. A Consciência do Utilizador
+Ao acessar o 01GURU pela primeira vez e continuar a navegação, você consente com o nosso rastreio tático. Nós operamos com transparência brutal: você está sendo mapeado para que possamos lhe entregar as respostas corretas no momento exato.
+
+5. Compartilhamento Restrito
+O 01GURU compartilha dados de tráfego exclusivamente com parceiros homologados de infraestrutura (Stripe para fluxo de caixa e Meta/Google para engenharia de audiência). Nossa infraestrutura opera fora do alcance de plugins amadores que vazam dados.
+
+6. Desativação de Sensores (Opt-Out)
+O Utilizador tem total liberdade técnica para configurar seu navegador (Brave, Chrome, Safari) para bloquear ou excluir a nossa sincronização de cookies. Alerta Executivo: A desativação do Núcleo Estrutural (3.1) incapacitará o motor do 01GURU de forjar o seu Dossiê e processar o seu pagamento.
+
+7. Direitos do Alvo (LGPD e GDPR)
+Sob as leis globais de proteção de dados, você possui o direito inalienável de solicitar o acesso, a retificação ou a exclusão do seu histórico de rastreio. Para acionar este protocolo, o contato deve ser feito via canais oficiais de suporte do 01GURU.
+
+8. Jurisdição e Atualização de Sistema
+Esta política é atualizada de acordo com as necessidades operacionais e legais do negócio, regida pelas leis da República Federativa do Brasil. O foro eleito para qualquer litígio é o da comarca de Porto Alegre/RS.
+
+[Última atualização do protocolo: 14 de março de 2026]
+Gabriel Prado Rodrigues | CRA-RS TE-002457/O
