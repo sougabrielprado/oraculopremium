@@ -1,33 +1,72 @@
-01GURU | Política de Rastreio Tático e Sincronização (Cookies)
-1. Definição do Protocolo
-O domínio 01guru.com.br (doravante "Sistema") não opera com sites genéricos; operamos uma arquitetura de inteligência baseada em Python. Para garantir o funcionamento da nossa Black Box e a segurança das suas transações, utilizamos fragmentos de dados persistentes e voláteis, conhecidos comercialmente como "cookies" ou "web beacons". Ao ingressar em nosso Sistema, seus sensores de navegação são sincronizados com a nossa base.
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>01GURU | Política de Cookies</title>
+<link rel="icon" type="image/png" href="./static/img/01GURU_SF.PNG">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#00142D;--panel:#00213D;--gold:#D4AF37;--mint:#76C7B0;--light:#F8F9FA;--muted:#A0AAB5;--bgold:rgba(212,175,55,0.25);--fh:'Oswald',sans-serif;--fb:'Crimson Pro',serif;--fu:'Inter',sans-serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--light);font-family:var(--fb);font-size:1.1rem;line-height:1.8;}
+.legal-container{max-width: 800px; margin: 60px auto; padding: 50px; background: var(--panel); border: 1px solid var(--bgold); border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
+.header-logo {text-align: center; margin-bottom: 30px;}
+.header-logo img {width: 120px; filter: drop-shadow(0 0 15px rgba(118,199,176,0.2));}
+h1 {font-family: var(--fh); color: var(--gold); font-size: 2.2rem; text-align: center; margin-bottom: 40px; line-height: 1.2;}
+h2 {font-family: var(--fu); color: var(--mint); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 40px; margin-bottom: 10px;}
+p, ul {margin-bottom: 20px; color: var(--muted);}
+ul {padding-left: 20px;}
+li {margin-bottom: 10px;}
+strong {color: var(--light);}
+.btn-voltar {display: inline-block; margin-bottom: 30px; color: var(--mint); text-decoration: none; font-family: var(--fu); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s;}
+.btn-voltar:hover {color: var(--gold);}
+.doc-footer {margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--bgold); font-family: var(--fu); font-size: 0.8rem; color: var(--muted); text-align: center;}
+@media(max-width:700px){.legal-container{margin: 20px; padding: 30px;}}
+</style>
+</head>
+<body>
 
-2. Escopo de Operação
-Os parâmetros rastreados têm o objetivo exclusivo de manter a integridade da sua sessão, blindar o fluxo de pagamento e fornecer telemetria de marketing para o escalonamento tático da nossa operação. Os seus parâmetros biocríticos (data, hora e local de nascimento) fornecidos para o motor oracular JAMAIS são rastreados por cookies de terceiros ou vendidos.
+<div class="legal-container">
+    <a href="./index.html" class="btn-voltar">← Voltar para o Sistema</a>
+    
+    <div class="header-logo"><img src="./static/img/01GURU_SF.PNG" alt="01GURU"></div>
+    <h1>Política de Rastreio Tático e Sincronização (Cookies)</h1>
+    
+    <h2>1. Definição do Protocolo</h2>
+    <p>O domínio 01guru.com.br (doravante "Sistema") não opera com sites genéricos; operamos uma arquitetura de inteligência baseada em Python. Para garantir o funcionamento da nossa Black Box e a segurança das suas transações, utilizamos fragmentos de dados persistentes e voláteis, conhecidos comercialmente como "cookies" ou "web beacons". Ao ingressar em nosso Sistema, seus sensores de navegação são sincronizados com a nossa base.</p>
 
-3. Classificação dos Parâmetros (Níveis de Acesso)
-Nosso Sistema injeta apenas o essencial para a otimização de fluxo:
+    <h2>2. Escopo de Operação</h2>
+    <p>Os parâmetros rastreados têm o objetivo exclusivo de manter a integridade da sua sessão, blindar o fluxo de pagamento e fornecer telemetria de marketing para o escalonamento tático da nossa operação. Os seus parâmetros biocríticos (data, hora e local de nascimento) fornecidos para o motor oracular JAMAIS são rastreados por cookies de terceiros ou vendidos.</p>
 
-3.1. Núcleo Estrutural (Obrigatórios): Cookies de sessão para manter o seu login ativo durante o forjamento do Dossiê e cookies de segurança do nosso gateway de pagamento (Stripe) para prevenção de fraudes. Sem eles, a arquitetura colapsa e a compra não é processada.
+    <h2>3. Classificação dos Parâmetros (Níveis de Acesso)</h2>
+    <p>Nosso Sistema injeta apenas o essencial para a otimização de fluxo:</p>
+    <ul>
+        <li><strong>3.1. Núcleo Estrutural (Obrigatórios):</strong> Cookies de sessão para manter o seu login ativo durante o forjamento do Dossiê e cookies de segurança do nosso gateway de pagamento (Stripe) para prevenção de fraudes. Sem eles, a arquitetura colapsa e a compra não é processada.</li>
+        <li><strong>3.2. Auditoria de Tráfego (Analíticos):</strong> Sensores que mapeiam a eficiência do nosso código e o comportamento macro de acesso.</li>
+        <li><strong>3.3. Inteligência de Mercado (Marketing):</strong> Pixels de rastreamento de plataformas de tráfego (Meta/Google Ads). Eles identificam o seu perfil de consumo para que nossos algoritmos de tráfego apresentem ofertas de alta precisão (remarketing).</li>
+    </ul>
 
-3.2. Auditoria de Tráfego (Analíticos): Sensores que mapeiam a eficiência do nosso código e o comportamento macro de acesso.
+    <h2>4. A Consciência do Utilizador</h2>
+    <p>Ao acessar o 01GURU pela primeira vez e continuar a navegação, você consente com o nosso rastreio tático. Nós operamos com transparência brutal: você está sendo mapeado para que possamos lhe entregar as respostas corretas no momento exato.</p>
 
-3.3. Inteligência de Mercado (Marketing): Pixels de rastreamento de plataformas de tráfego (Meta/Google Ads). Eles identificam o seu perfil de consumo para que nossos algoritmos de tráfego apresentem ofertas de alta precisão (remarketing).
+    <h2>5. Compartilhamento Restrito</h2>
+    <p>O 01GURU compartilha dados de tráfego exclusivamente com parceiros homologados de infraestrutura (Stripe para fluxo de caixa e Meta/Google para engenharia de audiência). Nossa infraestrutura opera fora do alcance de plugins amadores que vazam dados.</p>
 
-4. A Consciência do Utilizador
-Ao acessar o 01GURU pela primeira vez e continuar a navegação, você consente com o nosso rastreio tático. Nós operamos com transparência brutal: você está sendo mapeado para que possamos lhe entregar as respostas corretas no momento exato.
+    <h2>6. Desativação de Sensores (Opt-Out)</h2>
+    <p>O Utilizador tem total liberdade técnica para configurar seu navegador (Brave, Chrome, Safari) para bloquear ou excluir a nossa sincronização de cookies. <em>Alerta Executivo: A desativação do Núcleo Estrutural (3.1) incapacitará o motor do 01GURU de forjar o seu Dossiê e processar o seu pagamento.</em></p>
 
-5. Compartilhamento Restrito
-O 01GURU compartilha dados de tráfego exclusivamente com parceiros homologados de infraestrutura (Stripe para fluxo de caixa e Meta/Google para engenharia de audiência). Nossa infraestrutura opera fora do alcance de plugins amadores que vazam dados.
+    <h2>7. Direitos do Alvo (LGPD e GDPR)</h2>
+    <p>Sob as leis globais de proteção de dados, você possui o direito inalienável de solicitar o acesso, a retificação ou a exclusão do seu histórico de rastreio. Para acionar este protocolo, o contato deve ser feito via canais oficiais de suporte do 01GURU.</p>
 
-6. Desativação de Sensores (Opt-Out)
-O Utilizador tem total liberdade técnica para configurar seu navegador (Brave, Chrome, Safari) para bloquear ou excluir a nossa sincronização de cookies. Alerta Executivo: A desativação do Núcleo Estrutural (3.1) incapacitará o motor do 01GURU de forjar o seu Dossiê e processar o seu pagamento.
+    <h2>8. Jurisdição e Atualização de Sistema</h2>
+    <p>Esta política é atualizada de acordo com as necessidades operacionais e legais do negócio, regida pelas leis da República Federativa do Brasil. O foro eleito para qualquer litígio é o da comarca de Porto Alegre/RS.</p>
 
-7. Direitos do Alvo (LGPD e GDPR)
-Sob as leis globais de proteção de dados, você possui o direito inalienável de solicitar o acesso, a retificação ou a exclusão do seu histórico de rastreio. Para acionar este protocolo, o contato deve ser feito via canais oficiais de suporte do 01GURU.
+    <div class="doc-footer">
+        [Última atualização do protocolo: 18 de março de 2026]<br>
+        Documento Executivo | Gabriel Prado Rodrigues | CRA-RS TE-002457/O
+    </div>
+</div>
 
-8. Jurisdição e Atualização de Sistema
-Esta política é atualizada de acordo com as necessidades operacionais e legais do negócio, regida pelas leis da República Federativa do Brasil. O foro eleito para qualquer litígio é o da comarca de Porto Alegre/RS.
-
-[Última atualização do protocolo: 14 de março de 2026]
-Gabriel Prado Rodrigues | CRA-RS TE-002457/O
+</body>
+</html>
