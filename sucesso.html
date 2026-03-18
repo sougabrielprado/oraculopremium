@@ -101,7 +101,30 @@ input[type="radio"]:checked + .radio-label { background: var(--gold-alquimico); 
 </div>
 
 <script>
-document.getElementById('delivery-form').addEventListener('submit', function(e) {
+    // Recupera o ID do Pedido do cache local (localStorage)
+    window.onload = function() {
+        const displayOrder = document.getElementById('display-order');
+        const pending = localStorage.getItem('pending_dossie');
+        
+        if (pending) {
+            const data = JSON.parse(pending);
+            if(data.order_id) {
+                displayOrder.innerText = data.order_id;
+            } else {
+                displayOrder.innerText = 'PEDIDO CONFIRMADO';
+            }
+        } else {
+            displayOrder.innerText = 'AGUARDANDO...';
+        }
+    };
+
+    function updatePlaceholder() {
+        const canal = document.querySelector('input[name="canal"]:checked').value;
+        const input = document.getElementById('contact-info');
+        input.placeholder = `Insira seu ${canal}...`;
+    }
+
+    document.getElementById('delivery-form').addEventListener('submit', function(e) {
         e.preventDefault();
         
         const canal = document.querySelector('input[name="canal"]:checked').value;
@@ -109,10 +132,15 @@ document.getElementById('delivery-form').addEventListener('submit', function(e) 
         const orderId = document.getElementById('display-order').innerText;
         const btn = document.getElementById('btn-submit');
 
+        if(orderId === 'AGUARDANDO...' || orderId === '{{ order_id }}') {
+            alert("Erro: ID do pedido não localizado. Atualize a página.");
+            return;
+        }
+
         btn.innerText = '[ SINCRONIZANDO... ]';
         btn.disabled = true;
 
-        // DISPARO TÁTICO PARA A API
+        // DISPARO REAL PARA A SUA API NO TERMINAL 1
         fetch('/api/atualizar_contato', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -126,11 +154,18 @@ document.getElementById('delivery-form').addEventListener('submit', function(e) 
             if(res.ok) {
                 document.getElementById('delivery-form').style.display = 'none';
                 document.getElementById('success-msg').style.display = 'block';
+                // Limpa o cache após o sucesso total
+                localStorage.removeItem('pending_dossie');
             } else {
-                alert("Falha na sincronização. Tente novamente.");
+                alert("Falha técnica no servidor. Tente novamente em instantes.");
                 btn.disabled = false;
                 btn.innerText = '[ CONFIRMAR ROTA ]';
             }
+        })
+        .catch(err => {
+            alert("Sem conexão com o servidor 01GURU.");
+            btn.disabled = false;
+            btn.innerText = '[ CONFIRMAR ROTA ]';
         });
     });
 </script>
