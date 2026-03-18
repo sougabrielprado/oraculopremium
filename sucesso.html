@@ -101,58 +101,37 @@ input[type="radio"]:checked + .radio-label { background: var(--gold-alquimico); 
 </div>
 
 <script>
-    // Recupera o Order ID do cache (caso a variável do servidor falhe)
-    window.onload = function() {
-        const displayOrder = document.getElementById('display-order');
-        if (displayOrder.innerText === '{{ order_id }}' || displayOrder.innerText === '') {
-            const pending = localStorage.getItem('pending_dossie');
-            if (pending) {
-                const data = JSON.parse(pending);
-                if(data.order_id) {
-                    displayOrder.innerText = data.order_id;
-                } else {
-                    displayOrder.innerText = 'PROCESSANDO...';
-                }
-            } else {
-                displayOrder.innerText = 'PROCESSANDO...';
-            }
-        }
-    };
-
-    function updatePlaceholder() {
-        const canal = document.querySelector('input[name="canal"]:checked').value;
-        const input = document.getElementById('contact-info');
-        
-        if(canal === 'WhatsApp') {
-            input.placeholder = 'Insira seu WhatsApp (com DDD)...';
-            input.type = 'tel';
-        } else if (canal === 'Telegram') {
-            input.placeholder = 'Insira seu @Usuário ou Telefone...';
-            input.type = 'text';
-        } else {
-            input.placeholder = 'Insira seu E-mail executivo...';
-            input.type = 'email';
-        }
-    }
-
-    document.getElementById('delivery-form').addEventListener('submit', function(e) {
+document.getElementById('delivery-form').addEventListener('submit', function(e) {
         e.preventDefault();
         
         const canal = document.querySelector('input[name="canal"]:checked').value;
         const contato = document.getElementById('contact-info').value;
         const orderId = document.getElementById('display-order').innerText;
-
-        // Aqui você faria o fetch para o backend para salvar essa preferência de entrega.
-        // Simulando a execução imediata para o cliente:
-        
         const btn = document.getElementById('btn-submit');
-        btn.innerText = '[ ENVIANDO DADOS... ]';
-        btn.style.opacity = '0.7';
 
-        setTimeout(() => {
-            document.getElementById('delivery-form').style.display = 'none';
-            document.getElementById('success-msg').style.display = 'block';
-        }, 1000);
+        btn.innerText = '[ SINCRONIZANDO... ]';
+        btn.disabled = true;
+
+        // DISPARO TÁTICO PARA A API
+        fetch('/api/atualizar_contato', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                order_id: orderId,
+                canal: canal,
+                contato: contato
+            })
+        })
+        .then(res => {
+            if(res.ok) {
+                document.getElementById('delivery-form').style.display = 'none';
+                document.getElementById('success-msg').style.display = 'block';
+            } else {
+                alert("Falha na sincronização. Tente novamente.");
+                btn.disabled = false;
+                btn.innerText = '[ CONFIRMAR ROTA ]';
+            }
+        });
     });
 </script>
 </body>
