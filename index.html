@@ -4,22 +4,37 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>01GURU | Diagnóstico de Sistema Vital</title>
+<meta name="description" content="01GURU — Gabinete de Inteligência Humana e Vibracional.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-:root{--bg:#00142D;--panel:#00213D;--gold:#D4AF37;--mint:#76C7B0;--light:#F8F9FA;--muted:#A0AAB5;--bgold:rgba(212,175,55,0.25);--bmint:rgba(118,199,176,0.25);--fh:'Oswald',sans-serif;--fb:'Crimson Pro',serif;--fu:'Inter',sans-serif}
+:root{--bg:#00142D;--panel:#00213D;--gold:#D4AF37;--gold2:#b8960c;--mint:#76C7B0;--light:#F8F9FA;--muted:#A0AAB5;--bglass:rgba(255,255,255,0.03);--bgold:rgba(212,175,55,0.25);--bmint:rgba(118,199,176,0.25);--fh:'Oswald',sans-serif;--fb:'Crimson Pro',serif;--fu:'Inter',sans-serif}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--light);font-family:var(--fb);font-size:17px;line-height:1.7;overflow-x:hidden}
 
-/* HEADER - LOGO CENTRALIZADO E PARADO */
-header{position:fixed;top:0;left:0;width:100%;height:70px;background:rgba(0,20,45,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--bgold);z-index:900;display:flex;justify-content:center;align-items:center;}
-.hlogo img{height:45px;width:auto;}
+/* LANG */
+.lang-toggle{position:fixed;top:18px;right:22px;z-index:1000;display:flex;gap:4px;background:rgba(0,33,61,.92);backdrop-filter:blur(8px);border:1px solid var(--bgold);border-radius:6px;padding:4px}
+.lang-btn{background:transparent;color:var(--muted);border:none;padding:6px 14px;font-family:var(--fu);font-size:.72rem;font-weight:700;letter-spacing:1px;cursor:pointer;border-radius:4px;transition:all .2s}
+.lang-btn.active{background:var(--gold);color:var(--bg)}
+.lang-btn:hover:not(.active){color:var(--gold)}
 
-.hero{text-align:center;padding:130px 24px 50px;position:relative}
+/* HEADER - MANTIDO NO CSS APENAS POR SEGURANÇA, MAS O HTML FOI REMOVIDO */
+header{padding:20px 36px;display:flex;align-items:center;border-bottom:1px solid var(--bgold)}
+.hlogo img{height:50px;width:auto;filter:drop-shadow(0 0 10px rgba(212,175,55,.4))}
+
+/* HERO */
+.hero{text-align:center;padding:70px 24px 50px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:800px;height:100%;background:radial-gradient(circle,rgba(118,199,176,.06) 0%,transparent 70%);pointer-events:none}
+/* LOGO CENTRAL ESTATICO E COM TAMANHO W-64 H-64 (256px) */
+.hero-logo img{width:256px;height:256px;object-fit:contain;filter:drop-shadow(0 0 24px rgba(118,199,176,.35));margin-bottom:24px}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 .badge{display:inline-block;font-family:var(--fu);font-size:.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mint);border:1px solid var(--bmint);padding:5px 16px;border-radius:20px;margin-bottom:22px}
 .hero h1{font-family:var(--fh);font-size:clamp(2rem,5vw,3.6rem);color:var(--gold);line-height:1.1;margin-bottom:18px}
 .hero p{font-size:1.15rem;color:var(--muted);max-width:600px;margin:0 auto 36px}
-.cta-btn{display:inline-block;background:var(--mint);color:var(--bg);padding:16px 42px;font-family:var(--fu);font-size:.9rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;}
+.cta-btn{display:inline-block;background:var(--mint);color:var(--bg);padding:16px 42px;font-family:var(--fu);font-size:.9rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;box-shadow:0 4px 18px rgba(118,199,176,.3);transition:all .3s}
+.cta-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 8px 28px rgba(118,199,176,.5)}
 
 /* PARAMETERS */
 .params-wrap{max-width:1100px;margin:0 auto;padding:70px 32px}
@@ -30,249 +45,951 @@ header{position:fixed;top:0;left:0;width:100%;height:70px;background:rgba(0,20,4
 .param-card h3{font-family:var(--fh);font-size:.95rem;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
 .param-card p{font-size:.95rem;color:var(--muted);line-height:1.6}
 
-/* WHITE GLOVE SECTION */
-.white-glove{background:var(--panel);border-top:1px solid var(--bgold);border-bottom:1px solid var(--bgold);padding:70px 32px;text-align:center}
-.wg-title{font-family:var(--fh);font-size:2rem;color:var(--gold);margin-bottom:20px;text-transform:uppercase;letter-spacing:2px}
-.wg-text{font-size:1.15rem;color:var(--light);max-width:700px;margin:0 auto 20px}
-.wg-text strong{color:var(--mint)}
-.wg-signature{font-family:var(--fu);font-size:.85rem;color:var(--muted);letter-spacing:2px;margin-top:30px}
+/* TESTIMONIAL */
+.testi{background:var(--panel);border-top:1px solid var(--bgold);border-bottom:1px solid var(--bgold);padding:50px 32px;text-align:center}
+.testi blockquote{font-family:var(--fb);font-size:1.25rem;font-style:italic;color:var(--light);max-width:680px;margin:0 auto 14px;line-height:1.7}
+.testi cite{font-family:var(--fu);font-size:.78rem;color:var(--mint);letter-spacing:2px}
 
-/* FORM & INFOGRÁFICO LADO A LADO */
-.form-wrap{max-width:900px;margin:0 auto;padding:70px 32px}
+/* FORM SECTION */
+.form-wrap{max-width:780px;margin:0 auto;padding:70px 32px}
 .terminal-box{background:var(--panel);border:1px solid var(--bgold);border-radius:6px;overflow:hidden}
 .t-head{background:var(--bg);border-bottom:1px solid var(--bgold);padding:13px 22px;display:flex;align-items:center;gap:8px}
 .tdot{width:10px;height:10px;border-radius:50%}
 .tdr{background:#ff5f57}.tda{background:#febc2e}.tdg{background:#28c840}
-.t-body{padding:40px 30px}
+.ttitle{font-family:var(--fu);font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-left:8px}
+.t-body{padding:32px 30px}
 
-.split-layout {display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid rgba(212,175,55,0.2);}
-
+/* FORM ELEMENTS */
 .ig{margin-bottom:22px}
-.ig label{display:block;font-family:var(--fu);font-size:.68rem;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:7px}
-.ig input,.ig select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--bgold);color:var(--light);padding:13px 16px;font-family:var(--fb);font-size:1.05rem;border-radius:4px;}
-input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(1) opacity(.5)}
+.ig label{display:block;font-family:var(--fu);font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.ig input,.ig select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--bgold);color:var(--light);padding:13px 16px;font-family:var(--fb);font-size:1.05rem;border-radius:4px;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+.ig input:focus,.ig select:focus{outline:none;border-color:var(--mint);box-shadow:0 0 0 3px rgba(118,199,176,.1)}
+.ig select option{background:#fff;color:#111}
 
-/* RADAR CHART (DIREITA) */
-.spider-container{width:100%; max-width: 300px; margin: 0 auto; position:relative;}
-#radar-chart{width:100%; height:auto; display:block; overflow:visible;}
-.radar-grid{stroke:rgba(118,199,176,0.15);stroke-width:0.5;fill:none}
-.radar-axis{stroke:rgba(118,199,176,0.3);stroke-width:1}
-.radar-label{font-family:var(--fu);font-size:7px;fill:var(--muted);text-transform:uppercase;letter-spacing:1px}
-.radar-area{fill:rgba(212,175,55,0.25);stroke:var(--gold);stroke-width:2; transition: all 0.3s ease-out;}
-
-/* RESTO DO FORMULÁRIO */
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.proto-label{display:block;margin-top:20px}
-#proto-detail{display:none;margin-top:20px;background:rgba(212,175,55,.05);border:1px solid var(--gold);border-radius:6px;padding:24px}
-.pd-title{font-family:var(--fh);font-size:1.3rem;color:var(--gold);margin-bottom:10px}
+input[type="date"]::-webkit-calendar-picker-indicator{filter:invert(1) opacity(.5);cursor:pointer}
+
+/* PROTOCOL SELECTOR */
+.proto-label{font-family:var(--fu);font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:7px;display:block;margin-top:32px}
+.proto-select-wrap select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--bgold);color:var(--light);padding:13px 16px;font-family:var(--fb);font-size:1.05rem;border-radius:4px;transition:border-color .2s;-webkit-appearance:none;appearance:none;cursor:pointer}
+.proto-select-wrap select:focus{outline:none;border-color:var(--mint);box-shadow:0 0 0 3px rgba(118,199,176,.1)}
+.proto-select-wrap select option{background:#fff;color:#111}
+
+
+/* PROTOCOL DETAIL CARD */
+#proto-detail{display:none;margin-top:20px;background:rgba(212,175,55,.05);border:1px solid var(--gold);border-radius:6px;padding:24px;animation:fadeIn .3s ease}
+#proto-detail.featured-god{border-color:var(--gold);background:rgba(212,175,55,.08)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.pd-title{font-family:var(--fh);font-size:1.3rem;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.pd-desc{font-size:1rem;color:var(--light);margin-bottom:16px;line-height:1.6}
+.pd-contents{font-family:var(--fu);font-size:.82rem;color:var(--muted);background:rgba(0,0,0,.2);padding:14px 18px;border-radius:4px;margin-bottom:18px;line-height:1.8}
+.pd-contents strong{color:var(--mint);display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;font-size:.7rem}
+.pd-price-block{display:flex;flex-direction:column;gap:4px}
 .pd-price-main{font-family:var(--fh);font-size:1.6rem;color:var(--mint)}
-#btn-submit{width:100%;background:var(--mint);color:var(--bg);border:none;padding:17px;font-family:var(--fu);font-size:.88rem;font-weight:800;letter-spacing:3px;cursor:pointer;border-radius:4px;margin-top:24px;}
+#proto-detail.featured-god .pd-price-main{color:var(--gold);font-size:1.9rem}
+.pd-price-sub{font-family:var(--fu);font-size:.8rem;color:var(--muted)}
+
+/* SUBMIT */
+#btn-submit{width:100%;background:var(--mint);color:var(--bg);border:none;padding:17px;font-family:var(--fu);font-size:.88rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;cursor:pointer;border-radius:4px;margin-top:24px;box-shadow:0 4px 18px rgba(118,199,176,.2);transition:all .3s}
+#btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(118,199,176,.4)}
 
 /* GENESIS */
 .genesis-wrap{max-width:780px;margin:0 auto;padding:70px 32px;border-top:1px solid var(--bgold)}
-.genesis-wrap p{font-size:1.25rem;margin-bottom:26px}
+.genesis-wrap p{font-family:var(--fb);font-size:1.25rem;line-height:1.85;text-align:justify;margin-bottom:26px;color:var(--light)}
 
 /* FOOTER */
 footer{border-top:1px solid var(--bgold);padding:44px 32px;text-align:center}
-.f-exec{font-family:var(--fh);font-size:.82rem;color:var(--gold);margin-bottom:10px}
-.f-links{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin-top:20px;}
-.f-links a{font-family:var(--fu);font-size:.78rem;color:var(--muted);text-decoration:none;}
-.f-links a:hover{color:var(--mint);}
+.f-exec{font-family:var(--fh);font-size:.82rem;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+.f-copy{font-family:var(--fu);font-size:.78rem;color:var(--muted);margin-bottom:18px}
+.f-links{display:flex;justify-content:center;gap:22px;flex-wrap:wrap}
+.f-links a{font-family:var(--fu);font-size:.78rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.f-links a:hover{color:var(--mint)}
 
-@media(max-width:768px){
-  .param-row{grid-template-columns:1fr 1fr}
-  .split-layout{grid-template-columns:1fr; gap:20px;}
-  .g2{grid-template-columns:1fr}
+/* LOADING */
+.hidden{display:none!important}
+#loading-overlay{position:fixed;inset:0;background:rgba(0,20,45,.97);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px}
+.spinner{width:46px;height:46px;border:3px solid var(--bgold);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#loading-overlay h3{font-family:var(--fh);color:var(--gold);letter-spacing:2px;text-transform:uppercase}
+#loading-steps{list-style:none;font-family:var(--fu);font-size:.78rem;color:var(--mint);text-align:left;max-height:180px;overflow-y:auto;width:100%;max-width:480px}
+#loading-steps li{padding:3px 0}
+
+@media(max-width:700px){
+.param-row{grid-template-columns:1fr 1fr}
+.g2{grid-template-columns:1fr}
+.params-wrap,.form-wrap,.genesis-wrap{padding:50px 18px}
+.t-body{padding:22px 18px}
 }
 @media(max-width:420px){.param-row{grid-template-columns:1fr}}
+
+/* SEÇÃO ORÁCULO (Máquina de Frequência) - NEUPSI ADAPTADO */
+.oracle-section { padding: 70px 32px; max-width: 1100px; margin: 0 auto; border-bottom: 1px solid var); }
+.oracle-header { text-align: center; margin-bottom: 40px; }
+.oracle-header h2 { font-family: var(--fh); font-size: clamp(1.6rem,3.5vw,2.4rem); color: var(--gold); margin-bottom: 10px; }
+.oracle-header p { font-size: 1.15rem; color: var(--muted); max-width: 600px; margin: 0 auto; }
+.oracle-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; background: var(--panel); padding: 40px; border-radius: 6px; border: 1px solid var(--bgold); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.oracle-form input { width: 100%; background: rgba(255,255,255,.04); border: none; border-bottom: 1px solid var(--muted); color: var(--light); padding: 10px 0; margin-bottom: 25px; font-family: var(--fb); font-size: 1.05rem; outline: none; transition: border-color 0.3s; }
+.oracle-form input:focus { border-bottom: 1px solid var(--mint); }
+.oracle-form label { display: block; font-family: var(--fu); font-size: 0.75rem; color: var(--mint); text-transform: uppercase; font-weight: bold; letter-spacing: 2px; margin-bottom: 5px; }
+.oracle-btn { width: 100%; background: var(--gold); color: var(--bg); border: none; padding: 15px; font-family: var(--fu); font-size: 1rem; font-weight: 800; text-transform: uppercase; border-radius: 4px; cursor: pointer; transition: all 0.3s; }
+.oracle-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212,175,55,0.4); }
+.chart-container { position: relative; width: 100%; max-width: 400px; height: 300px; margin: 0 auto; }
+#oracle-result-pt, #oracle-result-en { display: none; margin-top: 25px; padding: 20px; border-left: 3px solid var(--mint); background: rgba(118, 199, 176, 0.05); }
+/* Oculta a versão EN por padrão para não quebrar o layout */
+#oracle-wrapper-en { display: none; }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="hlogo">
-    <img src="./01GURU_SF.PNG" alt="01GURU">
-  </div>
-</header>
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="setLanguage('PT')">PT</button>
+  <button class="lang-btn" onclick="setLanguage('EN')">EN</button>
+</div>
 
 <section class="hero">
-  <div class="badge">O Processador de Consciência Coletiva</div>
-  <h1>Dados não mentem.<br>Os astros também não.</h1>
-  <p>Cruzamos suas coordenadas exatas de nascimento com os maiores algoritmos de timing do mundo para forjar rotas matemáticas de materialização.</p>
-  <button class="cta-btn" onclick="document.getElementById('terminal-section').scrollIntoView({behavior:'smooth'})">[ INICIAR DIAGNÓSTICO ]</button>
+  <div class="hero-logo"><img src="/static/img/01GURU_SF.PNG" alt="01GURU"></div>
+  <div class="badge" id="tag-decodificacao">O Processador de Consciência Coletiva</div>
+  <h1 id="hero-title">Dados não mentem.<br>Os astros também não.</h1>
+  <p id="hero-subtitle">O fim do esoterismo passivo. Cruzamos suas coordenadas exatas de nascimento com os maiores algoritmos de timing do mundo para forjar rotas matemáticas de materialização e proteção.</p>
+  <button class="cta-btn" onclick="document.getElementById('terminal-section').scrollIntoView({behavior:'smooth'})" id="cta-button">[ INICIAR DIAGNÓSTICO ]</button>
 </section>
 
 <section class="params-wrap">
   <div class="sec-label">Precisão Cirúrgica</div>
-  <h2 class="sec-title">A Engenharia dos Seus Parâmetros</h2>
+  <h2 class="sec-title" id="param-title">A Engenharia dos Seus Parâmetros</h2>
   <div class="param-row">
-    <div class="param-card"><h3>Nome Completo</h3><p>O identificador vibratório primário da sua assinatura no mundo.</p></div>
-    <div class="param-card"><h3>Data de Nascimento</h3><p>O Código Fonte. Define matematicamente os ciclos de materialização.</p></div>
-    <div class="param-card"><h3>Hora Exata</h3><p>O portal de ativação que calibra o seu Firewall Energético.</p></div>
-    <div class="param-card"><h3>Localização</h3><p>Coordenadas Geobiométricas. Essencial para triangulação de trânsitos.</p></div>
+    <div class="param-card">
+      <h3 id="param-name-title">Nome Completo</h3>
+      <p id="param-name-desc">O identificador vibratório primário. Codifica o Número de Expressão e Desejo da Alma. É a frequência exata da sua assinatura no mundo.</p>
+    </div>
+    <div class="param-card">
+      <h3 id="param-date-title">Data de Nascimento</h3>
+      <p id="param-date-desc">O Código Fonte. Define o Caminho da Vida (Life Path) e ancora matematicamente os ciclos decenais de materialização financeira e provações kármicas.</p>
+    </div>
+    <div class="param-card">
+      <h3 id="param-hour-title">Hora Exata</h3>
+      <p id="param-hour-desc">O portal de ativação. Calibra o Ascendente (ASC). Sem a hora exata, a precisão do seu Firewall Energético cai drasticamente, criando pontos cegos.</p>
+    </div>
+    <div class="param-card">
+      <h3 id="param-loc-title">Cidade, Estado e País</h3>
+      <p id="param-loc-desc">Coordenadas Geobiométricas. A posição planetária exata sobre o local de nascimento gera um Blueprint irreproduzível. Essencial para triangulação de trânsitos.</p>
+    </div>
   </div>
 </section>
 
-<section class="white-glove">
-  <h2 class="wg-title">A Assinatura High-Touch</h2>
-  <p class="wg-text">Em um mercado global infectado pela automação barata, o 01GURU escolheu a exclusividade absoluta.</p>
-  <p class="wg-text">Os cálculos são forjados por inteligência artificial, mas <strong>todo Dossiê ou Blueprint é auditado e entregue pessoalmente por mim.</strong></p>
-  <div class="wg-signature">GABRIEL PRADO | ENGENHEIRO DE OPERAÇÕES</div>
+<section class="testi">
+  <div class="sec-label" style="margin-bottom: 15px;">A Assinatura High-Touch</div>
+  <blockquote style="font-size: 1.15rem;">"Em um mercado infectado por automações genéricas, o 01GURU exige exclusividade absoluta. A Black Box processa a matemática pura, mas cada Blueprint é auditado e entregue pessoalmente por mim via canal direto (WhatsApp/Telegram). Você não adquire um PDF passivo; você abre um acesso tático C-Level para calibrar cálculos cirúrgicos e exigir ajustes na sua rota de materialização."</blockquote>
+  <cite>— Gabriel Prado | Engenheiro de Operações & Estrategista</cite>
 </section>
+<section class="oracle-section" id="maquina-frequencia">
+    <div class="oracle-header">
+        <h2 id="oracle-main-title">A Máquina de Frequência</h2>
+        <p id="oracle-main-desc">Nosso cérebro opera em frequências mapeáveis, que ressoam com os ciclos cósmicos. Insira sua data de nascimento para gerar seu <strong>Gráfico de Alinhamento</strong> instantaneamente.</p>
+    </div>
+    
+    <div class="oracle-container" id="oracle-wrapper-pt">
+        <div class="oracle-form">
+            <form id="oracle-form-pt">
+                <label>Seu Nome de Poder</label>
+                <input type="text" id="userNamePT" required placeholder="Ex: Gabriel">
+                
+                <label>Data de Nascimento (O Código Fonte)</label>
+                <input type="date" id="birthDatePT" required>
+                
+                <button type="submit" class="oracle-btn">Gerar Minha Matriz</button>
+            </form>
 
-<section class="genesis-wrap">
-  <div class="sec-label">Nossa Origem</div>
-  <h2 class="sec-title">A Gênese do 01GURU</h2>
-  <p>Nascemos da fusão brutal entre a lógica binária dos dados (01) e a precisão inegável dos ciclos cósmicos (GURU). Transformamos o esoterismo passivo em uma ferramenta tática de materialização e lucro.</p>
+            <div id="oracle-result-pt">
+                <h4 style="color: var(--gold); font-family: var(--fh); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">Análise Preliminar: <span id="res-name-pt"></span></h4>
+                <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 10px; font-family: var(--fu);">Sua matriz energética foi calculada. Observe os pilares no gráfico.</p>
+                <strong style="color: var(--mint); font-size: 0.8rem; font-family: var(--fu); text-transform: uppercase; letter-spacing: 1px;">Insight do Processador:</strong>
+                <p id="res-insight-pt" style="font-size: 0.95rem; margin-top: 5px;"></p>
+            </div>
+        </div>
+        <div class="chart-container">
+            <canvas id="frequencyChartPT"></canvas>
+        </div>
+    </div>
+
+    <div class="oracle-container" id="oracle-wrapper-en">
+        <div class="oracle-form">
+            <form id="oracle-form-en">
+                <label>Your Power Name</label>
+                <input type="text" id="userNameEN" required placeholder="Ex: Gabriel">
+                
+                <label>Birth Date (The Source Code)</label>
+                <input type="date" id="birthDateEN" required>
+                
+                <button type="submit" class="oracle-btn">Generate My Matrix</button>
+            </form>
+
+            <div id="oracle-result-en">
+                <h4 style="color: var(--gold); font-family: var(--fh); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;">Preliminary Analysis: <span id="res-name-en"></span></h4>
+                <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 10px; font-family: var(--fu);">Your energy matrix has been calculated. Observe your pillars.</p>
+                <strong style="color: var(--mint); font-size: 0.8rem; font-family: var(--fu); text-transform: uppercase; letter-spacing: 1px;">Processor Insight:</strong>
+                <p id="res-insight-en" style="font-size: 0.95rem; margin-top: 5px;"></p>
+            </div>
+        </div>
+        <div class="chart-container">
+            <canvas id="frequencyChartEN"></canvas>
+        </div>
+    </div>
 </section>
-
+<section style="background: var(--panel); border-top: 1px solid var(--bgold); border-bottom: 1px solid var(--bgold); width: 100%; margin: 40px 0;">
+  <div class="genesis-wrap" style="border-top: none;">
+    <div class="sec-label">Nossa Origem</div>
+    <h2 class="sec-title" id="genesis-title">A Gênese do 01GURU</h2>
+    <p id="genesis-p1">O 01GURU não é uma consultoria mística; é um Gabinete de Inteligência Humana e Vibracional. Nascemos da fusão brutal entre a lógica binária dos dados (01) e a precisão inegável dos ciclos cósmicos (GURU).</p>
+    <p id="genesis-p2">Sob a arquitetura de Gabriel Prado — Estrategista Sênior e Engenheiro de Operações — o sistema foi forjado para uma única missão: transformar o esoterismo passivo em uma ferramenta tática de materialização e lucro.</p>
+    <p id="genesis-p3">Não lemos o seu futuro para confortar o seu ego. Nós auditamos o seu sistema vital, debugamos as suas falhas repetitivas e entregamos a rota matemática exata para o topo.</p>
+  </div>
+</section>
 <section id="terminal-section" class="form-wrap">
   <div class="sec-label">Acesso Restrito</div>
-  <h2 class="sec-title">Terminal de Inserção de Parâmetros</h2>
-  
+  <h2 class="sec-title" id="form-title">Terminal de Inserção de Parâmetros</h2>
   <div class="terminal-box">
-    <div class="t-head"><div class="tdot tdr"></div><div class="tdot tda"></div><div class="tdot tdg"></div></div>
+    <div class="t-head">
+      <div class="tdot tdr"></div><div class="tdot tda"></div><div class="tdot tdg"></div>
+      <span class="ttitle">01GURU // DIAGNOSTIC ENGINE v2.6</span>
+    </div>
     <div class="t-body">
       <form id="dossie-form">
-        
-        <div class="split-layout">
-          <div class="split-left">
-            <div class="ig">
-              <label>NOME COMPLETO DO ALVO</label>
-              <input type="text" id="nome" required oninput="animarTeia()">
-            </div>
-            <div class="ig">
-              <label>DATA DE NASCIMENTO</label>
-              <input type="date" id="dataNascimento" required oninput="animarTeia()">
-            </div>
-          </div>
-          
-          <div class="split-right">
-            <div class="spider-container">
-              <svg id="radar-chart" viewBox="0 0 100 100">
-                <circle class="radar-grid" cx="50" cy="50" r="10"></circle>
-                <circle class="radar-grid" cx="50" cy="50" r="20"></circle>
-                <circle class="radar-grid" cx="50" cy="50" r="30"></circle>
-                <circle class="radar-grid" cx="50" cy="50" r="40"></circle>
-                <line class="radar-axis" x1="50" y1="50" x2="50" y2="10"></line>
-                <line class="radar-axis" x1="50" y1="50" x2="84.6" y2="30"></line>
-                <line class="radar-axis" x1="50" y1="50" x2="84.6" y2="70"></line>
-                <line class="radar-axis" x1="50" y1="50" x2="50" y2="90"></line>
-                <line class="radar-axis" x1="50" y1="50" x2="15.4" y2="70"></line>
-                <line class="radar-axis" x1="50" y1="50" x2="15.4" y2="30"></line>
-                
-                <text class="radar-label" x="50" y="6" text-anchor="middle">Expressão</text>
-                <text class="radar-label" x="87" y="32" text-anchor="start">Alma</text>
-                <text class="radar-label" x="87" y="71" text-anchor="start">Kármico</text>
-                <text class="radar-label" x="50" y="97" text-anchor="middle">Destino</text>
-                <text class="radar-label" x="13" y="71" text-anchor="end">Riqueza</text>
-                <text class="radar-label" x="13" y="32" text-anchor="end">Vetor</text>
-                
-                <polygon id="radar-data" class="radar-area" points="50,50 50,50 50,50 50,50 50,50 50,50"></polygon>
-              </svg>
-            </div>
-          </div>
+        <div class="ig">
+          <label for="nome" id="label-nome">NOME COMPLETO DO ALVO</label>
+          <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo..." required>
         </div>
-
         <div class="g2">
           <div class="ig">
-            <label>HORA EXATA</label>
-            <input type="time" id="horaNascimento" required>
+            <label for="dataNascimento" id="label-data">DATA DE NASCIMENTO</label>
+            <input type="date" id="dataNascimento" name="dataNascimento" required>
           </div>
           <div class="ig">
-            <label>LOCAL (CIDADE/UF/PAÍS)</label>
-            <input type="text" id="localNascimento" placeholder="Ex: Porto Alegre, RS, Brasil" required>
+            <label for="horaNascimento" id="label-hora">HORA EXATA</label>
+            <input type="time" id="horaNascimento" name="horaNascimento" required placeholder="Ex: 01:04">
           </div>
         </div>
-
-        <label class="proto-label">SELECIONE O PROTOCOLO DE AUDITORIA</label>
+        <div class="g2">
+          <div class="ig">
+            <label for="pais" id="label-pais">PAÍS</label>
+            <select id="pais" name="pais" required>
+              <option value="">Selecione o País</option>
+            </select>
+          </div>
+          <div class="ig">
+            <label for="estado" id="label-estado">ESTADO / UF</label>
+            <select id="estado" name="estado" required disabled>
+              <option value="">Aguardando País...</option>
+            </select>
+          </div>
+        </div>
         <div class="ig">
-          <select id="proto-select" onchange="showProtocolDetail(this.value)" required>
-            <option value="">-- Escolha o Protocolo --</option>
-            <option value="1">Briefing Diário (R$ 19,90)</option>
-            <option value="4">Sinastria & Algoritmo do Amor (R$ 97,00)</option>
-            <option value="16">DOSSIÊ TÁTICO GOD MODE (R$ 497,00)</option>
+          <label for="cidade" id="label-cidade">CIDADE</label>
+          <select id="cidade" name="cidade" required disabled>
+            <option value="">Aguardando Estado...</option>
           </select>
         </div>
-        <input type="hidden" id="protocolo-hidden">
+
+        <label class="proto-label" id="label-protocolo">SELECIONE O PROTOCOLO DE AUDITORIA</label>
+        <div class="proto-select-wrap">
+          <select id="proto-select" onchange="showProtocolDetail(this.value)">
+            <option value="">-- Escolha o Protocolo --</option>
+          </select>
+        </div>
+        <input type="hidden" id="protocolo-hidden" name="protocolo">
 
         <div id="proto-detail">
           <div class="pd-title" id="pd-title"></div>
-          <div class="pd-price-main" id="pd-price"></div>
+          <div class="pd-desc" id="pd-desc"></div>
+          <div class="pd-contents">
+            <strong id="pd-includes-label">O QUE VOCÊ RECEBE NO PDF</strong>
+            <span id="pd-includes"></span>
+          </div>
+
+          <div id="partner-fields" style="display:none; margin-top:20px; padding-top:20px; border-top:1px solid rgba(212,175,55,0.2);">
+            <div class="ig">
+              <label for="parceiro-nome" id="label-partner-name">NOME COMPLETO DO PARCEIRO(A)</label>
+              <input type="text" id="parceiro-nome" placeholder="Digite o nome do parceiro(a)">
+            </div>
+            <div class="ig">
+              <label for="parceiro-data" id="label-partner-date">DATA DE NASCIMENTO DO PARCEIRO(A)</label>
+              <input type="date" id="parceiro-data">
+            </div>
+          </div>
+
+          <div class="pd-price-block">
+            <div class="pd-price-main" id="pd-price"></div>
+            <div class="pd-price-sub" id="pd-price-sub"></div>
+          </div>
         </div>
 
-        <button type="submit" id="btn-submit">[ EXECUTAR DECIFRAMENTO E ACESSAR CHECKOUT ]</button>
+        <button type="submit" id="btn-submit">[ EXECUTAR DECIFRAMENTO ]</button>
       </form>
     </div>
   </div>
 </section>
 
+<div id="loading-overlay" class="hidden">
+  <div class="spinner"></div>
+  <h3 id="loading-text">Conectando ao Nó Central Groq LPU...</h3>
+  <ul id="loading-steps"><li>> Estabelecendo Handshake Seguro [OK]</li></ul>
+</div>
+
 <footer>
-  <div class="f-exec">Gabriel Prado Rodrigues | CRA-RS TE-002457/O</div>
-  <div style="font-size:0.8rem; color:#A0AAB5;">© 2026 01GURU. Todos os sistemas reservados.</div>
-  
+  <div class="f-exec" id="footer-exec">Documento Executivo | Op: Gabriel Prado Rodrigues | CRA-RS TE-002457/O</div>
+  <div class="f-copy" id="footer-copy">© 2026 01GURU. Todos os sistemas operacionais reservados.</div>
   <div class="f-links">
-    <a href="mailto:contato@01guru.com.br">contato@01guru.com.br</a>
-    <a href="./politica-privacidade.html">Política de Privacidade</a>
-    <a href="./cookies.html">Política de Cookies</a>
-    <a href="./termos.html">Termos de Uso</a>
-    <a href="https://billing.stripe.com/p/login/bJe7sN9Tm70QfkV6D11ZS00">Gerenciar Assinatura</a>
+    <a href="mailto:contato@01guru.com.br">✉ contato@01guru.com.br</a>
+    <a href="/politica-privacidade" id="link-privacy">Política de Privacidade</a>
+    <a href="https://billing.stripe.com/p/login/bJe7sN9Tm70QfkV6D11ZS00" id="link-sub">Gerenciar Assinatura</a>
   </div>
 </footer>
 
 <script>
-function showProtocolDetail(val) {
-  document.getElementById('protocolo-hidden').value = val;
-  const detail = document.getElementById('proto-detail');
-  if(!val){ detail.style.display = 'none'; return; }
-  detail.style.display = 'block';
-  if(val==='1') { document.getElementById('pd-title').innerText = 'Briefing Diário'; document.getElementById('pd-price').innerText = 'R$ 19,90'; }
-  if(val==='4') { document.getElementById('pd-title').innerText = 'Sinastria'; document.getElementById('pd-price').innerText = 'R$ 97,00'; }
-  if(val==='16') { document.getElementById('pd-title').innerText = 'Dossiê God Mode'; document.getElementById('pd-price').innerText = 'R$ 497,00'; }
+// ─── DATA ───────────────────────────────────────────────────────────────────
+let currentLanguage = 'PT';
+
+const protocols = [
+  {id:'1', pt:'Briefing Diário', en:'Daily Briefing',
+   descPt:'Auditoria matinal do seu sistema biocrítico. Receba o código de ativação do seu dia.',
+   descEn:'Morning audit of your biocritical system. Receive your day\'s activation code.',
+   includesPt:'· Mapa Astral sobreposto aos Trânsitos Diários\n· Alerta de picos de dopamina/cortisol nas próximas 24h\n· Janelas exatas para negociações e conversas difíceis\n· Número Védico e Cor de Ativação do Dia\n\n[ EXTENSÃO TÉCNICA: ~2 a 3 páginas ]',
+   includesEn:'· Astral Chart over Daily Transits\n· Alerts for dopamine/cortisol peaks in next 24h\n· Exact windows for negotiations\n· Vedic Number and Activation Color\n\n[ TECHNICAL EXTENSION: ~2 to 3 pages ]',
+   brl:19.90, usd:5.00, stripeUrl:'https://buy.stripe.com/9B628t1mQ1Gw0q1e5t1ZS0n'},
+   
+  {id:'2', pt:'Sprint Semanal', en:'Weekly Sprint',
+   descPt:'Planejamento tático de 7 dias baseado nos ciclos planetários. Otimize sua esteira de produção.',
+   descEn:'7-day tactical planning based on planetary cycles. Optimize your production pipeline.',
+   includesPt:'· Auditoria dos regentes da semana e seu impacto na sua matriz\n· Datas de "Fail-Proof" para grandes movimentos financeiros\n· Dias de "Firewall" (recolhimento estratégico e silêncio)\n· Diagnóstico da vibração numerológica da semana\n\n[ EXTENSÃO TÉCNICA: ~3 a 5 páginas ]',
+   includesEn:'· Weekly rulers audit and matrix impact\n· Fail-Proof dates for major financial moves\n· Firewall days (strategic silence)\n· Weekly numerological vibration diagnosis\n\n[ TECHNICAL EXTENSION: ~3 to 5 pages ]',
+   brl:27.00, usd:7.00, stripeUrl:'https://buy.stripe.com/9B69AV3uY2KAgoZ2mL1ZS0o'},
+   
+  {id:'3', pt:'Relatório de Trânsitos Ativos', en:'Active Transits Report',
+   descPt:'Detecção de anomalias espaciais em tempo real. Identifique o que está pressionando seu sistema hoje.',
+   descEn:'Real-time spatial anomaly detection. Identify what is pressing your system today.',
+   includesPt:'· Escaneamento de aspectos astrológicos de tensão atuais (Marte, Saturno, Plutão)\n· Identificação de "Vazamentos de Energia" nas áreas da vida afetadas\n· Soluções algorítmicas para mitigar o estresse e focar no lucro\n\n[ EXTENSÃO TÉCNICA: ~4 a 6 páginas ]',
+   includesEn:'· Scan of current tense astrological aspects\n· Identification of Energy Leaks in affected life areas\n· Algorithmic solutions to mitigate stress and focus on profit\n\n[ TECHNICAL EXTENSION: ~4 to 6 pages ]',
+   brl:37.00, usd:9.00, stripeUrl:'https://buy.stripe.com/00w8wR1mQeti7Stf9x1ZS07'},
+   
+  {id:'4', pt:'Sinastria & Algoritmo do Amor', en:'Synastry & Love Algorithm',
+   descPt:'Auditagem de compatibilidade vibracional (Amor ou Sociedade). Pare de investir em quem drena seu caixa emocional.',
+   descEn:'Vibrational compatibility audit (Love or Partnership). Stop investing in those who drain you.',
+   includesPt:'· Intersecção completa dos dois Mapas Natais\n· Diagnóstico de atritos Kármicos e incompatibilidade de comunicação (Gêmeos/Mercúrio)\n· Viabilidade operacional da parceria (Esta pessoa é um parasita ou um alavancador?)\n\n[ EXTENSÃO TÉCNICA: ~6 a 8 páginas densas ]',
+   includesEn:'· Full intersection of both Natal Charts\n· Diagnosis of Karmic friction and communication bugs\n· Operational viability of the partnership\n\n[ TECHNICAL EXTENSION: ~6 to 8 dense pages ]',
+   brl:97.00, usd:27.00, stripeUrl:'https://buy.stripe.com/8x2bJ35D62KA7St8L91ZS09'},
+   
+  {id:'5', pt:'Firewall Pessoal (Proteção)', en:'Personal Firewall (Protection)',
+   descPt:'Blindagem energética executiva. Mapeie inimigos ocultos e vampiros de energia na sua operação.',
+   descEn:'Executive energetic shielding. Map hidden enemies and energy vampires in your operation.',
+   includesPt:'· Auditoria da Casa 12 (Inimigos Ocultos e Autossabotagem)\n· Identificação do arquétipo dos "Parasitas Energéticos" que você atrai (Síndrome do Salvador)\n· Protocolo C-Level de Desligamento e Corte Tático de relações tóxicas\n\n[ EXTENSÃO TÉCNICA: ~5 a 7 páginas ]',
+   includesEn:'· 12th House Audit (Hidden Enemies)\n· Identification of Energy Parasites archetypes you attract\n· C-Level Shutdown Protocol for toxic relations\n\n[ TECHNICAL EXTENSION: ~5 to 7 pages ]',
+   brl:97.00, usd:27.00, stripeUrl:'https://buy.stripe.com/4gM5kF3uY98Y5Kl1iH1ZS0a'},
+   
+  {id:'6', pt:'Auditoria de Carreira', en:'Career Audit',
+   descPt:'Otimize seu motor financeiro. Remova os bloqueios biocríticos que impedem o escalonamento da sua riqueza.',
+   descEn:'Optimize your financial engine. Remove biocritical blocks preventing wealth scaling.',
+   includesPt:'· Leitura cirúrgica do Meio do Céu (Casa 10) e Casa 2 (Fluxo de Caixa)\n· Identificação dos seus Talentos Monetizáveis ocultos pelo sistema\n· Análise de timing para pivots de carreira, lançamentos e promoções\n\n[ EXTENSÃO TÉCNICA: ~5 a 7 páginas ]',
+   includesEn:'· Surgical reading of Midheaven (10th House) and 2nd House (Cash Flow)\n· Identification of hidden monetizable talents\n· Timing analysis for career pivots and launches\n\n[ TECHNICAL EXTENSION: ~5 to 7 pages ]',
+   brl:97.00, usd:27.00, stripeUrl:'https://buy.stripe.com/8x2aEZ0iMad2goZ5yX1ZS0b'},
+   
+  {id:'7', pt:'Protocolos de Ativação (Rituais)', en:'Activation Protocols (Rituals)',
+   descPt:'Comandos práticos e esotéricos (sem misticismo barato) para hackear sua realidade e instalar novos hábitos.',
+   descEn:'Practical esoteric commands to hack your reality and install new habits.',
+   includesPt:'· Rotina matinal customizada baseada no seu Ascendente\n· Afirmações neurolinguísticas codificadas para quebrar crenças limitantes da sua infância\n· Uso estratégico de Cores (Jumaani) para ambientes de negociação\n\n[ EXTENSÃO TÉCNICA: ~4 a 6 páginas ]',
+   includesEn:'· Customized morning routine based on your Ascendant\n· Neurolinguistic affirmations to break childhood beliefs\n· Strategic use of Colors (Jumaani) for negotiation\n\n[ TECHNICAL EXTENSION: ~4 to 6 pages ]',
+   brl:97.00, usd:27.00, stripeUrl:'https://buy.stripe.com/5kQ14p6Hafxm4GhgdB1ZS0c'},
+   
+  {id:'8', pt:'Roadmap Tático Anual', en:'Annual Tactical Roadmap',
+   descPt:'Seu plano de guerra de 12 meses. Pare de reagir ao caos e comece a antecipar janelas de liquidez.',
+   descEn:'Your 12-month war plan. Stop reacting to chaos and anticipate liquidity windows.',
+   includesPt:'· Calendário executivo projetando os próximos 12 meses do seu Blueprint\n· Alerta antecipado de retrogradações que podem travar seus pagamentos\n· Meses exatos para escalar negócios vs. meses para "Modo Avião"\n\n[ EXTENSÃO TÉCNICA: ~8 a 10 páginas ]',
+   includesEn:'· Executive calendar projecting your next 12 months\n· Early warnings of retrogrades that can stall payments\n· Exact months to scale vs. "Airplane Mode" months\n\n[ TECHNICAL EXTENSION: ~8 to 10 pages ]',
+   brl:147.00, usd:37.00, stripeUrl:'https://buy.stripe.com/28EcN77LegBq3Cde5t1ZS0d'},
+   
+  {id:'9', pt:'Auditoria de Código Natal (Blueprint)', en:'Natal Code Audit (Blueprint)',
+   descPt:'O arquivo base. O manual técnico do seu nascimento: talentos adormecidos, fardos e propósito inegociável.',
+   descEn:'The base file. Your birth\'s technical manual: dormant talents, burdens, and non-negotiable purpose.',
+   includesPt:'· Descriptografia completa de Planetas, Casas e Aspectos Natais\n· Como você processa estresse (Lua) e como ataca o mercado (Marte)\n· A Engenharia Psicológica por trás de suas escolhas e bloqueios recorrentes\n\n[ EXTENSÃO TÉCNICA: ~10 a 14 páginas de alta densidade ]',
+   includesEn:'· Full decryption of Planets, Houses, and Natal Aspects\n· How you process stress (Moon) and attack the market (Mars)\n· The Psychological Engineering behind your recurrent blocks\n\n[ TECHNICAL EXTENSION: ~10 to 14 high-density pages ]',
+   brl:197.00, usd:47.00, stripeUrl:'https://buy.stripe.com/bJeeVf2qU4SI8Wxf9x1ZS0e'},
+   
+  {id:'10', pt:'Algoritmo de Destino (Numerologia)', en:'Destiny Algorithm (Numerology)',
+   descPt:'A matemática inflexível que rege seu caminho. Descubra se sua assinatura digital está matando seu lucro.',
+   descEn:'The inflexible math governing your path. Discover if your digital signature is killing your profit.',
+   includesPt:'· Cálculo Decoz do Caminho de Vida (O seu Sistema Operacional)\n· Auditoria Védica (Jumaani) do seu Nome Profissional e de Registro\n· Ajustes cirúrgicos na grafia para destravar alavancagem assimétrica\n\n[ EXTENSÃO TÉCNICA: ~8 a 12 páginas ]',
+   includesEn:'· Decoz Life Path Calculation (Your OS)\n· Vedic Audit (Jumaani) of your Professional Name\n· Surgical spelling adjustments to unlock leverage\n\n[ TECHNICAL EXTENSION: ~8 to 12 pages ]',
+   brl:197.00, usd:47.00, stripeUrl:'https://buy.stripe.com/bJe8wR5D6ad2egRd1p1ZS0f'},
+   
+  {id:'11', pt:'Debugging Kármico', en:'Karmic Debugging',
+   descPt:'Varredura profunda na Black Box da sua ancestralidade. Pare de pagar boletos de vidas passadas.',
+   descEn:'Deep scan of your ancestry\'s Black Box. Stop paying past-life debts.',
+   includesPt:'· Análise cirúrgica dos Nódulos Lunares (Norte: Missão / Sul: Zona de Conforto Tóxica)\n· Contratos kármicos identificados através de intercepções e planetas retrógrados no nascimento\n· Ordens táticas para finalizar ciclos que já expiraram\n\n[ EXTENSÃO TÉCNICA: ~7 a 9 páginas ]',
+   includesEn:'· Surgical analysis of Lunar Nodes\n· Karmic contracts identified via retrogrades and interceptions\n· Tactical orders to finalize expired cycles\n\n[ TECHNICAL EXTENSION: ~7 to 9 pages ]',
+   brl:197.00, usd:47.00, stripeUrl:'https://buy.stripe.com/aFadRb6Hadpe2y9gdB1ZS0g'},
+   
+  {id:'12', pt:'Engenharia de Riqueza', en:'Wealth Engineering',
+   descPt:'Design exclusivo para C-Levels e executivos focados na manipulação estratégica da realidade e acumulação de capital.',
+   descEn:'Exclusive design for C-Levels focused on strategic reality manipulation and capital accumulation.',
+   includesPt:'· Mapeamento das Casas 2, 8 e 11 (O Triângulo do Capital)\n· Auditoria de Saturno (Como estruturar) e Júpiter (Onde arriscar e ganhar)\n· Janelas exatas para rodar captação de recursos, investimentos e contratações\n\n[ EXTENSÃO TÉCNICA: ~9 a 12 páginas ]',
+   includesEn:'· Mapping of Houses 2, 8, and 11 (The Capital Triangle)\n· Saturn Audit (Structuring) and Jupiter (Risk/Reward)\n· Exact windows for fundraising and hiring\n\n[ TECHNICAL EXTENSION: ~9 to 12 pages ]',
+   brl:247.00, usd:57.00, stripeUrl:'https://buy.stripe.com/bJe8wR3uYad2goZ1iH1ZS0h'},
+   
+  {id:'13', pt:'Projeção Macro de 5 Anos', en:'5-Year Macro Projection',
+   descPt:'Visão de longo alcance. Saiba exatamente onde seu Sincrossistema estará em meia década.',
+   descEn:'Long-range vision. Know exactly where your Sync-system will be in half a decade.',
+   includesPt:'· Cálculo de Progressões Secundárias e trânsitos geracionais (Plutão, Urano, Netuno)\n· Grandes janelas de pivotagem, venda de empresas ou mudanças de país\n· Estratégia de posicionamento de longo prazo imune a crises do mercado\n\n[ EXTENSÃO TÉCNICA: ~10 a 14 páginas ]',
+   includesEn:'· Secondary Progressions and generational transits\n· Major windows for pivoting or selling companies\n· Long-term positioning strategy immune to market crises\n\n[ TECHNICAL EXTENSION: ~10 to 14 pages ]',
+   brl:247.00, usd:57.00, stripeUrl:'https://buy.stripe.com/6oUaEZ8Piad2goZf9x1ZS0i'},
+   
+  {id:'14', pt:'Atualização Rev. Solar 26/27', en:'Solar Rev. 26/27 Update',
+   descPt:'Patch de Atualização (Upgrade) para o seu próximo aniversário. Receba as novas diretrizes do Sol.',
+   descEn:'Update Patch (Upgrade) for your next birthday. Receive new directives from the Sun.',
+   includesPt:'· Mapa focado exclusivamente no período de 12 meses a partir do seu aniversário em 2026\n· Onde seu Novo Ascendente estará (Onde você gastará mais energia)\n· Onde investir tempo e de onde retirar recursos para não quebrar no ano\n\n[ EXTENSÃO TÉCNICA: ~7 a 10 páginas ]',
+   includesEn:'· Map focused on the 12-month period from your 2026 birthday\n· Where your New Ascendant will be (Energy focus)\n· Where to invest time and where to pull back\n\n[ TECHNICAL EXTENSION: ~7 to 10 pages ]',
+   brl:147.00, usd:37.00, stripeUrl:'https://buy.stripe.com/28E7sN8Pi4SI5Kld1p1ZS0j'},
+   
+  {id:'15', pt:'Atualização Rev. Solar 27/28', en:'Solar Rev. 27/28 Update',
+   descPt:'Preparação C-Level antecipada. Mapeie o tabuleiro do jogo do próximo ano antes da concorrência.',
+   descEn:'Early C-Level preparation. Map the next year\'s board before the competition.',
+   includesPt:'· Mapa focado no período de 12 meses a partir do seu aniversário em 2027\n· Onde seu Novo Ascendente estará (Foco de energia)\n· Planejamento estratégico antecipado\n\n[ EXTENSÃO TÉCNICA: ~7 a 10 páginas ]',
+   includesEn:'· Map focused on the 12-month period from your 2027 birthday\n· Where your New Ascendant will be\n· Early strategic planning\n\n[ TECHNICAL EXTENSION: ~7 to 10 pages ]',
+   brl:147.00, usd:37.00, stripeUrl:'https://buy.stripe.com/3cIdRb6Hacla7StbXl1ZS0k'},
+   
+  {id:'16', pt:'DOSSIÊ TÁTICO 01GURU (God Mode)', en:'01GURU TACTICAL DOSSIER (God Mode)',
+   descPt:'O ARQUIVO SUPREMO. Todos os protocolos biocríticos compilados em um único documento de inteligência brutal.',
+   descEn:'THE SUPREME FILE. All biocritical protocols compiled in a single brutal intelligence document.',
+   includesPt:'· [ACESSO TOTAL] Código Natal + Numerologia (Jumaani & Decoz)\n· [ACESSO TOTAL] Debugging Kármico + Firewall Pessoal de Inimigos Ocultos\n· [ACESSO TOTAL] Roadmap Anual + Trânsitos de Longo Prazo (5 Anos)\n· [ACESSO TOTAL] Engenharia de Riqueza + Ajuste de Assinatura\n· Documento massivo, timbrado, com selo "Cosmic Top Secret" e auditado pelo C-Level\n\n[ EXTENSÃO TÉCNICA MASSIVA: ~60 a 90 PÁGINAS DE INTELIGÊNCIA ]',
+   includesEn:'· [FULL ACCESS] Natal Code + Numerology\n· [FULL ACCESS] Karmic Debugging + Personal Firewall\n· [FULL ACCESS] Annual Roadmap + 5-Year Transits\n· [FULL ACCESS] Wealth Engineering + Signature Adjustment\n· Massive, stamped document, "Cosmic Top Secret" certified\n\n[ MASSIVE TECHNICAL EXTENSION: ~60 to 90 PAGES OF INTELLIGENCE ]',
+   brl:497.00, usd:97.00, stripeUrl:'https://buy.stripe.com/5kQ28t2qUetifkV4uT1ZS0l'},
+];
+
+const translations = {
+  PT:{
+    'tag-decodificacao':'O Processador de Consciência Coletiva',
+    'hero-title':'Dados não mentem.<br>Os astros também não.',
+    'hero-subtitle':'O fim do esoterismo passivo. Cruzamos suas coordenadas exatas de nascimento com os maiores algoritmos de timing do mundo para forjar rotas matemáticas de materialização e proteção.',
+    'cta-button':'[ INICIAR DIAGNÓSTICO ]',
+    'param-title':'A Engenharia dos Seus Parâmetros',
+    'param-name-title':'Nome Completo','param-name-desc':'O identificador vibratório primário. Codifica o Número de Expressão e Desejo da Alma. É a frequência exata da sua assinatura no mundo.',
+    'param-date-title':'Data de Nascimento','param-date-desc':'O Código Fonte. Define o Caminho da Vida (Life Path) e ancora matematicamente os ciclos decenais de materialização financeira e provações kármicas.',
+    'param-hour-title':'Hora Exata','param-hour-desc':'O portal de ativação. Calibra o Ascendente (ASC). Sem a hora exata, a precisão do seu Firewall Energético cai drasticamente, criando pontos cegos.',
+    'param-loc-title':'Cidade, Estado e País','param-loc-desc':'Coordenadas Geobiométricas. A posição planetária exata sobre o local de nascimento gera um Blueprint irreproduzível. Essencial para triangulação de trânsitos.',
+    'form-title':'Terminal de Inserção de Parâmetros',
+    'label-nome':'NOME COMPLETO DO ALVO','label-data':'DATA DE NASCIMENTO','label-hora':'HORA EXATA',
+    'label-pais':'PAÍS','label-estado':'ESTADO / UF','label-cidade':'CIDADE',
+    'label-protocolo':'SELECIONE O PROTOCOLO DE AUDITORIA',
+    'label-partner-name':'NOME COMPLETO DO PARCEIRO(A)',
+    'label-partner-date':'DATA DE NASCIMENTO DO PARCEIRO(A)',
+    'btn-submit':'[ EXECUTAR DECIFRAMENTO ]',
+    'pd-includes-label':'O QUE VOCÊ RECEBE NO PDF',
+    'genesis-title':'A Gênese do 01GURU',
+    'genesis-p1':'O 01GURU não é uma consultoria mística; é um Gabinete de Inteligência Humana e Vibracional. Nascemos da fusão brutal entre a lógica binária dos dados (01) e a precisão inegável dos ciclos cósmicos (GURU).',
+    'genesis-p2':'Sob a arquitetura de Gabriel Prado — Estrategista Sênior e Engenheiro de Operações — o sistema foi forjado para uma única missão: transformar o esoterismo passivo em uma ferramenta tática de materialização e lucro.',
+    'genesis-p3':'Não lemos o seu futuro para confortar o seu ego. Nós auditamos o seu sistema vital, debugamos as suas falhas repetitivas e entregamos a rota matemática exata para o topo.',
+    'footer-exec':'Documento Executivo | Op: Gabriel Prado Rodrigues | CRA-RS TE-002457/O',
+    'footer-copy':'© 2026 01GURU. Todos os sistemas operacionais reservados.',
+    'link-privacy':'Política de Privacidade','link-sub':'Gerenciar Assinatura'
+  },
+  EN:{
+    'tag-decodificacao':'The Collective Consciousness Processor',
+    'hero-title':'Data doesn\'t lie.<br>Neither do the stars.',
+    'hero-subtitle':'The end of passive esoterism. We cross your exact birth coordinates with the world\'s greatest timing algorithms to forge mathematical routes of manifestation and protection.',
+    'cta-button':'[ START DIAGNOSTIC ]',
+    'param-title':'The Engineering of Your Parameters',
+    'param-name-title':'Full Name','param-name-desc':'The primary vibrational identifier. Encodes the Expression and Soul\'s Desire Number. It is the exact frequency of your world signature.',
+    'param-date-title':'Date of Birth','param-date-desc':'The Source Code. Defines the Life Path and mathematically anchors decennial cycles of financial materialization and karmic trials.',
+    'param-hour-title':'Exact Time','param-hour-desc':'The activation portal. Calibrates the Ascendant (ASC). Without the exact hour, the precision of your Energy Firewall drops drastically, creating blind spots.',
+    'param-loc-title':'City, State & Country','param-loc-desc':'Geobiometric Coordinates. The exact planetary position over your birth location generates an irreproducible Blueprint. Essential for transit triangulation.',
+    'form-title':'Parameter Insertion Terminal',
+    'label-nome':'FULL TARGET NAME','label-data':'DATE OF BIRTH','label-hora':'EXACT TIME',
+    'label-pais':'COUNTRY','label-estado':'STATE / PROVINCE','label-cidade':'CITY',
+    'label-protocolo':'SELECT AUDIT PROTOCOL',
+    'label-partner-name':'PARTNER\'S FULL NAME',
+    'label-partner-date':'PARTNER\'S BIRTH DATE',
+    'btn-submit':'[ EXECUTE DECODING ]',
+    'pd-includes-label':'WHAT YOU GET IN THE PDF',
+    'genesis-title':'The Genesis of 01GURU',
+    'genesis-p1':'01GURU is not a mystical consultancy; it is a Human and Vibrational Intelligence Cabinet. We were born from the brutal fusion between binary data logic (01) and the undeniable precision of cosmic cycles (GURU).',
+    'genesis-p2':'Under the architecture of Gabriel Prado — Senior Strategist and Operations Engineer — the system was forged for a single mission: to transform passive esoterism into a tactical tool for manifestation and profit.',
+    'genesis-p3':'We do not read your future to comfort your ego. We audit your vital system, debug your repetitive failures, and deliver the exact mathematical route to the top.',
+    'footer-exec':'Executive Document | Op: Gabriel Prado Rodrigues | CRA-RS TE-002457/O',
+    'footer-copy':'© 2026 01GURU. All operational systems reserved.',
+    'link-privacy':'Privacy Policy','link-sub':'Manage Subscription'
+  }
+};
+
+const usStates = ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"];
+
+const countries = ["Brasil","United States","Afghanistan","Albania","Algeria","Andorra","Angola","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Bulgaria","Cameroon","Canada","Chile","China","Colombia","Costa Rica","Croatia","Cuba","Cyprus","Czech Republic","Denmark","Dominican Republic","Ecuador","Egypt","El Salvador","Estonia","Ethiopia","Fiji","Finland","France","Georgia","Germany","Ghana","Greece","Guatemala","Haiti","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kuwait","Latvia","Lebanon","Libya","Lithuania","Luxembourg","Malaysia","Mexico","Moldova","Monaco","Morocco","Mozambique","Myanmar","Namibia","Nepal","Netherlands","New Zealand","Nicaragua","Nigeria","North Korea","Norway","Oman","Pakistan","Panama","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saudi Arabia","Senegal","Serbia","Singapore","Slovakia","Slovenia","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Sweden","Switzerland","Syria","Taiwan","Tanzania","Thailand","Tunisia","Turkey","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"];
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+// initialization moved to bottom of script
+
+
+
+function buildCountryDropdown() {
+  const sel = document.getElementById('pais');
+  sel.innerHTML = `<option value="">Selecione o País</option>`;
+  countries.sort().forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c;
+    opt.textContent = c;
+    sel.appendChild(opt);
+  });
+  sel.addEventListener('change', onCountryChange);
 }
 
-function animarTeia() {
-    const nome = document.getElementById('nome').value;
-    const data = document.getElementById('dataNascimento').value;
-    const polygon = document.getElementById('radar-data');
+function buildProtocolDropdown() {
+  const sel = document.getElementById('proto-select');
+  sel.innerHTML = currentLanguage === 'PT' ? '<option value="">-- Escolha o Protocolo --</option>' : '<option value="">-- Choose Protocol --</option>';
+  protocols.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p.id;
+    opt.textContent = currentLanguage === 'PT' ? p.pt : p.en;
+    sel.appendChild(opt);
+  });
+}
 
-    if (!nome && !data) {
-        polygon.setAttribute('points', '50,50 50,50 50,50 50,50 50,50 50,50');
-        return;
+// ─── LOCATION ────────────────────────────────────────────────────────────────
+async function onCountryChange() {
+  const val = document.getElementById('pais').value;
+  const estadoSel = document.getElementById('estado');
+  const cidadeSel = document.getElementById('cidade');
+  cidadeSel.innerHTML = '<option value="">Aguardando Estado...</option>';
+  cidadeSel.disabled = true;
+  estadoSel.innerHTML = '<option value="">Carregando...</option>';
+  estadoSel.disabled = true;
+
+  if (!val) {
+    estadoSel.innerHTML = '<option value="">Aguardando País...</option>';
+    return;
+  }
+
+  if (val === 'Brasil') {
+    setLanguage('PT');
+    await loadBrazilStates(estadoSel, cidadeSel);
+  } else if (val === 'United States') {
+    setLanguage('EN');
+    loadUSStates(estadoSel, cidadeSel);
+  } else {
+    await loadCountryStates(val, estadoSel, cidadeSel);
+  }
+  updateProtoPrice();
+}
+
+async function loadCountryStates(country, estadoSel, cidadeSel) {
+  try {
+    const res = await fetch('https://countriesnow.space/api/v0.1/countries/states', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({country})
+    });
+    const data = await res.json();
+    const states = data.data && data.data.states ? data.data.states : [];
+    if (states.length === 0) {
+      estadoSel.innerHTML = '<option value="N/A">Não disponível</option>';
+      estadoSel.disabled = false;
+      cidadeSel.innerHTML = '<option value="">Informe a cidade</option>';
+      cidadeSel.disabled = false;
+      const cityInput = document.createElement('input');
+      return;
     }
-
-    let v1 = nome.length > 0 ? (nome.length * 4) % 30 + 10 : 10;
-    let v2 = data ? parseInt(data.slice(-2)) % 30 + 10 : 10;
-    let v3 = nome.length > 2 ? (nome.charCodeAt(0) * 2) % 30 + 10 : 10;
-    let v4 = data ? parseInt(data.slice(5,7)) * 3 % 30 + 10 : 10;
-    let v5 = nome.length > 4 ? (nome.charCodeAt(nome.length-1) * 3) % 30 + 10 : 10;
-    let v6 = (v1 + v2) % 30 + 10;
-
-    const vals = [v1, Math.max(10, v2), v3, v4, v5, v6];
-    const angles = [0, 60, 120, 180, 240, 300];
-
-    const points = angles.map((angle, i) => {
-        const rad = (angle - 90) * (Math.PI / 180);
-        const x = 50 + vals[i] * Math.cos(rad);
-        const y = 50 + vals[i] * Math.sin(rad);
-        return `${x.toFixed(1)},${y.toFixed(1)}`;
-    }).join(' ');
-
-    polygon.setAttribute('points', points);
+    const label = currentLanguage === 'PT' ? 'Selecione o Estado' : 'Select State';
+    estadoSel.innerHTML = `<option value="">${label}</option>`;
+    states.forEach(s => {
+      const o = document.createElement('option');
+      o.value = s.name; o.textContent = s.name;
+      estadoSel.appendChild(o);
+    });
+    estadoSel.disabled = false;
+    estadoSel.addEventListener('change', async (e) => {
+      const state = e.target.value;
+      if (state) await loadCountryCities(country, state, cidadeSel);
+    }, {once: true});
+  } catch {
+    estadoSel.innerHTML = '<option value="N/A">Erro ao carregar</option>';
+    estadoSel.disabled = false;
+    cidadeSel.innerHTML = '<option value="">Informe a cidade</option>';
+    cidadeSel.disabled = false;
+  }
 }
 
+async function loadCountryCities(country, state, cidadeSel) {
+  cidadeSel.innerHTML = '<option value="">Carregando cidades...</option>';
+  cidadeSel.disabled = true;
+  try {
+    const res = await fetch('https://countriesnow.space/api/v0.1/countries/state/cities', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({country, state})
+    });
+    const data = await res.json();
+    const cities = data.data || [];
+    if (cities.length === 0) {
+      cidadeSel.innerHTML = '<option value="">Nenhuma cidade encontrada</option>';
+      cidadeSel.disabled = false;
+      return;
+    }
+    const label = currentLanguage === 'PT' ? 'Selecione a Cidade' : 'Select City';
+    cidadeSel.innerHTML = `<option value="">${label}</option>`;
+    cities.sort().forEach(c => {
+      const o = document.createElement('option'); o.value = c; o.textContent = c;
+      cidadeSel.appendChild(o);
+    });
+    cidadeSel.disabled = false;
+  } catch {
+    cidadeSel.innerHTML = '<option value="">Erro ao carregar</option>';
+    cidadeSel.disabled = false;
+  }
+}
+
+async function loadBrazilStates(estadoSel, cidadeSel) {
+  estadoSel.innerHTML = '<option value="">Carregando...</option>';
+  estadoSel.disabled = true;
+  try {
+    const res = await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome');
+    const states = await res.json();
+    estadoSel.innerHTML = '<option value="">Selecione o Estado</option>';
+    states.forEach(s => {
+      const o = document.createElement('option');
+      o.value = s.sigla; o.textContent = `${s.nome} (${s.sigla})`; o.dataset.id = s.id;
+      estadoSel.appendChild(o);
+    });
+    estadoSel.disabled = false;
+    estadoSel.addEventListener('change', (e) => {
+      const id = e.target.options[e.target.selectedIndex].dataset.id;
+      if (id) loadBrazilCities(id, cidadeSel);
+    }, {once: true});
+  } catch {}
+}
+
+async function loadBrazilCities(stateId, cidadeSel) {
+  cidadeSel.innerHTML = '<option value="">Carregando cidades...</option>';
+  cidadeSel.disabled = true;
+  try {
+    const res = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${stateId}/municipios?orderBy=nome`);
+    const cities = await res.json();
+    cidadeSel.innerHTML = '<option value="">Selecione a Cidade</option>';
+    cities.forEach(c => {
+      const o = document.createElement('option'); o.value = c.nome; o.textContent = c.nome;
+      cidadeSel.appendChild(o);
+    });
+    cidadeSel.disabled = false;
+  } catch {}
+}
+
+function loadUSStates(estadoSel, cidadeSel) {
+  estadoSel.innerHTML = '<option value="">Select State</option>';
+  usStates.forEach(s => {
+    const o = document.createElement('option'); o.value = s; o.textContent = s;
+    estadoSel.appendChild(o);
+  });
+  estadoSel.disabled = false;
+  cidadeSel.innerHTML = '<option value="N/A">Enter city manually</option>';
+  cidadeSel.disabled = false;
+  estadoSel.addEventListener('change', () => {
+    cidadeSel.innerHTML = '<option value="N/A">Enter city manually</option>';
+    cidadeSel.disabled = false;
+  }, {once: true});
+}
+
+// ─── LANGUAGE ────────────────────────────────────────────────────────────────
+function setLanguage(lang) {
+  currentLanguage = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang));
+  const t = translations[lang];
+  for (const id in t) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+    if (id === 'hero-title') el.innerHTML = t[id];
+    else el.textContent = t[id];
+  }
+  buildProtocolDropdown();
+  const cur = document.getElementById('proto-select').value;
+  if (cur) showProtocolDetail(cur);
+  updateProtoPrice();
+}
+
+window.onload = () => {
+  setLanguage('PT');
+  buildCountryDropdown(); // Corrected from loadCountryList
+  buildProtocolDropdown();
+  
+  // Check if we are returning from checkout
+  if (window.location.pathname.includes('/sucesso')) {
+    handleCheckoutSuccess();
+  }
+};
+
+async function handleCheckoutSuccess() {
+  const pending = localStorage.getItem('pending_dossie');
+  if (!pending) return;
+  
+  const formData = JSON.parse(pending);
+  const overlay = document.getElementById('loading-overlay');
+  const loadingText = document.getElementById('loading-text');
+  
+  loadingText.textContent = currentLanguage === 'PT' ? 'PAGAMENTO CONFIRMADO. GERANDO RELATÓRIO...' : 'PAYMENT CONFIRMED. GENERATING REPORT...';
+  overlay.classList.remove('hidden');
+  runTerminalAnim();
+  
+  try {
+    const res = await fetch('/api/gerar_dossie', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    });
+    
+    if (!res.ok) throw new Error('Generation failed');
+    
+    // 1. A CAPTURA DO SINAL OCULTO (O Crachá do Alvo)
+    const alvoId = res.headers.get('X-Alvo-ID');
+    
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    const protoName = formData.protocolo === '16' ? 'GOD_MODE' : 'RELATORIO';
+    a.download = `01GURU_${protoName}_${formData.nome.split(' ')[0].toUpperCase()}.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.remove();
+    
+    localStorage.removeItem('pending_dossie');
+    
+    setTimeout(() => {
+      overlay.classList.add('hidden');
+      
+      // 2. O REDIRECIONAMENTO C-LEVEL (A Ponte de Ouro)
+      if (alvoId) {
+          // Arremessa o alvo para a página dinâmica com o botão do Telegram
+          window.location.href = `/sucesso/${alvoId}`;
+      } else {
+          // Contingência de segurança caso a nuvem falhe
+          window.location.href = '/'; 
+      }
+    }, 1500);
+  } catch (err) {
+    alert('FALHA NO PROCESSAMENTO: ' + err.message);
+    overlay.classList.add('hidden');
+  }
+}
+
+// ─── PROTOCOL CARD ───────────────────────────────────────────────────────────
+function showProtocolDetail(id) {
+  document.getElementById('protocolo-hidden').value = id;
+  const detail = document.getElementById('proto-detail');
+  if (!id) { detail.style.display = 'none'; return; }
+  const p = protocols.find(x => x.id === id);
+  if (!p) return;
+  const isBR = document.getElementById('pais').value === 'Brasil';
+  const lang = currentLanguage;
+  document.getElementById('pd-title').textContent = lang === 'PT' ? p.pt : p.en;
+  document.getElementById('pd-desc').textContent = lang === 'PT' ? p.descPt : p.descEn;
+  document.getElementById('pd-includes').textContent = lang === 'PT' ? p.includesPt : p.includesEn;
+  detail.style.display = 'block';
+  detail.className = id === '16' ? 'featured-god' : '';
+  
+  // Show partner fields only for Sinastria (id='4')
+  const partnerFields = document.getElementById('partner-fields');
+  if (id === '4') {
+    partnerFields.style.display = 'block';
+  } else {
+    partnerFields.style.display = 'none';
+  }
+  
+  renderPrice(p, isBR, lang);
+}
+
+function renderPrice(p, isBR, lang) {
+  const main = document.getElementById('pd-price');
+  const sub = document.getElementById('pd-price-sub');
+  if (lang === 'PT') {
+    const inst = (p.brl / 12).toLocaleString('pt-BR', {style:'currency', currency:'BRL'});
+    const cash = p.brl.toLocaleString('pt-BR', {style:'currency', currency:'BRL'});
+    main.textContent = `12x de ${inst}`;
+    sub.textContent = `ou ${cash} à vista`;
+  } else {
+    main.textContent = `$ ${p.usd.toFixed(2)} USD`;
+    sub.textContent = 'One-time payment';
+  }
+}
+
+
+function updateProtoPrice() {
+  const id = document.getElementById('proto-select').value;
+  if (!id) return;
+  const p = protocols.find(x => x.id === id);
+  if (!p) return;
+  const isBR = document.getElementById('pais').value === 'Brasil';
+  renderPrice(p, isBR, currentLanguage);
+}
+
+// ─── FORM SUBMIT ─────────────────────────────────────────────────────────────
 document.getElementById('dossie-form').addEventListener('submit', function(e) {
   e.preventDefault();
   const protoId = document.getElementById('protocolo-hidden').value;
-  if(!protoId) { alert('Selecione um protocolo'); return; }
+  if (!protoId) { 
+    alert(currentLanguage === 'PT' ? 'Por favor, selecione um protocolo.' : 'Please select a protocol.'); 
+    return; 
+  }
   
-  let link = 'https://buy.stripe.com/5kQ28t2qUetifkV4uT1ZS0l'; 
-  if(protoId === '1') link = 'https://buy.stripe.com/9B628t1mQ1Gw0q1e5t1ZS0n';
-  if(protoId === '4') link = 'https://buy.stripe.com/8x2bJ35D62KA7St8L91ZS09';
-  if(protoId === '16') link = 'https://buy.stripe.com/5kQ28t2qUetifkV4uT1ZS0l';
+  const p = protocols.find(x => x.id === protoId);
+  
+  // 1. GERAÇÃO DO CARIMBO TÁTICO (ORDER ID)
+  // Cria um identificador único irrefutável para linkar o formulário à Stripe
+  const orderId = 'ORD-' + Math.random().toString(36).substr(2, 9).toUpperCase();
 
-  window.location.href = link;
+  const formData = {
+    order_id: orderId, // Carimbo anexado aos dados
+    nome: document.getElementById('nome').value,
+    dataNascimento: document.getElementById('dataNascimento').value,
+    horaNascimento: document.getElementById('horaNascimento').value,
+    cidade: document.getElementById('cidade').value,
+    estado: document.getElementById('estado').value,
+    pais: document.getElementById('pais').value,
+    protocolo: protoId,
+    idioma: currentLanguage,
+    parceiro_nome: document.getElementById('partner-fields').style.display === 'block' ? document.getElementById('parceiro-nome').value : null,
+    parceiro_data: document.getElementById('partner-fields').style.display === 'block' ? document.getElementById('parceiro-data').value : null
+  };
+  
+  // Validação Biocrítica
+  if (!formData.nome || !formData.dataNascimento || !formData.horaNascimento || !formData.cidade || !formData.estado) {
+    alert(currentLanguage === 'PT' ? 'Preencha todos os parâmetros biocríticos.' : 'Please fill all biocritical parameters.');
+    return;
+  }
+  
+  // Salva no cache local para backup de sessão
+  localStorage.setItem('pending_dossie', JSON.stringify(formData));
+  
+  // 2. COMUNICAÇÃO COM A BLACK BOX (PYTHON) E REDIRECIONAMENTO STRIPE
+  // O botão muda para mostrar que a máquina está operando
+  const btnSubmit = document.getElementById('btn-submit');
+  const originalText = btnSubmit.innerText;
+  btnSubmit.innerText = currentLanguage === 'PT' ? '[ CRIPTOGRAFANDO DADOS... ]' : '[ ENCRYPTING DATA... ]';
+  btnSubmit.disabled = true;
+
+  // Dispara os dados para o seu motor Python gravar no SQLite como 'PENDENTE'
+  fetch('/api/registrar_pedido', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+  }).then(() => {
+      // Sucesso no banco. Joga o alvo para a Stripe com o Carimbo (client_reference_id)
+      window.location.href = p.stripeUrl + "?client_reference_id=" + orderId;
+  }).catch(err => {
+      console.error("[FALHA DE SISTEMA] Erro ao contatar a Black Box:", err);
+      // Fallback de Guerra: Nunca perdemos uma venda. Se o banco falhar, manda pra Stripe mesmo assim.
+      window.location.href = p.stripeUrl + "?client_reference_id=" + orderId;
+  });
 });
+// ─── MÁQUINA DE FREQUÊNCIA (ORÁCULO EFEITO BARNUM) ──────────────────────────
+const insightsBarnum = {
+    pt: [
+        "Existe um pico de energia Intelectual latente. No entanto, o aterramento (Terra) está baixo, causando ansiedade. O 01GURU foca em transformar essa ideia em matéria.",
+        "Sua fluidez Emocional (Água) está dominando a Matriz. Isso atrai vampirismo energético. Precisamos ativar o Fogo arquetípico para estabelecer limites lucrativos.",
+        "Alta concentração em Terra (Material). Você tem disciplina, mas falta a conexão Intuitiva (Éter) para enxergar disrupções antes delas acontecerem. Desbloquearemos isso.",
+        "Forte ignição de Fogo (Vontade). Você começa projetos com força, mas perde aliados no processo. A neuro-astrologia vai recalibrar sua liderança e retenção."
+    ],
+    en: [
+        "There is a peak of latent Intellectual energy. However, your grounding (Earth) is low, causing anxiety. 01GURU focuses on turning this idea into matter.",
+        "Your Emotional fluidity (Water) is dominating the Matrix. This attracts energy vampirism. We need to activate archetypal Fire to establish profitable boundaries.",
+        "High concentration in Earth (Material). You have discipline, but lack Intuitive connection (Aether) to see disruptions before they happen. We will unlock this.",
+        "Strong ignition of Fire (Will). You start projects with force, but lose allies. Neuro-astrology will recalibrate your leadership and retention."
+    ]
+};
+
+function initChart(canvasId, labelLang) {
+    const ctx = document.getElementById(canvasId).getContext('2d');
+    const labels = labelLang === 'pt' ? 
+        ['Vontade (Fogo)', 'Emoção (Água)', 'Intelecto (Ar)', 'Material (Terra)', 'Intuição (Éter)'] : 
+        ['Will (Fire)', 'Emotion (Water)', 'Intellect (Air)', 'Material (Earth)', 'Intuition (Aether)'];
+
+    return new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Matriz',
+                data: [20, 20, 20, 20, 20],
+                backgroundColor: 'rgba(118, 199, 176, 0.2)',
+                borderColor: '#76C7B0',
+                pointBackgroundColor: '#D4AF37',
+                pointBorderColor: '#00142D',
+                borderWidth: 2,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                    grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                    pointLabels: { color: '#A0AAB5', font: { size: 12, family: "'Inter', sans-serif" } },
+                    ticks: { display: false, min: 0, max: 100, backdropColor: 'transparent' }
+                }
+            },
+            plugins: { legend: { display: false } }
+        }
+    });
+}
+
+// Inicializa os gráficos após o carregamento
+setTimeout(() => {
+    const chartPT = initChart('frequencyChartPT', 'pt');
+    const chartEN = initChart('frequencyChartEN', 'en');
+
+    function handleOracleSubmit(e, lang, chartInstance) {
+        e.preventDefault();
+        const nameId = lang === 'pt' ? 'userNamePT' : 'userNameEN';
+        const dateId = lang === 'pt' ? 'birthDatePT' : 'birthDateEN';
+        const resId = lang === 'pt' ? 'oracle-result-pt' : 'oracle-result-en';
+        const resNameId = lang === 'pt' ? 'res-name-pt' : 'res-name-en';
+        const resInsightId = lang === 'pt' ? 'res-insight-pt' : 'res-insight-en';
+
+        const name = document.getElementById(nameId).value.trim();
+        const birthStr = document.getElementById(dateId).value;
+        if(!name || !birthStr) return;
+
+        // Algoritmo Matemático de Efeito Barnum
+        let seed = 0;
+        for(let i = 0; i < birthStr.length; i++) seed += birthStr.charCodeAt(i);
+        const newData = [ 40 + (seed * 7 % 60), 40 + (seed * 13 % 60), 40 + (seed * 3 % 60), 40 + (seed * 11 % 60), 40 + (seed * 17 % 60) ];
+
+        chartInstance.data.datasets[0].data = newData;
+        chartInstance.update();
+
+        document.getElementById(resNameId).textContent = name;
+        const maxIndex = newData.indexOf(Math.max(...newData));
+        const insightIndex = maxIndex < insightsBarnum[lang].length ? maxIndex : (seed % insightsBarnum[lang].length);
+        document.getElementById(resInsightId).textContent = insightsBarnum[lang][insightIndex];
+        document.getElementById(resId).style.display = 'block';
+    }
+
+    document.getElementById('oracle-form-pt').addEventListener('submit', (e) => handleOracleSubmit(e, 'pt', chartPT));
+    document.getElementById('oracle-form-en').addEventListener('submit', (e) => handleOracleSubmit(e, 'en', chartEN));
+}, 500);
+
+// Integração com o seu botão de Idioma (PT/EN)
+const originalSetLanguage = setLanguage;
+setLanguage = function(lang) {
+    originalSetLanguage(lang); // Roda a sua função original primeiro
+    // Troca o container da Máquina de Frequência
+    if(lang === 'PT') {
+        document.getElementById('oracle-wrapper-pt').style.display = 'grid';
+        document.getElementById('oracle-wrapper-en').style.display = 'none';
+        document.getElementById('oracle-main-title').innerHTML = 'A Máquina de Frequência';
+        document.getElementById('oracle-main-desc').innerHTML = 'Nosso cérebro opera em frequências mapeáveis, que ressoam com os ciclos cósmicos. Insira sua data de nascimento para gerar seu <strong>Gráfico de Alinhamento</strong> instantaneamente.';
+    } else {
+        document.getElementById('oracle-wrapper-pt').style.display = 'none';
+        document.getElementById('oracle-wrapper-en').style.display = 'grid';
+        document.getElementById('oracle-main-title').innerHTML = 'The Frequency Machine';
+        document.getElementById('oracle-main-desc').innerHTML = 'Our brain operates on mappable frequencies that resonate with cosmic cycles. Enter your birth date to generate your <strong>Alignment Chart</strong> instantly.';
+    }
+};
 </script>
 </body>
 </html>
