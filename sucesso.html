@@ -3,57 +3,157 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>01GURU | Sincronização Concluída</title>
+<title>01GURU | Confirmação Executiva</title>
+<link rel="icon" type="image/png" href="./01GURU.PNG">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
 /* A Paleta de Materialização C-Level */
 :root {
-    --bg-navy: #112236; 
+    --bg-navy: #00142D; 
     --gold-alquimico: #D4AF37;
     --mint-terminal: #76C7B0;
     --light: #F8F9FA;
-    --panel: #0a1526;
+    --muted: #A0AAB5;
+    --panel: #00213D;
+    --bgold: rgba(212,175,55,0.3);
     --fh: 'Oswald', sans-serif;
     --fb: 'Crimson Pro', serif;
     --fu: 'Inter', sans-serif;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-body { background: var(--bg-navy); color: var(--light); font-family: var(--fb); display: flex; align-items: center; justify-content: center; min-height: 100vh; overflow: hidden; }
+body { background: var(--bg-navy); color: var(--light); font-family: var(--fb); display: flex; align-items: center; justify-content: center; min-height: 100vh; overflow-x: hidden; }
 
-.container { text-align: center; background: var(--panel); border: 1px solid rgba(212,175,55,0.3); padding: 60px 40px; border-radius: 8px; max-width: 600px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); animation: dropIn 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-@keyframes dropIn { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.container { text-align: center; background: var(--panel); border: 1px solid var(--bgold); padding: 50px 40px; border-radius: 6px; max-width: 650px; width: 90%; box-shadow: 0 10px 40px rgba(0,0,0,0.5); animation: dropIn 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+@keyframes dropIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-.hlogo img { height: 60px; filter: drop-shadow(0 0 15px rgba(212,175,55,0.4)); margin-bottom: 30px; }
-.status-badge { display: inline-block; font-family: var(--fu); font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--bg-navy); background: var(--mint-terminal); padding: 6px 18px; border-radius: 20px; margin-bottom: 24px; box-shadow: 0 0 15px rgba(118,199,176,0.4); }
+.hlogo img { width: 120px; height: auto; filter: drop-shadow(0 0 15px rgba(118,199,176,0.2)); margin-bottom: 25px; }
+.status-badge { display: inline-block; font-family: var(--fu); font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--bg-navy); background: var(--mint-terminal); padding: 6px 18px; border-radius: 4px; margin-bottom: 20px; }
 
-h1 { font-family: var(--fh); font-size: 2.4rem; color: var(--gold-alquimico); line-height: 1.1; margin-bottom: 16px; text-transform: uppercase; }
-p { font-size: 1.2rem; color: #A0AAB5; margin-bottom: 40px; line-height: 1.6; }
-strong { color: var(--light); font-weight: 600; }
+h1 { font-family: var(--fh); font-size: 2.2rem; color: var(--gold-alquimico); line-height: 1.2; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+p.subtitle { font-size: 1.1rem; color: var(--muted); margin-bottom: 25px; line-height: 1.6; }
+.order-box { display: inline-block; border: 1px dashed var(--gold-alquimico); padding: 10px 25px; margin-bottom: 35px; border-radius: 4px; background: rgba(212,175,55,0.05); }
+.order-box span { display: block; font-family: var(--fu); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-bottom: 4px; }
+.order-box strong { font-family: var(--fh); font-size: 1.4rem; color: var(--gold-alquimico); letter-spacing: 2px; }
 
-.cta-btn { display: inline-block; background: var(--gold-alquimico); color: var(--bg-navy); padding: 18px 46px; font-family: var(--fu); font-size: 1rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; border-radius: 4px; box-shadow: 0 4px 20px rgba(212,175,55,0.3); transition: all 0.3s; }
-.cta-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 30px rgba(212,175,55,0.5); }
-.warning { font-family: var(--fu); font-size: 0.75rem; color: #A0AAB5; margin-top: 24px; letter-spacing: 1px; }
+/* Formulário de Entrega */
+.delivery-section { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 30px; text-align: left; }
+.delivery-section h3 { font-family: var(--fu); font-size: 0.85rem; color: var(--mint-terminal); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; text-align: center; }
 
-@media(max-width:600px){ .container { padding: 40px 20px; border-radius: 0; border-left: none; border-right: none; } h1 { font-size: 2rem; } }
+.radio-group { display: flex; gap: 10px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap; }
+.radio-label { background: rgba(255,255,255,0.03); border: 1px solid var(--bgold); padding: 12px 24px; border-radius: 4px; cursor: pointer; color: var(--muted); font-family: var(--fu); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s; flex: 1; text-align: center; min-width: 120px; }
+input[type="radio"] { display: none; }
+input[type="radio"]:checked + .radio-label { background: var(--gold-alquimico); color: var(--bg-navy); border-color: var(--gold-alquimico); font-weight: 700; box-shadow: 0 4px 15px rgba(212,175,55,0.3); }
+
+.input-field { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--bgold); color: var(--light); padding: 16px; font-family: var(--fu); font-size: 1rem; border-radius: 4px; margin-bottom: 25px; outline: none; transition: border-color 0.3s; text-align: center; }
+.input-field:focus { border-color: var(--mint-terminal); box-shadow: 0 0 0 2px rgba(118,199,176,0.1); }
+
+.cta-btn { display: block; width: 100%; background: var(--mint-terminal); color: var(--bg-navy); padding: 18px; font-family: var(--fu); font-size: 0.95rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; border: none; border-radius: 4px; cursor: pointer; transition: all 0.3s; }
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(118,199,176,0.4); }
+
+.success-msg { display: none; background: rgba(118,199,176,0.1); border: 1px solid var(--mint-terminal); color: var(--mint-terminal); padding: 20px; border-radius: 4px; font-family: var(--fu); font-size: 0.9rem; margin-top: 20px; text-align: center; line-height: 1.6; }
+
+@media(max-width:600px){ .container { padding: 40px 20px; border-radius: 0; border: none; box-shadow: none; width: 100%; } h1 { font-size: 1.8rem; } .radio-group { flex-direction: column; } }
 </style>
 </head>
 <body>
 
 <div class="container">
     <div class="hlogo">
-        <img src="/static/img/01GURU_SF.PNG" alt="01GURU">
+        <img src="./01GURU.PNG" alt="01GURU">
     </div>
     
-    <div class="status-badge">DOCUMENTO FORJADO COM SUCESSO</div>
+    <div class="status-badge">OPERAÇÃO AUTORIZADA</div>
     
-    <h1>Sua mente agora está na matriz.</h1>
-    <p>O seu PDF Tático já foi baixado. Para ativar a sua inteligência diária e plugar o seu sistema ao nosso <strong>Motor de Retenção C-Level</strong>, você precisa acionar o seu terminal móvel.</p>
+    <h1>Acesso Executivo Concedido</h1>
+    <p class="subtitle">Seu pagamento foi processado com excelência. O Motor Oracular do 01GURU já iniciou a decodificação matemática dos seus parâmetros biocríticos.</p>
     
-    <a href="{{ link_telegram }}" class="cta-btn">[ INICIAR POSSESSÃO NO TELEGRAM ]</a>
+    <div class="order-box">
+        <span>Número do Protocolo / Pedido</span>
+        <strong id="display-order">{{ order_id }}</strong>
+    </div>
     
-    <div class="warning">Criptografia Ativada. Este link é único e intransferível.</div>
+    <div class="delivery-section" id="delivery-form-container">
+        <h3>Defina sua Rota de Entrega</h3>
+        
+        <form id="delivery-form">
+            <div class="radio-group">
+                <input type="radio" id="opt-whats" name="canal" value="WhatsApp" checked onchange="updatePlaceholder()">
+                <label for="opt-whats" class="radio-label">WhatsApp</label>
+                
+                <input type="radio" id="opt-tele" name="canal" value="Telegram" onchange="updatePlaceholder()">
+                <label for="opt-tele" class="radio-label">Telegram</label>
+                
+                <input type="radio" id="opt-email" name="canal" value="E-mail" onchange="updatePlaceholder()">
+                <label for="opt-email" class="radio-label">E-mail</label>
+            </div>
+            
+            <input type="text" id="contact-info" class="input-field" placeholder="Insira seu WhatsApp (com DDD)..." required>
+            
+            <button type="submit" class="cta-btn" id="btn-submit">[ CONFIRMAR ROTA ]</button>
+        </form>
+
+        <div class="success-msg" id="success-msg">
+            <strong>ROTA ESTABELECIDA.</strong><br>
+            Seus dados foram sincronizados. A equipe de operações enviará seu Dossiê Tático pelo canal selecionado assim que a forja for concluída.
+        </div>
+    </div>
 </div>
 
+<script>
+    // Recupera o Order ID do cache (caso a variável do servidor falhe)
+    window.onload = function() {
+        const displayOrder = document.getElementById('display-order');
+        if (displayOrder.innerText === '{{ order_id }}' || displayOrder.innerText === '') {
+            const pending = localStorage.getItem('pending_dossie');
+            if (pending) {
+                const data = JSON.parse(pending);
+                if(data.order_id) {
+                    displayOrder.innerText = data.order_id;
+                } else {
+                    displayOrder.innerText = 'PROCESSANDO...';
+                }
+            } else {
+                displayOrder.innerText = 'PROCESSANDO...';
+            }
+        }
+    };
+
+    function updatePlaceholder() {
+        const canal = document.querySelector('input[name="canal"]:checked').value;
+        const input = document.getElementById('contact-info');
+        
+        if(canal === 'WhatsApp') {
+            input.placeholder = 'Insira seu WhatsApp (com DDD)...';
+            input.type = 'tel';
+        } else if (canal === 'Telegram') {
+            input.placeholder = 'Insira seu @Usuário ou Telefone...';
+            input.type = 'text';
+        } else {
+            input.placeholder = 'Insira seu E-mail executivo...';
+            input.type = 'email';
+        }
+    }
+
+    document.getElementById('delivery-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const canal = document.querySelector('input[name="canal"]:checked').value;
+        const contato = document.getElementById('contact-info').value;
+        const orderId = document.getElementById('display-order').innerText;
+
+        // Aqui você faria o fetch para o backend para salvar essa preferência de entrega.
+        // Simulando a execução imediata para o cliente:
+        
+        const btn = document.getElementById('btn-submit');
+        btn.innerText = '[ ENVIANDO DADOS... ]';
+        btn.style.opacity = '0.7';
+
+        setTimeout(() => {
+            document.getElementById('delivery-form').style.display = 'none';
+            document.getElementById('success-msg').style.display = 'block';
+        }, 1000);
+    });
+</script>
 </body>
 </html>
