@@ -921,8 +921,8 @@ document.getElementById('dossie-form').addEventListener('submit', function(e) {
   btnSubmit.innerText = currentLanguage === 'PT' ? '[ CRIPTOGRAFANDO DADOS... ]' : '[ ENCRYPTING DATA... ]';
   btnSubmit.disabled = true;
 
-  // Dispara os dados para o seu motor Python gravar no SQLite como 'PENDENTE'
-  fetch('/api/registrar_pedido', {
+  // Dispara os dados para a Nuvem (Render + Supabase) gravar como 'PENDENTE'
+  fetch('https://zero1guru-core-api.onrender.com/api/registrar_pedido', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
