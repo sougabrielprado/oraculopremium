@@ -987,18 +987,35 @@ setTimeout(() => {
 // Integração com o seu botão de Idioma (PT/EN)
 const originalSetLanguage = setLanguage;
 setLanguage = function(lang) {
-    originalSetLanguage(lang); // Roda a sua função original primeiro
-    // Troca o container da Máquina de Frequência
+    originalSetLanguage(lang); // Roda a sua lógica de tradução de textos original
+
+    // Captura os elementos de link do rodapé
+    const termsLink = document.getElementById('link-terms');
+    const privacyLink = document.getElementById('link-privacy');
+    const cookiesLink = document.getElementById('link-cookies');
+
     if(lang === 'PT') {
+        // Ajustes da Máquina de Frequência (PT)
         document.getElementById('oracle-wrapper-pt').style.display = 'grid';
         document.getElementById('oracle-wrapper-en').style.display = 'none';
         document.getElementById('oracle-main-title').innerHTML = 'A Máquina de Frequência';
         document.getElementById('oracle-main-desc').innerHTML = 'Nosso cérebro opera em frequências mapeáveis, que ressoam com os ciclos cósmicos. Insira sua data de nascimento para gerar seu <strong>Gráfico de Alinhamento</strong> instantaneamente.';
+        
+        // Roteamento de Links Legais (PT)
+        if(termsLink) termsLink.href = 'termos.html';
+        if(privacyLink) privacyLink.href = 'politica-privacidade.html';
+        if(cookiesLink) cookiesLink.href = 'cookies.html';
     } else {
+        // Ajustes da Máquina de Frequência (EN)
         document.getElementById('oracle-wrapper-pt').style.display = 'none';
         document.getElementById('oracle-wrapper-en').style.display = 'grid';
         document.getElementById('oracle-main-title').innerHTML = 'The Frequency Machine';
         document.getElementById('oracle-main-desc').innerHTML = 'Our brain operates on mappable frequencies that resonate with cosmic cycles. Enter your birth date to generate your <strong>Alignment Chart</strong> instantly.';
+        
+        // Roteamento de Links Legais (EN)
+        if(termsLink) termsLink.href = 'terms-en.html';
+        if(privacyLink) privacyLink.href = 'privacy-en.html';
+        if(cookiesLink) cookiesLink.href = 'cookies-en.html';
     }
 };
 </script>
