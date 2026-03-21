@@ -151,8 +151,8 @@ input[type="radio"]:checked + .radio-label { background: var(--gold-alquimico); 
         btn.innerText = '[ SINCRONIZANDO... ]';
         btn.disabled = true;
 
-        // DISPARO REAL PARA A SUA API
-        fetch('/api/atualizar_contato', {
+        // DISPARO REAL PARA A SUA API (Via Ngrok)
+        fetch('https://SEU-ENDERECO-AQUI.ngrok-free.app/api/atualizar_contato', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
