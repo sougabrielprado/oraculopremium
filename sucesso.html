@@ -27,7 +27,7 @@ body { background: var(--bg-navy); color: var(--light); font-family: var(--fb); 
 .container { text-align: center; background: var(--panel); border: 1px solid var(--bgold); padding: 50px 40px; border-radius: 6px; max-width: 650px; width: 90%; box-shadow: 0 10px 40px rgba(0,0,0,0.5); animation: dropIn 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
 @keyframes dropIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-.hlogo img { width: 120px; height: auto; filter: drop-shadow(0 0 15px rgba(118,199,176,0.2)); margin-bottom: 25px; }
+.hlogo img { width: 100%; max-width: 140px; height: auto; filter: drop-shadow(0 0 15px rgba(118,199,176,0.2)); margin-bottom: 25px; }
 .status-badge { display: inline-block; font-family: var(--fu); font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--bg-navy); background: var(--mint-terminal); padding: 6px 18px; border-radius: 4px; margin-bottom: 20px; }
 
 h1 { font-family: var(--fh); font-size: 2.2rem; color: var(--gold-alquimico); line-height: 1.2; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
@@ -60,7 +60,7 @@ input[type="radio"]:checked + .radio-label { background: var(--gold-alquimico); 
 
 <div class="container">
     <div class="hlogo">
-        <img src="./logo.png" alt="01GURU">
+        <img src="./01GURU.PNG" alt="01GURU">
     </div>
     
     <div class="status-badge">OPERAÇÃO AUTORIZADA</div>
@@ -88,7 +88,7 @@ input[type="radio"]:checked + .radio-label { background: var(--gold-alquimico); 
                 <label for="opt-email" class="radio-label">E-mail</label>
             </div>
             
-            <input type="text" id="contact-info" class="input-field" placeholder="Insira seu WhatsApp (com DDD)..." required>
+            <input type="tel" id="contact-info" class="input-field" placeholder="Insira seu WhatsApp (com DDD)..." required>
             
             <button type="submit" class="cta-btn" id="btn-submit">[ CONFIRMAR ROTA ]</button>
         </form>
@@ -118,10 +118,21 @@ input[type="radio"]:checked + .radio-label { background: var(--gold-alquimico); 
         }
     };
 
+    // Ajuste Cirúrgico: Facilita o teclado no celular do cliente
     function updatePlaceholder() {
         const canal = document.querySelector('input[name="canal"]:checked').value;
         const input = document.getElementById('contact-info');
-        input.placeholder = `Insira seu ${canal}...`;
+        
+        if(canal === 'WhatsApp') {
+            input.placeholder = 'Insira seu WhatsApp (com DDD)...';
+            input.type = 'tel';
+        } else if(canal === 'Telegram') {
+            input.placeholder = 'Insira seu @Usuário ou Telefone...';
+            input.type = 'text';
+        } else {
+            input.placeholder = 'Insira seu E-mail executivo...';
+            input.type = 'email';
+        }
     }
 
     document.getElementById('delivery-form').addEventListener('submit', function(e) {
@@ -140,7 +151,7 @@ input[type="radio"]:checked + .radio-label { background: var(--gold-alquimico); 
         btn.innerText = '[ SINCRONIZANDO... ]';
         btn.disabled = true;
 
-        // DISPARO REAL PARA A SUA API NO TERMINAL 1
+        // DISPARO REAL PARA A SUA API
         fetch('/api/atualizar_contato', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
