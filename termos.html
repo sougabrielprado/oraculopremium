@@ -24,6 +24,38 @@ strong {color: var(--light);}
 .doc-footer {margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--bgold); font-family: var(--fu); font-size: 0.8rem; color: var(--muted); text-align: center;}
 @media(max-width:700px){.legal-container{margin: 20px; padding: 30px;}}
 </style>
+<style>
+  body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+</style>
+<script>
+// Bloqueia o botão direito do mouse
+  document.addEventListener('contextmenu', event => event.preventDefault());
+  
+// Bloqueia atalhos de desenvolvedor e cópia
+  document.addEventListener('keydown', function(e) {
+    if(e.key === 'F12') { e.preventDefault(); return false; }
+    if(e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) { e.preventDefault(); return false; }
+    if(e.ctrlKey && (e.key === 'U' || e.key === 'u' || e.key === 'C' || e.key === 'c')) { e.preventDefault(); return false; }
+    if(e.key === 'PrintScreen') { 
+        navigator.clipboard.writeText('Conteúdo protegido pela Inteligência 01GURU.');
+        alert('Acesso Restrito: Captura de tela interceptada pelo Firewall.'); 
+        e.preventDefault(); return false; 
+    }
+  });
+</script>
+
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vt032ja20b");
+</script>
 </head>
 <body>
 
