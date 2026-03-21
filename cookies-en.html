@@ -7,31 +7,66 @@
 <link rel="icon" type="image/png" href="./logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
-/* Same CSS as above */
 :root{--bg:#00142D;--panel:#00213D;--gold:#D4AF37;--mint:#76C7B0;--light:#F8F9FA;--muted:#A0AAB5;--bgold:rgba(212,175,55,0.25);--fh:'Oswald',sans-serif;--fb:'Crimson Pro',serif;--fu:'Inter',sans-serif}
-body{background:var(--bg);color:var(--light);font-family:var(--fb);font-size:1.1rem;line-height:1.8;margin:0;padding:0}
-.legal-container{max-width:800px;margin:60px auto;padding:50px;background:var(--panel);border:1px solid var(--bgold);border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,0.5)}
-.header-logo{text-align:center;margin-bottom:30px}
-.header-logo img{width:100%;max-width:180px;height:auto;filter:drop-shadow(0 0 15px rgba(118,199,176,0.2))}
-h1{font-family:var(--fh);color:var(--gold);font-size:2.2rem;text-align:center;margin-bottom:40px;line-height:1.2}
-h2{font-family:var(--fu);color:var(--mint);font-size:0.9rem;text-transform:uppercase;letter-spacing:2px;margin-top:40px;margin-bottom:10px}
-p,ul{margin-bottom:20px;color:var(--muted)}
-.btn-voltar{display:inline-block;margin-bottom:30px;color:var(--mint);text-decoration:none;font-family:var(--fu);font-size:0.8rem;text-transform:uppercase;letter-spacing:2px}
-.doc-footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--bgold);font-family:var(--fu);font-size:0.8rem;color:var(--muted);text-align:center}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--light);font-family:var(--fb);font-size:1.1rem;line-height:1.8;}
+.legal-container{max-width: 800px; margin: 60px auto; padding: 50px; background: var(--panel); border: 1px solid var(--bgold); border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);}
+.header-logo {text-align: center; margin-bottom: 30px;}
+.header-logo img {width: 120px; filter: drop-shadow(0 0 15px rgba(118,199,176,0.2));}
+h1 {font-family: var(--fh); color: var(--gold); font-size: 2.2rem; text-align: center; margin-bottom: 40px; line-height: 1.2;}
+h2 {font-family: var(--fu); color: var(--mint); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-top: 40px; margin-bottom: 10px;}
+p, ul {margin-bottom: 20px; color: var(--muted);}
+ul {padding-left: 20px;}
+li {margin-bottom: 10px;}
+strong {color: var(--light);}
+.btn-voltar {display: inline-block; margin-bottom: 30px; color: var(--mint); text-decoration: none; font-family: var(--fu); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s;}
+.btn-voltar:hover {color: var(--gold);}
+.doc-footer {margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--bgold); font-family: var(--fu); font-size: 0.8rem; color: var(--muted); text-align: center;}
+@media(max-width:700px){.legal-container{margin: 20px; padding: 30px;}}
 </style>
 </head>
 <body>
+
 <div class="legal-container">
     <a href="./index.html" class="btn-voltar">← Back to System</a>
-    <div class="header-logo"><img src="./01GURU.PNG" alt="01GURU"></div>
+    
+    <div class="header-logo"><img src="./logo.png" alt="01GURU" style="width: 100%; max-width: 180px; height: auto;"></div>
     <h1>Tactical Tracking and Synchronization Policy (Cookies)</h1>
-    <p>Our domain uses persistent and volatile data fragments ("cookies") to maintain session integrity, shield the payment flow, and provide marketing telemetry for scaling operations.</p>
-    <h2>Classification of Parameters</h2>
-    <p>1. Structural Core (Required): Session cookies for login and Stripe security. 2. Traffic Audit (Analytical): Performance sensors. 3. Market Intelligence (Marketing): Tracking pixels for targeted high-precision offers.</p>
+    
+    <h2>1. Protocol Definition</h2>
+    <p>The domain 01guru.com.br (hereinafter "System") does not operate with generic websites; we operate an intelligence architecture based on Python. To ensure the functioning of our Black Box and the security of your transactions, we use persistent and volatile data fragments, commercially known as "cookies" or "web beacons". Upon entering our System, your navigation sensors are synchronized with our database.</p>
+
+    <h2>2. Scope of Operation</h2>
+    <p>The tracked parameters have the exclusive objective of maintaining the integrity of your session, shielding the payment flow, and providing marketing telemetry for the tactical scaling of our operation. Your biocritical parameters (date, time, and location of birth) provided for the oracular engine are NEVER tracked by third-party cookies or sold.</p>
+
+    <h2>3. Parameter Classification (Access Levels)</h2>
+    <p>Our System injects only what is essential for flow optimization:</p>
+    <ul>
+        <li><strong>3.1. Structural Core (Mandatory):</strong> Session cookies to keep your login active during the forging of the Dossier and security cookies from our payment gateway (Stripe) for fraud prevention. Without them, the architecture collapses and the purchase is not processed.</li>
+        <li><strong>3.2. Traffic Audit (Analytical):</strong> Sensors that map the efficiency of our code and macroscopic access behavior.</li>
+        <li><strong>3.3. Market Intelligence (Marketing):</strong> Tracking pixels from traffic platforms (Meta/Google Ads). They identify your consumption profile so that our traffic algorithms can present high-precision offers (remarketing).</li>
+    </ul>
+
+    <h2>4. User Awareness</h2>
+    <p>By accessing 01GURU for the first time and continuing navigation, you consent to our tactical tracking. We operate with brutal transparency: you are being mapped so that we can deliver the right answers to you at the exact moment.</p>
+
+    <h2>5. Restricted Sharing</h2>
+    <p>01GURU shares traffic data exclusively with approved infrastructure partners (Stripe for cash flow and Meta/Google for audience engineering). Our infrastructure operates out of the reach of amateur plugins that leak data.</p>
+
+    <h2>6. Sensor Deactivation (Opt-Out)</h2>
+    <p>The User has total technical freedom to configure their browser (Brave, Chrome, Safari) to block or delete our cookie synchronization. <em>Executive Alert: Deactivating the Structural Core (3.1) will incapacitate the 01GURU engine from forging your Dossier and processing your payment.</em></p>
+
+    <h2>7. Target Rights (LGPD and GDPR)</h2>
+    <p>Under global data protection laws, you possess the inalienable right to request access to, rectification of, or deletion of your tracking history. To trigger this protocol, contact must be made via the official 01GURU support channels.</p>
+
+    <h2>8. Jurisdiction and System Update</h2>
+    <p>This policy is updated according to the operational and legal needs of the business, governed by the laws of the Federative Republic of Brazil. The chosen forum for any litigation is the district of Porto Alegre/RS.</p>
+
     <div class="doc-footer">
-        [Last Protocol Update: March 18, 2026]<br>
+        [Last protocol update: March 18, 2026]<br>
         Executive Document | Gabriel Prado Rodrigues | CRA-RS TE-002457/O
     </div>
 </div>
+
 </body>
 </html>
