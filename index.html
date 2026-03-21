@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<!-- Google Tag Manager -->
 <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -9,7 +8,6 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-WQ748VNG');
 </script>
-<!-- End Google Tag Manager -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="facebook-domain-verification" content="tem7hxkwry57qgcxn9azgc35avv897" />
@@ -179,11 +177,8 @@ footer{border-top:1px solid var(--bgold);padding:44px 32px;text-align:center}
 </script>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQ748VNG"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
 <div class="lang-toggle">
   <button class="lang-btn active" onclick="setLanguage('PT')">PT</button>
   <button class="lang-btn" onclick="setLanguage('EN')">EN</button>
@@ -297,7 +292,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="ttitle">01GURU // DIAGNOSTIC ENGINE v2.6</span>
     </div>
     <div class="t-body">
-      <form id="dossie-form">
+      <form id="dossie-form" novalidate>
         <div class="ig">
           <label for="nome" id="label-nome">NOME COMPLETO DO ALVO</label>
           <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo..." required>
@@ -881,18 +876,17 @@ document.getElementById('dossie-form').addEventListener('submit', function(e) {
   e.preventDefault();
   const protoId = document.getElementById('protocolo-hidden').value;
   if (!protoId) { 
-    alert(currentLanguage === 'PT' ? 'Por favor, selecione um protocolo.' : 'Please select a protocol.'); 
+    alert(currentLanguage === 'PT' ? 'Por favor, selecione um protocolo de auditoria.' : 'Please select a protocol.'); 
     return; 
   }
   
   const p = protocols.find(x => x.id === protoId);
   
   // 1. GERAÇÃO DO CARIMBO TÁTICO (ORDER ID)
-  // Cria um identificador único irrefutável para linkar o formulário à Stripe
   const orderId = 'ORD-' + Math.random().toString(36).substr(2, 9).toUpperCase();
 
   const formData = {
-    order_id: orderId, // Carimbo anexado aos dados
+    order_id: orderId,
     nome: document.getElementById('nome').value,
     dataNascimento: document.getElementById('dataNascimento').value,
     horaNascimento: document.getElementById('horaNascimento').value,
@@ -905,34 +899,41 @@ document.getElementById('dossie-form').addEventListener('submit', function(e) {
     parceiro_data: document.getElementById('partner-fields').style.display === 'block' ? document.getElementById('parceiro-data').value : null
   };
   
-  // Validação Biocrítica
+  // 2. VALIDAÇÃO BIOCRÍTICA EXPLÍCITA
   if (!formData.nome || !formData.dataNascimento || !formData.horaNascimento || !formData.cidade || !formData.estado) {
-    alert(currentLanguage === 'PT' ? 'Preencha todos os parâmetros biocríticos.' : 'Please fill all biocritical parameters.');
+    alert(currentLanguage === 'PT' ? 'ALERTA: Preencha todos os parâmetros biocríticos (Nome, Data, Hora e Local) antes de prosseguir.' : 'Please fill all biocritical parameters.');
     return;
   }
   
-  // Salva no cache local para backup de sessão
   localStorage.setItem('pending_dossie', JSON.stringify(formData));
   
-  // 2. COMUNICAÇÃO COM A BLACK BOX (PYTHON) E REDIRECIONAMENTO STRIPE
-  // O botão muda para mostrar que a máquina está operando
+  // 3. TRAVAMENTO E FEEDBACK VISUAL
   const btnSubmit = document.getElementById('btn-submit');
-  const originalText = btnSubmit.innerText;
   btnSubmit.innerText = currentLanguage === 'PT' ? '[ CRIPTOGRAFANDO DADOS... ]' : '[ ENCRYPTING DATA... ]';
   btnSubmit.disabled = true;
 
-  // Dispara os dados para a Nuvem (Render + Supabase) gravar como 'PENDENTE'
+  // 4. PROTOCOLO DE FALLBACK (Garante que a venda saia de qualquer jeito)
+  let direcionado = false;
+  const irParaStripe = () => {
+      if (!direcionado) {
+          direcionado = true;
+          window.location.href = p.stripeUrl + "?client_reference_id=" + orderId;
+      }
+  };
+
+  // Cronômetro de Guerra: 3.5 segundos
+  setTimeout(irParaStripe, 3500);
+
+  // Dispara para a Black Box
   fetch('https://zero1guru-core-api.onrender.com/api/registrar_pedido', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
   }).then(() => {
-      // Sucesso no banco. Joga o alvo para a Stripe com o Carimbo (client_reference_id)
-      window.location.href = p.stripeUrl + "?client_reference_id=" + orderId;
+      irParaStripe();
   }).catch(err => {
       console.error("[FALHA DE SISTEMA] Erro ao contatar a Black Box:", err);
-      // Fallback de Guerra: Nunca perdemos uma venda. Se o banco falhar, manda pra Stripe mesmo assim.
-      window.location.href = p.stripeUrl + "?client_reference_id=" + orderId;
+      irParaStripe();
   });
 });
 // ─── MÁQUINA DE FREQUÊNCIA (ORÁCULO EFEITO BARNUM) ──────────────────────────
